@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --brand-orange: #FB7E10;
+  --brand-green: #22C55E;
+  --brand-dark: #0F172A;
+}
+
+/* Custom Tailwind v4 themes if needed, but since I use @tailwindcss/postcss, I might still need the config.
+   If using v4 directly via @import "tailwindcss", colors can be defined here.
+*/
+@theme {
+  --color-brand-orange: #FB7E10;
+  --color-brand-green: #22C55E;
+  --color-brand-dark: #0F172A;
+}
