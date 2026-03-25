@@ -8,7 +8,7 @@ const Navbar = () => {
     <>
       <nav className="flex items-center justify-between px-4 md:px-10 h-20 md:h-28 bg-gray-100 shadow-sm relative z-50">
         <div className="flex items-center h-full py-2 sm:py-3 w-1/2 sm:w-auto">
-          <img src="/src/assets/m-logo.png" alt="Mobile Tyre Crew" className="h-full w-auto max-w-full object-contain" />
+          <img src="/images/m-logo.png" alt="Mobile Tyre Crew" className="h-full w-auto max-w-full object-contain" />
         </div>
 
         {/* Desktop Links */}
@@ -59,7 +59,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/src/assets/IMAGES MOBILE TYRE CREW_/hero image.avif"
+          src="/images/hero image.avif"
           alt="Tire background"
           className="w-full h-full object-cover opacity-60 scale-110"
         />
@@ -266,7 +266,7 @@ const Features = () => {
           </div>
           <div className="w-full md:w-1/2 bg-black relative h-48 md:h-auto">
             <img
-              src="/src/assets/porsche.png"
+              src="/images/porsche.png"
               alt="Testimonial Car"
               className="w-full h-full object-cover grayscale brightness-125 transition-all hover:grayscale-0 duration-700"
             />
@@ -281,43 +281,43 @@ const Services = () => {
   const services = [
     {
       title: "Premium Tyre Service",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/PREMIUM TYRE SERVICE.avif",
+      image: "/images/PREMIUM TYRE SERVICE.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "Expert Mechanical Repair",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/precision.avif",
+      image: "/images/precision.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "Professional Alloy Wheel Welding",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/PROFESSIOMAL ALLOY.avif",
+      image: "/images/PROFESSIOMAL ALLOY.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "Mobile Trailer Tyre Fitting",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/Mobile Trailer Tyre Fitting.avif",
+      image: "/images/Mobile Trailer Tyre Fitting.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "24/7 Tyre Service",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/24 7 tyre.avif",
+      image: "/images/24 7 tyre.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "Precision Wheel Balancing",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/precision wheel.avif",
+      image: "/images/precision wheel.avif",
       buttonText: "Learn More",
       link: "#"
     },
     {
       title: "Emergency Tyre Fitting",
-      image: "/src/assets/IMAGES MOBILE TYRE CREW_/emergency tyre.avif",
+      image: "/images/emergency tyre.avif",
       buttonText: "Learn More",
       link: "#"
     }
@@ -370,7 +370,7 @@ const Process = () => {
         {/* Right Content - Image */}
         <div className="lg:w-1/2 relative h-[250px] sm:h-[400px] lg:h-auto overflow-hidden">
           <img
-            src="/src/assets/fitting-step.png"
+            src="/images/fitting-step.png"
             alt="Technician fitting tire"
             className="w-full h-full object-cover grayscale brightness-75 transition-all hover:grayscale-0 duration-1000"
           />
@@ -447,7 +447,7 @@ const CTA = () => {
         {/* Background Tread Pattern */}
         <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-30 md:opacity-40 pointer-events-none">
           <img
-            src="/src/assets/cta-bg.png"
+            src="/images/cta-bg.png"
             alt="Tire Tread"
             className="w-full h-full object-cover grayscale brightness-200"
           />
@@ -489,7 +489,7 @@ const Footer = () => {
         {/* About */}
         <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start">
           <div className="flex items-center">
-            <img src="/src/assets/m-logo.png" alt="Mobile Tyre Crew" className="h-16 md:h-20 w-auto object-contain" />
+            <img src="/images/m-logo.png" alt="Mobile Tyre Crew" className="h-16 md:h-20 w-auto object-contain" />
           </div>
           <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
             Engineered for the unexpected. We provide premium roadside tire services for discerning drivers across the nation.
