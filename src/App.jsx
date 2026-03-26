@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import TyreFinderPage from './pages/TyreFinderPage';
 import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
+import LocationsPage from './pages/LocationsPage';
 
 /* ── Home page assembled from components ─────────────────────────────────── */
 const HomePage = () => (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/find-tyres" element={<TyreFinderPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/locations" element={<LocationsPage />} />
         </Routes>
         <Footer />
       </div>

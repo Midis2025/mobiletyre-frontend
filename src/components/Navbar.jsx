@@ -21,8 +21,7 @@ const Navbar = () => {
     { label: 'About', to: '/about' },
     { label: 'Find Tyres', to: '/find-tyres', isNew: true },
     { label: 'Services', to: '/services' },
-    { label: 'Tyres', to: '/tyres' },
-    { label: 'FAQ', to: '/faq' },
+    { label: 'Areas We Cover', to: '/locations' },
     { label: 'Contact', to: '/contact' },
   ];
 
