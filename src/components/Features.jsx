@@ -32,7 +32,7 @@ const Features = () => {
 
       {/* Heading */}
       <div className="mb-10 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black max-w-xl">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black max-w-xl italic uppercase">
           Precision Engineering.<br className="hidden sm:block" />Roadside Reality.
         </h2>
         <div className="w-16 h-1.5 bg-[#FB7E10] mt-4"></div>
@@ -56,8 +56,8 @@ const Features = () => {
                 <path d="M12 7V12" />
               </svg>
             </div>
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black">Ultra-Rapid Deployment</h3>
-            <p className="text-gray-500 font-medium leading-relaxed max-w-md">
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black italic">Ultra-Rapid Deployment</h3>
+            <p className="text-gray-500 font-medium leading-relaxed max-w-md italic">
               Our proprietary dispatch algorithm routes the nearest technician to your GPS coordinates in seconds. No waiting on hold, just instant action.
             </p>
           </div>
@@ -73,8 +73,8 @@ const Features = () => {
               <path d="M12 6L12 12" />
             </svg>
           </div>
-          <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Expertise Guaranteed</h3>
-          <p className="text-gray-400 font-medium leading-relaxed mb-10">
+          <h3 className="text-2xl font-black uppercase tracking-tight mb-4 italic">Expertise Guaranteed</h3>
+          <p className="text-gray-400 font-medium leading-relaxed mb-10 italic">
             Every technician is IMI certified with a minimum of 5 years field experience in luxury and performance vehicles.
           </p>
           <div className="flex -space-x-3">
@@ -94,8 +94,8 @@ const Features = () => {
               <path d="M12 6V12L16 14" />
             </svg>
           </div>
-          <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black">24/7 Kinetic Support</h3>
-          <p className="text-gray-500 font-medium leading-relaxed">
+          <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black italic">24/7 Kinetic Support</h3>
+          <p className="text-gray-500 font-medium leading-relaxed italic">
             Christmas, New Year's, or 3 AM on a Tuesday. We never sleep because the roads never close.
           </p>
         </div>
@@ -103,7 +103,7 @@ const Features = () => {
         {/* Card 4: Quote (Span 2) */}
         <div className="lg:col-span-2 bg-[#FB7E10] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg hover:shadow-xl transition-all">
           <div className="p-6 md:p-10 flex-1 flex flex-col justify-center text-center md:text-left">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white italic mb-4 md:mb-6 leading-tight">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white italic mb-4 md:mb-6 leading-tight uppercase">
               "The best service I've ever experienced on the road."
             </h3>
             <p className="text-white/80 font-bold uppercase tracking-wider text-sm">
@@ -112,7 +112,7 @@ const Features = () => {
           </div>
           <div className="w-full md:w-1/2 bg-black relative h-48 md:h-auto">
             <img
-              src="/images/porsche.png"
+              src="https://images.unsplash.com/photo-1523305353081-c178a1c2202e?q=80&w=2070&auto=format&fit=crop"
               alt="Testimonial Car"
               className="w-full h-full object-cover grayscale brightness-125 transition-all hover:grayscale-0 duration-700"
             />

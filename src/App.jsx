@@ -9,6 +9,8 @@ import CTA from './components/CTA';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
 import TyreFinderPage from './pages/TyreFinderPage';
+import ContactPage from './pages/ContactPage';
+import ServicesPage from './pages/ServicesPage';
 
 /* ── Home page assembled from components ─────────────────────────────────── */
 const HomePage = () => (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/find-tyres" element={<TyreFinderPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/services" element={<ServicesPage />} />
         </Routes>
         <Footer />
       </div>

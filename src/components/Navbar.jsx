@@ -17,12 +17,13 @@ const Navbar = () => {
   useEffect(() => { setIsMenuOpen(false); }, [location]);
 
   const links = [
-    { label: 'Home',     to: '/'        },
-    { label: 'About',    to: '/about'   },
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
     { label: 'Find Tyres', to: '/find-tyres', isNew: true },
-    { label: 'Services', to: '/services'},
-    { label: 'Tyres',    to: '/tyres'   },
-    { label: 'FAQ',      to: '/faq'     },
+    { label: 'Services', to: '/services' },
+    { label: 'Tyres', to: '/tyres' },
+    { label: 'FAQ', to: '/faq' },
+    { label: 'Contact', to: '/contact' },
   ];
 
   const isActive = (to) => location.pathname === to;
@@ -30,9 +31,8 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`flex items-center justify-between px-4 md:px-10 h-20 md:h-28 transition-all duration-300 relative z-50 ${
-          scrolled ? 'bg-white shadow-md' : 'bg-gray-100 shadow-sm'
-        }`}
+        className={`flex items-center justify-between px-4 md:px-10 h-20 md:h-28 transition-all duration-300 relative z-50 ${scrolled ? 'bg-white shadow-md' : 'bg-gray-100 shadow-sm'
+          }`}
       >
         {/* Logo */}
         <Link to="/" className="flex items-center h-full py-2 sm:py-3 w-1/2 sm:w-auto">
@@ -45,13 +45,11 @@ const Navbar = () => {
             <Link
               key={to}
               to={to}
-              className={`relative py-1 transition-colors flex items-center gap-1 ${
-                isActive(to)
+              className={`relative py-1 transition-colors flex items-center gap-1 ${isActive(to)
                   ? 'text-[#FB7E10]'
                   : 'hover:text-[#FB7E10]'
-              } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FB7E10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100 ${
-                isActive(to) ? 'after:scale-x-100' : ''
-              }`}
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FB7E10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100 ${isActive(to) ? 'after:scale-x-100' : ''
+                }`}
             >
               {label}
               {links.find(l => l.to === to)?.isNew && (
@@ -88,11 +86,10 @@ const Navbar = () => {
             <Link
               key={to}
               to={to}
-              className={`flex items-center justify-between w-full py-3 px-2 rounded-lg transition-colors border-b border-gray-100 last:border-b-0 ${
-                isActive(to)
+              className={`flex items-center justify-between w-full py-3 px-2 rounded-lg transition-colors border-b border-gray-100 last:border-b-0 ${isActive(to)
                   ? 'text-[#FB7E10] bg-orange-50'
                   : 'hover:text-[#FB7E10] hover:bg-gray-50'
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 {label}

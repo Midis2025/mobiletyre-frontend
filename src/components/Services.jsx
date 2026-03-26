@@ -43,6 +43,30 @@ const Services = () => {
       image: "/images/emergency tyre.avif",
       buttonText: "Learn More",
       link: "#"
+    },
+    {
+      title: "TPMS Sensor Service",
+      image: "/images/TPMS.avif",
+      buttonText: "Learn More",
+      link: "#"
+    },
+    {
+      title: "Flat Tyre Assistance",
+      image: "/images/flat tyre 1.avif",
+      buttonText: "Learn More",
+      link: "#"
+    },
+    {
+      title: "Locking Wheel Nut Removal",
+      image: "/images/locking wheel 1.avif",
+      buttonText: "Learn More",
+      link: "#"
+    },
+    {
+      title: "Tyre Recycling & Disposal",
+      image: "/images/tyre recycling.avif",
+      buttonText: "Learn More",
+      link: "#"
     }
   ];
 
