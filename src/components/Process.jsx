@@ -13,7 +13,7 @@ const Process = () => {
         {/* Right Content - Visual */}
         <div className="lg:w-1/2 relative h-[400px] sm:h-[600px] lg:h-auto overflow-hidden group">
           <img
-            src="https://images.unsplash.com/photo-1679652553853-1b4010233ce3?w=1000&auto=format&fit=crop&q=80"
+            src="https://images.pexels.com/photos/3399938/pexels-photo-3399938.jpeg"
             alt="Technician fitting tyre"
             className="w-full h-full object-cover grayscale brightness-110 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-[2000ms] scale-110 group-hover:scale-100"
           />
