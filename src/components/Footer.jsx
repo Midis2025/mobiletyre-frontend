@@ -7,8 +7,8 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 lg:gap-20">
                 {/* Brand */}
                 <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start">
-                    <Link to="/" className="flex items-center">
-                        <img src="/images/m-logo.png" alt="Mobile Tyre Champions" className="h-16 md:h-20 w-auto object-contain" />
+                    <Link to="/" className="flex items-center h-16 md:h-20">
+                        <img src="/images/MTC.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
                     </Link>
                     <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
                         Engineered for the unexpected. We provide premium roadside tyre services for discerning drivers across the UK.

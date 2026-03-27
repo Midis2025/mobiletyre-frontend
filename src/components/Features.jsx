@@ -29,7 +29,7 @@ const Features = () => {
             </span>
             <span className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">Official Partners</span>
           </div>
-          
+
           <h2 className="text-3xl md:text-5xl font-black  uppercase tracking-tighter text-slate-900 leading-[0.9] mb-4">
             Trusted by the <span className="text-[#FB7E10]">Best in Motion</span>
           </h2>
@@ -40,24 +40,24 @@ const Features = () => {
 
         {/* The Marquee Track */}
         <div className="relative group max-w-[1400px] mx-auto">
-          {/* Track Shadow/Border containment */}
-          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] border-y border-white rounded-3xl -mx-4 md:-mx-10 z-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.02)]"></div>
+          {/* Solid Container for Marquee - Highlighted grey track */}
+          <div className="absolute inset-x-[-100vw] inset-y-0 bg-[#F1F3F6] z-0"></div>
 
           {/* Scrolling edges fade */}
-          <div className="absolute inset-y-0 left-0 w-24 md:w-60 bg-gradient-to-r from-[#f8fafc] via-[#f8fafc]/80 to-transparent z-10 pointer-events-none rounded-l-3xl"></div>
-          <div className="absolute inset-y-0 right-0 w-24 md:w-60 bg-gradient-to-l from-[#f8fafc] via-[#f8fafc]/80 to-transparent z-10 pointer-events-none rounded-r-3xl"></div>
+          <div className="absolute inset-y-0 left-0 w-32 md:w-80 bg-gradient-to-r from-[#F1F3F6] via-[#F1F3F6]/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#F1F3F6] via-[#F1F3F6]/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Single Row: Forward Motion */}
-          <div className="flex w-max animate-marquee items-center py-10 relative z-10">
+          <div className="flex w-max animate-marquee items-center py-14 relative z-10">
             {[...brandLogos, ...brandLogos].map((logo, i) => (
-              <div 
+              <div
                 key={`r1-${i}`}
-                className="mx-12 md:mx-20 flex items-center justify-center"
+                className="mx-10 md:mx-16 flex items-center justify-center bg-white p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1"
               >
                 <img
                   src={logo}
                   alt="Brand Logo"
-                  className="h-10 md:h-16 w-auto object-contain drop-shadow-sm filter brightness-105"
+                  className="h-8 md:h-14 w-auto object-contain transition-all duration-500 hover:scale-110"
                 />
               </div>
             ))}
@@ -147,7 +147,7 @@ const Features = () => {
           </div>
           <div className="w-full md:w-1/2 bg-black relative h-48 md:h-auto">
             <img
-              src="https://images.unsplash.com/photo-1523305353081-c178a1c2202e?q=80&w=2070&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bHV4dXJ5JTIwY2FyfGVufDB8fDB8fHww"
               alt="Testimonial Car"
               className="w-full h-full object-cover grayscale brightness-125 transition-all hover:grayscale-0 duration-700"
             />

@@ -1,75 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { servicesData } from '../data/servicesData';
 
 const Services = () => {
-  const services = [
-    {
-      title: "Premium Tyre Service",
-      image: "/images/PREMIUM TYRE SERVICE.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Expert Mechanical Repair",
-      image: "/images/precision.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Professional Alloy Wheel Welding",
-      image: "/images/PROFESSIOMAL ALLOY.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Mobile Trailer Tyre Fitting",
-      image: "/images/Mobile Trailer Tyre Fitting.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "24/7 Tyre Service",
-      image: "/images/24 7 tyre.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Precision Wheel Balancing",
-      image: "/images/precision wheel.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Emergency Tyre Fitting",
-      image: "/images/emergency tyre.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "TPMS Sensor Service",
-      image: "/images/TPMS.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Flat Tyre Assistance",
-      image: "/images/flat tyre 1.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Locking Wheel Nut Removal",
-      image: "/images/locking wheel 1.avif",
-      buttonText: "Learn More",
-      link: "#"
-    },
-    {
-      title: "Tyre Recycling & Disposal",
-      image: "/images/tyre recycling.avif",
-      buttonText: "Learn More",
-      link: "#"
-    }
-  ];
-
   return (
     <div className="bg-white py-12 px-4 sm:px-10 lg:px-20">
       {/* Heading */}
@@ -82,8 +15,12 @@ const Services = () => {
 
       {/* Services List - Large Cards */}
       <div className="space-y-4">
-        {services.map((service, index) => (
-          <div key={index} className="relative group overflow-hidden rounded-xl md:rounded-sm cursor-pointer shadow-lg mb-4">
+        {servicesData.map((service, index) => (
+          <Link 
+            key={index} 
+            to={`/services/${service.id}`}
+            className="relative block group overflow-hidden rounded-xl md:rounded-sm cursor-pointer shadow-lg mb-4"
+          >
             {/* Image */}
             <div className="h-[280px] sm:h-[400px] md:h-[500px] overflow-hidden">
               <img
@@ -96,14 +33,14 @@ const Services = () => {
 
             {/* Content Overlay */}
             <div className="absolute inset-x-0 bottom-6 md:bottom-12 flex flex-col items-center space-y-3 md:space-y-4 px-4 text-center">
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white italic drop-shadow-lg leading-tight">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white italic drop-shadow-lg leading-tight uppercase">
                 {service.title}
               </h3>
-              <button className="bg-[#1E63C4] text-white px-6 md:px-8 py-2 md:py-2.5 rounded-sm font-bold text-xs md:text-sm hover:bg-blue-700 transition-all shadow-xl active:scale-95">
-                {service.buttonText}
-              </button>
+              <div className="bg-[#1E63C4] text-white px-6 md:px-8 py-2 md:py-2.5 rounded-sm font-bold text-xs md:text-sm shadow-xl active:scale-95 uppercase italic">
+                Learn More
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
