@@ -3,15 +3,15 @@ import { Phone, Quote, Zap, ArrowRight, ShieldCheck, CreditCard, CheckCircle } f
 
 const Process = () => {
   return (
-    <div className="bg-slate-50 py-24 px-4 sm:px-10 lg:px-20 relative overflow-hidden">
+    <div className="bg-slate-50 py-12 md:py-24 px-4 sm:px-10 lg:px-20 relative overflow-hidden">
 
       {/* Background Accent (Subtle) */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-100/30 rounded-full blur-[150px] -mr-48 -mt-48"></div>
 
-      <div className="max-w-7xl mx-auto rounded-[3.5rem] md:rounded-[5rem] overflow-hidden flex flex-col lg:flex-row-reverse bg-white border border-gray-100 shadow-2xl relative z-10 transition-all duration-700 hover:shadow-orange-100">
+      <div className="max-w-7xl mx-auto rounded-[2rem] md:rounded-[5rem] overflow-hidden flex flex-col lg:flex-row-reverse bg-white border border-gray-100 shadow-2xl relative z-10 transition-all duration-700 hover:shadow-orange-100">
 
         {/* Right Content - Visual */}
-        <div className="lg:w-1/2 relative h-[400px] sm:h-[600px] lg:h-auto overflow-hidden group">
+        <div className="lg:w-1/2 relative h-[300px] sm:h-[500px] lg:h-auto overflow-hidden group">
           <img
             src="https://images.pexels.com/photos/3399938/pexels-photo-3399938.jpeg"
             alt="Technician fitting tyre"
@@ -20,7 +20,7 @@ const Process = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
 
           {/* Floating UI Detail - Light Mode */}
-          <div className="absolute bottom-10 left-10 right-10 bg-white/80 backdrop-blur-2xl border border-gray-200 p-8 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-10 group-hover:translate-y-0 shadow-2xl">
+          <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 bg-white/80 backdrop-blur-2xl border border-gray-200 p-6 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] opacity-0 md:group-hover:opacity-100 transition-all duration-1000 translate-y-10 group-hover:translate-y-0 shadow-2xl hidden md:block">
             <div className="flex items-center gap-6">
               <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center text-green-600 border border-green-100 shadow-sm">
                 <ShieldCheck size={36} />
@@ -37,18 +37,18 @@ const Process = () => {
         </div>
 
         {/* Left Content - Steps */}
-        <div className="lg:w-1/2 p-10 md:p-16 lg:p-24 flex flex-col justify-center space-y-16">
+        <div className="lg:w-1/2 p-6 md:p-16 lg:p-24 flex flex-col justify-center space-y-10 md:space-y-16">
           <div className="space-y-6 text-center md:text-left">
             <div className="inline-flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
               <span className="text-[#FB7E10] font-black uppercase text-[10px] tracking-widest italic tracking-tighter">Operational Protocol</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-[0.85] text-black uppercase italic">
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight md:leading-[0.85] text-black uppercase italic">
               FLAT TYRE? <br /> <span className="text-[#FB7E10]">REACH US INSTANTLY</span>
             </h2>
-            <p className="text-gray-400 font-medium italic text-lg leading-relaxed max-w-md">Our specialized deployment sequence ensures zero downtime. Precision engineered response, 24/7/365.</p>
+            <p className="text-gray-400 font-medium italic text-base md:text-lg leading-relaxed max-w-md mx-auto md:mx-0">Our specialized deployment sequence ensures zero downtime. Precision engineered response, 24/7/365.</p>
           </div>
 
-          <div className="space-y-12 relative">
+          <div className="space-y-8 md:space-y-12 relative">
             {/* Connecting Line */}
             <div className="absolute left-[31px] top-6 bottom-6 w-0.5 bg-gray-100 hidden md:block"></div>
 
@@ -72,14 +72,14 @@ const Process = () => {
                 desc: "Certified fitters arrive on-site. Secure card payment and you're back on your way."
               }
             ].map((step, i) => (
-              <div key={i} className="flex gap-10 items-start group relative">
-                <div className="shrink-0 w-16 h-16 bg-white border border-gray-100 shadow-xl group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-700 rounded-[1.25rem] flex items-center justify-center text-[#FB7E10] relative z-20">
+              <div key={i} className="flex gap-6 md:gap-10 items-start group relative">
+                <div className="shrink-0 w-14 h-14 md:w-16 md:h-16 bg-white border border-gray-100 shadow-xl group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-700 rounded-[1.25rem] flex items-center justify-center text-[#FB7E10] relative z-20">
                   {step.icon}
-                  <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-gray-100 rounded-full flex items-center justify-center text-[10px] font-black text-gray-400 group-hover:text-black transition-colors shadow-sm">{step.idx}</div>
+                  <div className="absolute -right-3 md:-right-4 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 bg-white border border-gray-100 rounded-full flex items-center justify-center text-[10px] font-black text-gray-400 group-hover:text-black transition-colors shadow-sm">{step.idx}</div>
                 </div>
-                <div className="space-y-2 pt-2">
-                  <h4 className="text-2xl font-black text-black italic transition-colors group-hover:text-[#FB7E10] tracking-tight">{step.title}</h4>
-                  <p className="text-gray-400 font-medium leading-relaxed max-w-sm italic text-sm">
+                <div className="space-y-1 md:space-y-2 pt-1 md:pt-2 text-left">
+                  <h4 className="text-xl md:text-2xl font-black text-black italic transition-colors group-hover:text-[#FB7E10] tracking-tight">{step.title}</h4>
+                  <p className="text-gray-400 font-medium leading-relaxed max-w-sm italic text-xs md:text-sm">
                     {step.desc}
                   </p>
                 </div>
@@ -87,8 +87,8 @@ const Process = () => {
             ))}
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row gap-6">
-            <a href="tel:02033554005" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95 italic">
+          <div className="pt-4 md:pt-8 flex flex-col sm:flex-row gap-4 md:gap-6">
+            <a href="tel:02033554005" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95 italic">
               GET TYRES NOW <ArrowRight size={18} />
             </a>
             <div className="flex items-center gap-4 px-8 h-16 bg-slate-50 border border-slate-100 rounded-2xl group shadow-sm">
