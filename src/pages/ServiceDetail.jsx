@@ -42,7 +42,7 @@ const ServiceDetail = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a
-                            href="tel:02033554005"
+                            href="tel:+447495336005"
                             className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#1E63C4] text-white px-10 py-5 rounded-xl font-black text-lg uppercase tracking-widest hover:bg-blue-700 transition-all shadow-[0_0_50px_rgba(30,99,196,0.3)] hover:scale-105 active:scale-95"
                         >
                             <Phone size={24} fill="white" className="stroke-none" />
@@ -192,7 +192,7 @@ const ServiceDetail = () => {
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] leading-none mb-1 text-center sm:text-left">Priority Hotline</span>
-                                    <span className="text-white font-black text-2xl tracking-tight leading-none">020 3355 4005</span>
+                                    <span className="text-white font-black text-2xl tracking-tight leading-none">+44 7495 336 005</span>
                                 </div>
                             </div>
                         </div>

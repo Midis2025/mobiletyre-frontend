@@ -45,8 +45,8 @@ const ServicesPage = () => {
                     </h2>
                     
                     <div className="relative z-10 flex flex-col items-center gap-8">
-                        <a href="tel:02033554005" className="inline-flex items-center gap-4 bg-[#FB7E10] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-lg md:text-2xl hover:bg-orange-600 hover:scale-105 transition-all shadow-2xl">
-                            <Phone size={32} fill="white" /> 020 3355 4005
+                        <a href="tel:+447495336005" className="inline-flex items-center gap-4 bg-[#FB7E10] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-widest text-lg md:text-2xl hover:bg-orange-600 hover:scale-105 transition-all shadow-2xl">
+                            <Phone size={32} fill="white" /> +44 7495 336 005
                         </a>
                         <p className="text-gray-400 font-black uppercase text-xs tracking-widest italic flex items-center gap-3">
                             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_green]"></span>

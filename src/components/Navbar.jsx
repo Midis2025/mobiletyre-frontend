@@ -35,7 +35,7 @@ const Navbar = () => {
       >
         {/* Logo */}
         <Link to="/" className="flex items-center h-full py-2 sm:py-3 w-1/2 sm:w-auto">
-          <img src="/images/MTC.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
+          <img src="/images/mtc-logo-new.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
         </Link>
 
         {/* Desktop Links */}
@@ -61,10 +61,10 @@ const Navbar = () => {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <a
-            href="tel:02033554005"
+            href="tel:+447495336005"
             className="hidden lg:flex items-center gap-2 bg-[#FB7E10] text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-orange-600 transition-all whitespace-nowrap"
           >
-            <span>020 3355 4005</span>
+            <span>+44 7495 336 005</span>
             <Phone size={16} fill="white" />
           </a>
 
@@ -100,10 +100,10 @@ const Navbar = () => {
           ))}
 
           <a
-            href="tel:02033554005"
+            href="tel:+447495336005"
             className="flex items-center justify-center gap-2 bg-[#FB7E10] text-white w-full py-3.5 rounded-xl font-bold text-sm shadow-lg hover:bg-orange-600 transition-all mt-2"
           >
-            <span>CALL: 020 3355 4005</span>
+            <span>CALL: +44 7495 336 005</span>
             <Phone size={16} fill="white" />
           </a>
         </div>

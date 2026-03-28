@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
 import LocationsPage from './pages/LocationsPage';
 import ServiceDetail from './pages/ServiceDetail';
+import WhatsAppButton from './components/WhatsAppButton';
 
 /* ── Home page assembled from components ─────────────────────────────────── */
 const HomePage = () => (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/locations" element={<LocationsPage />} />
         </Routes>
         <Footer />
+        <WhatsAppButton />
       </div>
     </BrowserRouter>
   );

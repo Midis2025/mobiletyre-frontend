@@ -45,9 +45,9 @@ const TyreFinderPage = () => {
 
                     {/* Quick Action Button for emergency */}
                     <div className="pt-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                        <a href="tel:02033554005" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-2xl transition-all group">
+                        <a href="tel:+447495336005" className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-2xl transition-all group">
                             <Phone className="text-[#FB7E10] group-hover:scale-110 transition-transform" />
-                            <span className="text-sm font-black uppercase tracking-widest text-[#FB7E10]">Need Help? Call 020 3355 4005</span>
+                            <span className="text-sm font-black uppercase tracking-widest text-[#FB7E10]">Need Help? Call +44 7495 336 005</span>
                         </a>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ const TyreFinderPage = () => {
                         <Link to="/about" className="w-full md:w-auto px-10 py-5 bg-[#FB7E10] text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/20 active:scale-95">
                             Learn about us
                         </Link>
-                        <a href="tel:02033554005" className="w-full md:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all active:scale-95">
+                        <a href="tel:+447495336005" className="w-full md:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all active:scale-95">
                             Emergency? Call Now
                         </a>
                     </div>

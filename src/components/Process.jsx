@@ -88,7 +88,7 @@ const Process = () => {
           </div>
 
           <div className="pt-4 md:pt-8 flex flex-col sm:flex-row gap-4 md:gap-6">
-            <a href="tel:02033554005" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95 italic">
+            <a href="tel:+447495336005" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95 italic">
               GET TYRES NOW <ArrowRight size={18} />
             </a>
             <div className="flex items-center gap-4 px-8 h-16 bg-slate-50 border border-slate-100 rounded-2xl group shadow-sm">

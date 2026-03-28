@@ -56,13 +56,13 @@ const ContactPage = () => {
                         </div>
 
                         <div className="space-y-6">
-                            <a href="tel:02033554005" className="group flex items-center gap-6 p-6 md:p-8 bg-white border border-gray-100 rounded-3xl hover:shadow-2xl hover:border-[#FB7E10]/30 transition-all duration-500 shadow-xl">
+                             <a href="tel:+447495336005" className="group flex items-center gap-6 p-6 md:p-8 bg-white border border-gray-100 rounded-3xl hover:shadow-2xl hover:border-[#FB7E10]/30 transition-all duration-500 shadow-xl">
                                 <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-[#FB7E10] border border-orange-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500">
                                     <Phone size={32} />
                                 </div>
                                 <div className="space-y-0.5">
                                     <span className="block text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">Emergency Phone</span>
-                                    <span className="block text-2xl font-black text-black italic leading-tight">020 3355 4005</span>
+                                    <span className="block text-2xl font-black text-black italic leading-tight">+44 7495 336 005</span>
                                 </div>
                             </a>
 
@@ -85,6 +85,16 @@ const ContactPage = () => {
                                     <span className="block text-2xl font-black text-black italic leading-tight uppercase">Always 24/7/365</span>
                                 </div>
                             </div>
+
+                            <a href="mailto:info@mobiletyrechampions.com" className="group flex items-center gap-6 p-6 md:p-8 bg-white border border-gray-100 rounded-3xl hover:shadow-2xl hover:border-[#FB7E10]/30 transition-all duration-500 shadow-xl">
+                                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 border border-blue-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500">
+                                    <Mail size={32} />
+                                </div>
+                                <div className="space-y-0.5">
+                                    <span className="block text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">Support Email</span>
+                                    <span className="block text-xl font-black text-black italic leading-tight lowercase">info@mobiletyrechampions.com</span>
+                                </div>
+                            </a>
                         </div>
 
                         <div className="bg-[#0B1528] rounded-[3rem] p-10 text-white space-y-8 relative overflow-hidden group shadow-2xl">
