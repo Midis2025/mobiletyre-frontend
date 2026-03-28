@@ -8,7 +8,7 @@ const Footer = () => {
                 {/* Brand */}
                 <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start">
                     <Link to="/" className="flex items-center h-16 md:h-20">
-                        <img src="/images/mtc-logo-new.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
+                        <img src="/images/footer-logo-mtc.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
                     </Link>
                     <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
                         Engineered for the unexpected. We provide premium roadside tyre services for discerning drivers across the UK.
