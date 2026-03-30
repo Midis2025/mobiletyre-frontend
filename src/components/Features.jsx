@@ -40,12 +40,12 @@ const Features = () => {
 
         {/* The Marquee Track */}
         <div className="relative group max-w-[1400px] mx-auto">
-          {/* Solid Container for Marquee - Highlighted grey track */}
-          <div className="absolute inset-x-[-100vw] inset-y-0 bg-[#F1F3F6] z-0"></div>
+          {/* Solid Container for Marquee - Highlighted orange track */}
+          <div className="absolute inset-x-[-100vw] inset-y-0 bg-[#FB7E10] z-0"></div>
 
           {/* Scrolling edges fade */}
-          <div className="absolute inset-y-0 left-0 w-32 md:w-80 bg-gradient-to-r from-[#F1F3F6] via-[#F1F3F6]/80 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#F1F3F6] via-[#F1F3F6]/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-32 md:w-80 bg-gradient-to-r from-[#FB7E10] via-[#FB7E10]/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#FB7E10] via-[#FB7E10]/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Single Row: Forward Motion */}
           <div className="flex w-max animate-marquee items-center py-14 relative z-10">
@@ -76,23 +76,23 @@ const Features = () => {
       {/* Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Card 1: Ultra-Rapid Deployment (Span 2) */}
-        <div className="lg:col-span-2 bg-[#F1F3F6] rounded-2xl md:rounded-3xl p-6 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all">
+        <div className="lg:col-span-2 bg-[#FB7E10] rounded-2xl md:rounded-3xl p-6 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all">
           <div className="absolute right-0 bottom-0 pointer-events-none opacity-5 translate-x-1/4 translate-y-1/4 group-hover:scale-110 transition-transform duration-700">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-96 h-96 text-black">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-96 h-96 text-white">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
             </svg>
           </div>
 
           <div className="relative z-10">
-            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-8 border border-gray-100">
-              <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-8 border border-orange-400">
+              <svg className="w-6 h-6 text-[#FB7E10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 12L16 10" />
                 <path d="M12 7V12" />
               </svg>
             </div>
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black italic">Ultra-Rapid Deployment</h3>
-            <p className="text-gray-500 font-medium leading-relaxed max-w-md italic">
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-white italic">Ultra-Rapid Deployment</h3>
+            <p className="text-white/90 font-medium leading-relaxed max-w-md italic">
               Our proprietary dispatch algorithm routes the nearest technician to your GPS coordinates in seconds. No waiting on hold, just instant action.
             </p>
           </div>
@@ -122,15 +122,15 @@ const Features = () => {
         </div>
 
         {/* Card 3: 24/7 Kinetic Support */}
-        <div className="bg-[#F1F3F6] rounded-2xl md:rounded-3xl p-6 md:p-10 hover:shadow-lg transition-all">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 md:mb-8 border border-gray-100">
-            <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <div className="bg-[#FB7E10] rounded-2xl md:rounded-3xl p-6 md:p-10 hover:shadow-lg transition-all">
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 md:mb-8 border border-orange-400">
+            <svg className="w-6 h-6 text-[#FB7E10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 6V12L16 14" />
             </svg>
           </div>
-          <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-black italic">24/7 Kinetic Support</h3>
-          <p className="text-gray-500 font-medium leading-relaxed italic">
+          <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-white italic">24/7 Kinetic Support</h3>
+          <p className="text-white/90 font-medium leading-relaxed italic">
             Christmas, New Year's, or 3 AM on a Tuesday. We never sleep because the roads never close.
           </p>
         </div>
