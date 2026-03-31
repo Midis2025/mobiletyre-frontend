@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Process from './components/Process';
 import Services from './components/Services';
+import HowToReadTyre from './components/HowToReadTyre';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import AboutPage from './pages/AboutPage';
@@ -24,6 +25,7 @@ const HomePage = () => (
     <Features />
     <Process />
     <Services />
+    <HowToReadTyre />
     <CTA />
   </>
 );

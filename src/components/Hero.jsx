@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+import { servicesData } from '../data/servicesData';
 
 const Hero = () => {
   return (
@@ -77,6 +78,20 @@ const Hero = () => {
                   />
                 </div>
 
+                <div>
+                  <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+                    SERVICE TYPE
+                  </label>
+                  <div className="relative">
+                    <select className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
+                      {servicesData.map((service, index) => (
+                        <option key={index} value={service.title}>{service.title}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
@@ -90,13 +105,14 @@ const Hero = () => {
                   </div>
                   <div>
                     <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-                      SERVICE TYPE
+                      TIMING SLOT
                     </label>
                     <div className="relative">
-                      <select className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-2 focus:ring-[#FB7E10] font-medium">
-                        <option>Emergency Fix</option>
-                        <option>Scheduled Mobile Fitting</option>
-                        <option>Tire Replacement</option>
+                      <select className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium">
+                        <option>As Soon As Possible</option>
+                        <option>Morning (8AM - 12PM)</option>
+                        <option>Afternoon (12PM - 4PM)</option>
+                        <option>Evening (4PM - 8PM)</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                     </div>

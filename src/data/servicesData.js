@@ -24,21 +24,21 @@ export const servicesData = [
     ]
   },
   {
-    id: 'professional-alloy-welding',
-    title: "Professional Alloy Wheel Welding",
-    image: "/images/PROFESSIOMAL%20ALLOY.avif",
-    description: "Specialized alloy wheel welding to repair cracks and structural damage. Why replace when you can safely repair with our certified structural welding service.",
+    id: 'puncture-repair',
+    title: "Puncture Repair",
+    image: "/images/flat-tyres.avif",
+    description: "Got a flat? Our expert mobile technicians can quickly and safely perform puncture repairs to British Standards, getting you back on the road safely without the cost of a new tyre.",
     features: [
-      "Structural Integrity Check",
-      "Precision Welding",
-      "Pothole Damage Repair",
-      "Cracked Rim Fix"
+      "BS AU 159 Compliant Repair",
+      "Fast At-Home Service",
+      "Tread Depth Check",
+      "Cost Effective Fix"
     ]
   },
   {
-    id: 'mobile-trailer-tyre-fitting',
+    id: 'trailer-tyre-fitting',
     title: "Mobile Trailer Tyre Fitting",
-    image: "/images/Service Van Branding Mockup.jpg",
+    image: "/images/mobile.jpg",
     description: "Specialized mobile fitting for trailers, caravans, and horseboxes. We come to your storage location or home to ensure your leisure vehicle is ready for the road.",
     features: [
       "Caravan Specialists",
@@ -81,6 +81,18 @@ export const servicesData = [
       "M-way Safety Protocol",
       "All Tyre Sizes Stocked",
       "60-min Arrival Window"
+    ]
+  },
+  {
+    id: 'locking-wheel-nut-removal',
+    title: "Locking Wheel Nut Removal",
+    image: "/images/locking wheel 1.avif",
+    description: "Lost your locking wheel nut key or have a damaged nut? We provide expert non-destructive locking wheel nut removal without damaging your precious alloys.",
+    features: [
+      "Non-Destructive Removal",
+      "All Vehicle Makes",
+      "No Alloy Damage",
+      "Lost Key Solutions"
     ]
   }
 ];
