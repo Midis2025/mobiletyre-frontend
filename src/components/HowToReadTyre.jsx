@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const HowToReadTyre = () => {
   return (
-    <div className="bg-slate-50 py-16 md:py-24 relative overflow-hidden">
+    <div className="bg-white py-16 md:py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
@@ -32,22 +32,14 @@ const HowToReadTyre = () => {
             </div>
           </div>
 
-          {/* Visual Area */}
+          {/* Visual Area - Background and glows removed */}
           <div className="lg:w-1/2 w-full relative">
-            <div className="absolute inset-0 bg-[#FB7E10]/20 rounded-full blur-3xl transform -translate-x-10 translate-y-10"></div>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="relative group flex items-center justify-center p-6 md:p-12">
               <img 
-                src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1000&auto=format&fit=crop" 
+                src="/images/tyre.png" 
                 alt="Tyre size on sidewall" 
-                className="w-full h-auto object-cover md:h-[450px]"
+                className="max-w-full h-auto object-contain hover:scale-105 transition-transform duration-700 pointer-events-none mix-blend-multiply"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/60 via-transparent to-transparent pointer-events-none"></div>
-              
-              {/* Overlay Badge */}
-              <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-xl border-l-4 border-[#FB7E10]">
-                <p className="font-black text-slate-900 text-lg uppercase tracking-tight">Know Your Size</p>
-                <p className="text-sm font-medium text-slate-600">Order the perfect fit</p>
-              </div>
             </div>
           </div>
           

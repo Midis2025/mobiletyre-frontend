@@ -32,7 +32,7 @@ const Hero = () => {
             </h1>
 
             <p className="max-w-md text-gray-300 text-sm md:text-lg leading-relaxed">
-              Premium mobile tire fitting service. Emergency roadside assistance or scheduled home fitting. Night or day, we keep you moving.
+              Premium mobile tyre fitting service. Emergency roadside assistance or scheduled home fitting. Night or day, we keep you moving.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 w-full max-w-sm sm:max-w-none">

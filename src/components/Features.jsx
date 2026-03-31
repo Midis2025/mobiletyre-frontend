@@ -2,16 +2,28 @@ import React from 'react';
 
 const Features = () => {
   const brandLogos = [
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/12/Mobile-tyres-logos-mitchlen.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/1-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/2-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/3-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/4-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/5-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/6-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/7-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/8-1.png",
-    "https://www.mobiletyremates.com/wp-content/uploads/2025/10/9-1.png",
+    "https://www.carlogos.org/logo/Bugatti-logo-640x327.jpg",
+    "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png",
+    "https://www.carlogos.org/logo/Rolls-Royce-logo-640x550.jpg",
+    "https://www.carlogos.org/car-logos/porsche-logo-2014-full-640.png",
+    "https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png",
+    "https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png",
+    "https://www.carlogos.org/car-logos/bmw-logo-2020-gray.png",
+    "https://www.carlogos.org/logo/Mercedes-Benz-logo-2011-640x369.jpg",
+    "https://www.carlogos.org/car-logos/audi-logo-2016-640.png",
+    "https://www.carlogos.org/car-logos/cadillac-logo-2021-full-640.png",
+    "https://www.carlogos.org/car-logos/jaguar-logo-2021-640.png",
+    "https://www.carlogos.org/logo/Mini-logo-2001-640x270.jpg",
+    "https://www.carlogos.org/logo/Acura-logo-1990-640x406.jpg",
+    "https://www.carlogos.org/logo/Koenigsegg-logo-1994-640x550.jpg",
+    "https://www.carlogos.org/logo/SSC-logo-640x550.jpg",
+    "https://www.carlogos.org/logo/W-Motors-logo-640x550.jpg",
+    "https://www.carlogos.org/logo/Alfa-Romeo-logo-2015-640x550.jpg",
+    "https://www.carlogos.org/car-logos/toyota-logo-2020-europe-640.png",
+    "https://www.carlogos.org/car-logos/ford-logo-2017-640.png",
+    "https://www.carlogos.org/car-logos/maserati-logo-2020-640.png",
+    "https://www.carlogos.org/logo/Mustang-logo-2010-640x359.jpg",
+    "https://www.carlogos.org/logo/Aston-Martin-logo-2003-640x286.jpg",
   ];
 
   return (

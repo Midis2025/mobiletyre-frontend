@@ -62,7 +62,7 @@ export const servicesData = [
   {
     id: 'precision-wheel-balancing',
     title: "Precision Wheel Balancing",
-    image: "/images/precision%20wheel.avif",
+    image: "/images/wheel.jpg",
     description: "Eliminate vibrations and ensure even tyre wear with our mobile precision balancing service using high-spec digital balancers.",
     features: [
       "Vibration Removal",

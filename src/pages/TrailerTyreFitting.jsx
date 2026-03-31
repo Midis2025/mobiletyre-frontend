@@ -8,9 +8,9 @@ const TrailerTyreFitting = () => {
             <section className="relative h-[80vh] min-h-[600px] flex flex-col justify-end items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1600&auto=format&fit=crop&q=80"
-                        alt="Mobile Trailer Tyre Fitting"
-                        className="w-full h-full object-cover scale-105 filter grayscale-[20%]"
+                        src="https://www.morristrailers.co.uk/wp-content/uploads/2020/02/services-inner-banner-1536x384.jpg"
+                        alt="Mobile Trailer Tyre Fitting Banner"
+                        className="w-full h-full object-cover scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/80 to-[#0B1528]/40" />
                 </div>
@@ -82,6 +82,19 @@ const TrailerTyreFitting = () => {
                                 <p className="text-slate-500 font-medium leading-relaxed">
                                     We supply and fit high-durability tyres perfectly suited for heavy structural loads typical in trailers and motorhomes, ensuring absolute safety for the journey ahead.
                                 </p>
+                            </div>
+                        </div>
+                        
+                        {/* Custom Image Section */}
+                        <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] border-8 border-white">
+                            <img 
+                                src="/images/mobile-tyre-champions-van.jpg" 
+                                alt="Mobile Tyre Champions Van" 
+                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black/80 to-transparent">
+                                <p className="text-white font-black text-2xl uppercase tracking-tighter">Ready for Any Challenge</p>
+                                <p className="text-gray-300 font-medium">Equipped for every trailer, caravan and RV emergency.</p>
                             </div>
                         </div>
 
