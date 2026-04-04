@@ -95,7 +95,7 @@ const Hero = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-                      TIRE SIZE
+                      TYRE SIZE
                     </label>
                     <input
                       type="text"
