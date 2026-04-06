@@ -17,6 +17,7 @@ import ServiceDetail from './pages/ServiceDetail';
 import WhatsAppButton from './components/WhatsAppButton';
 import LockingWheelNutRemoval from './pages/LockingWheelNutRemoval';
 import TrailerTyreFitting from './pages/TrailerTyreFitting';
+import TyrePartners from './components/TyrePartners';
 
 /* ── Home page assembled from components ─────────────────────────────────── */
 const HomePage = () => (
@@ -34,6 +35,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-slate-50 font-['Outfit']">
+        <TyrePartners />
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

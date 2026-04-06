@@ -8,7 +8,7 @@ const LockingWheelNutRemoval = () => {
             <section className="relative h-[80vh] min-h-[600px] flex flex-col justify-end items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://www.alloywheelnutsandbolts.co.uk/wp-content/uploads/2019/11/technician.jpg"
+                        src="/images/locking wheel 1.avif"
                         alt="Locking Wheel Nut Removal Technician"
                         className="w-full h-full object-cover scale-105"
                     />

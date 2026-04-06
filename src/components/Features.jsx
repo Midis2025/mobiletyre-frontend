@@ -2,28 +2,42 @@ import React from 'react';
 
 const Features = () => {
   const brandLogos = [
-    "https://www.carlogos.org/logo/Bugatti-logo-640x327.jpg",
-    "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png",
-    "https://www.carlogos.org/logo/Rolls-Royce-logo-640x550.jpg",
-    "https://www.carlogos.org/car-logos/porsche-logo-2014-full-640.png",
-    "https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png",
-    "https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png",
-    "https://www.carlogos.org/car-logos/bmw-logo-2020-gray.png",
-    "https://www.carlogos.org/logo/Mercedes-Benz-logo-2011-640x369.jpg",
-    "https://www.carlogos.org/car-logos/audi-logo-2016-640.png",
-    "https://www.carlogos.org/car-logos/cadillac-logo-2021-full-640.png",
-    "https://www.carlogos.org/car-logos/jaguar-logo-2021-640.png",
-    "https://www.carlogos.org/logo/Mini-logo-2001-640x270.jpg",
-    "https://www.carlogos.org/logo/Acura-logo-1990-640x406.jpg",
-    "https://www.carlogos.org/logo/Koenigsegg-logo-1994-640x550.jpg",
-    "https://www.carlogos.org/logo/SSC-logo-640x550.jpg",
-    "https://www.carlogos.org/logo/W-Motors-logo-640x550.jpg",
-    "https://www.carlogos.org/logo/Alfa-Romeo-logo-2015-640x550.jpg",
-    "https://www.carlogos.org/car-logos/toyota-logo-2020-europe-640.png",
-    "https://www.carlogos.org/car-logos/ford-logo-2017-640.png",
-    "https://www.carlogos.org/car-logos/maserati-logo-2020-640.png",
-    "https://www.carlogos.org/logo/Mustang-logo-2010-640x359.jpg",
-    "https://www.carlogos.org/logo/Aston-Martin-logo-2003-640x286.jpg",
+    // Ford
+    { src: "https://www.carlogos.org/car-logos/ford-logo-2003-640.png", name: "Ford" },
+    // Volkswagen
+    { src: "https://uploads.vw-mms.de/system/production/images/vwn/030/145/images/7a0d84d3b718c9a621100e43e581278433114c82/DB2019AL01950_web_1600.jpg?1649155356", name: "Volkswagen" },
+    // Toyota
+    { src: "https://www.carlogos.org/car-logos/toyota-logo-2020-europe-640.png", name: "Toyota" },
+   // Renault
+    { src: "https://w7.pngwing.com/pngs/270/984/png-transparent-renault-5-renault-16-renault-4-car-renault-logo-angle-text-rectangle-thumbnail.png", name: "Renault" },
+    // Peugeot
+    { src: "https://www.stellantis.com/content/dam/stellantis-corporate/brands/peugeot/peugeot.png", name: "Peugeot" },
+    // Skoda
+    { src: "https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Emerald_Green_e2c8d407-1440x473.png", name: "Skoda" },
+    // SEAT
+    { src: "https://www.seat.co.uk/content/dam/countries/gb/seat-website/global-header/global-navigation/seat-logo/seat-s-logo.svg", name: "SEAT" },
+    // --- Popular UK Models ---
+    // Kia Sportage
+    // --- Premium Brands ---
+    // BMW
+    { src: "https://www.carlogos.org/car-logos/bmw-logo.png", name: "BMW" },
+    // Mercedes-Benz
+    { src: "https://www.carlogos.org/car-logos/mercedes-benz-logo.png", name: "Mercedes-Benz" },
+    // Porsche
+    { src: "https://www.carlogos.org/car-logos/porsche-logo.png", name: "Porsche" },
+    // Lexus
+    { src: "https://www.carlogos.org/car-logos/lexus-logo.png", name: "Lexus" },
+    // --- Luxury Brands ---
+    // Bentley
+    { src: "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png", name: "Bentley" },
+    // Rolls-Royce
+    { src: "https://www.carlogos.org/logo/Rolls-Royce-logo-640x550.jpg", name: "Rolls-Royce" },
+    // Jaguar
+    { src: "https://www.carlogos.org/car-logos/jaguar-logo-2021-640.png", name: "Jaguar" },
+    // Mini
+    { src: "https://www.carlogos.org/logo/Mini-logo-2001-640x270.jpg", name: "Mini" },
+    // Aston Martin
+    { src: "https://www.carlogos.org/logo/Aston-Martin-logo-2003-640x286.jpg", name: "Aston Martin" },
   ];
 
   return (
@@ -46,7 +60,7 @@ const Features = () => {
             Trusted by the <span className="text-[#FB7E10]">Best in Motion</span>
           </h2>
           <p className="text-slate-400 text-xs md:text-sm font-bold uppercase tracking-widest max-w-lg">
-            Authorized fitting partners for premium global tyre manufacturers
+            Serving the UK's most popular car brands — on every road, every day
           </p>
         </div>
 
@@ -60,17 +74,18 @@ const Features = () => {
           <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#FB7E10] via-[#FB7E10]/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Single Row: Forward Motion */}
-          <div className="flex w-max animate-marquee items-center py-14 relative z-10">
+          <div className="flex w-max animate-marquee items-center py-10 relative z-10">
             {[...brandLogos, ...brandLogos].map((logo, i) => (
               <div
                 key={`r1-${i}`}
-                className="mx-10 md:mx-16 flex items-center justify-center bg-white p-6 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1"
+                className="mx-6 md:mx-10 flex flex-col items-center justify-center bg-white px-6 py-5 md:px-8 md:py-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1 min-w-[110px] md:min-w-[140px]"
               >
                 <img
-                  src={logo}
-                  alt="Brand Logo"
-                  className="h-8 md:h-14 w-auto object-contain transition-all duration-500 hover:scale-110"
+                  src={logo.src}
+                  alt={logo.name}
+                  className={`h-10 md:h-14 w-auto object-contain transition-all duration-500 hover:scale-110 ${logo.name.includes('Kia') ? 'brightness-0' : ''}`}
                 />
+                <span className="mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-500 whitespace-nowrap">{logo.name}</span>
               </div>
             ))}
           </div>
