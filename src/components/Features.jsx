@@ -74,7 +74,7 @@ const Features = () => {
           <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#FB7E10] via-[#FB7E10]/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Single Row: Forward Motion */}
-          <div className="flex w-max animate-marquee items-center py-10 relative z-10">
+          <div className="flex w-max animate-marquee-slow items-center py-10 relative z-10">
             {[...brandLogos, ...brandLogos].map((logo, i) => (
               <div
                 key={`r1-${i}`}

@@ -47,12 +47,22 @@ body {
   }
 }
 
+.animate-marquee-slow {
+  animation: marquee 60s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .animate-marquee-slow {
+    animation-duration: 30s;
+  }
+}
+
 .animate-marquee-reverse {
-  animation: marquee-reverse 10s linear infinite;
+  animation: marquee-reverse 20s linear infinite;
 }
 
 @media (max-width: 768px) {
   .animate-marquee-reverse {
-    animation-duration: 5s; /* Extreme speed for mobile */
+    animation-duration: 10s;
   }
 }
