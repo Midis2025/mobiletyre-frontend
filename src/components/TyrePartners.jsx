@@ -34,7 +34,7 @@ const TyrePartners = () => {
                 <img
                   src={brand.logo}
                   alt={brand.name}
-                  className="h-14 md:h-24 w-auto object-contain transition-all cursor-pointer"
+                  className="h-10 md:h-12 w-auto object-contain transition-all cursor-pointer"
                 />
               </div>
             ))}
