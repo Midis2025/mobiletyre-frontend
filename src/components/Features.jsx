@@ -27,6 +27,8 @@ const Features = () => {
     { src: "https://www.carlogos.org/car-logos/porsche-logo.png", name: "Porsche" },
     // Lexus
     { src: "https://www.carlogos.org/car-logos/lexus-logo.png", name: "Lexus" },
+    // --- Iconic Tyre Brands ---
+    { src: "https://www.carlogos.org/tire-logos/michelin-logo.png", name: "Michelin" },
     // --- Luxury Brands ---
     // Bentley
     { src: "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png", name: "Bentley" },
@@ -78,14 +80,16 @@ const Features = () => {
             {[...brandLogos, ...brandLogos].map((logo, i) => (
               <div
                 key={`r1-${i}`}
-                className="mx-6 md:mx-10 flex flex-col items-center justify-center bg-white px-6 py-5 md:px-8 md:py-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1 min-w-[110px] md:min-w-[140px]"
+                className="mx-4 md:mx-6 flex flex-col items-center justify-center bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1 w-28 h-24 md:w-40 md:h-36 flex-shrink-0"
               >
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  className={`h-10 md:h-14 w-auto object-contain transition-all duration-500 hover:scale-110 ${logo.name.includes('Kia') ? 'brightness-0' : ''}`}
-                />
-                <span className="mt-3 text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-500 whitespace-nowrap">{logo.name}</span>
+                <div className="h-10 md:h-14 flex items-center justify-center w-full px-4">
+                  <img
+                    src={logo.src}
+                    alt={logo.name}
+                    className={`max-h-full max-w-full object-contain transition-all duration-500 hover:scale-110 ${logo.name?.includes('Kia') ? 'brightness-0' : ''}`}
+                  />
+                </div>
+                <span className="mt-2 text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 whitespace-nowrap">{logo.name}</span>
               </div>
             ))}
           </div>

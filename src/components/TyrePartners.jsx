@@ -2,23 +2,29 @@ import React from 'react';
 
 const TyrePartners = () => {
   const brands = [
-
-    // Luxury Car Brands
-    { name: 'BMW', logo: 'https://www.carlogos.org/car-logos/bmw-logo.png' },
-    { name: 'Mercedes-Benz', logo: 'https://www.carlogos.org/car-logos/mercedes-benz-logo.png' },
-     { name: 'Porsche', logo: 'https://www.carlogos.org/car-logos/porsche-logo.png' },
-    { name: 'Bentley', logo: 'https://www.carlogos.org/car-logos/bentley-logo-2002-640.png' },
-    { name: 'Rolls-Royce', logo: 'https://www.carlogos.org/logo/Rolls-Royce-logo-640x550.jpg' },
-    { name: 'Jaguar', logo: 'https://www.carlogos.org/car-logos/jaguar-logo-2021-640.png' },
-    { name: 'Lexus', logo: 'https://www.carlogos.org/car-logos/lexus-logo.png' },
-    { name: 'Aston Martin', logo: 'https://www.carlogos.org/logo/Aston-Martin-logo-2003-640x286.jpg' },
+    { name: 'Michelin', logo: 'https://www.carlogos.org/tire-logos/michelin-logo.png' },
+    { name: 'Bridgestone', logo: 'https://www.carlogos.org/tire-logos/bridgestone-logo.png' },
+    { name: 'Continental', logo: 'https://www.carlogos.org/tire-logos/continental-logo.png' },
+    { name: 'Pirelli', logo: 'https://www.carlogos.org/tire-logos/pirelli-logo.png' },
+    { name: 'Goodyear', logo: 'https://www.carlogos.org/tire-logos/goodyear-logo.png' },
+    { name: 'Dunlop', logo: 'https://www.carlogos.org/tire-logos/dunlop-logo.png' },
+    { name: 'Hankook', logo: 'https://www.carlogos.org/tire-logos/hankook-logo.png' },
+    { name: 'Yokohama', logo: 'https://www.carlogos.org/tire-logos/yokohama-logo.png' },
+    { name: 'Kumho', logo: 'https://www.carlogos.org/tire-logos/kumho-logo.png' },
+    { name: 'Toyo', logo: 'https://www.carlogos.org/tire-logos/toyo-logo.png' },
+    { name: 'Apollo', logo: 'https://www.carlogos.org/tire-logos/apollo-logo.png' },
+    { name: 'CEAT', logo: 'https://www.carlogos.org/tire-logos/ceat-logo.png' },
+    { name: 'MRF', logo: 'https://www.carlogos.org/tire-logos/mrf-logo.png' },
+     { name: 'Vogue', logo: 'https://www.carlogos.org/tire-logos/vogue-logo.png' },
+    { name: 'Atturo', logo: 'https://www.carlogos.org/tire-logos/atturo-logo.png' },
+    { name: 'Starfire', logo: 'https://www.carlogos.org/tire-logos/starfire-logo.png' },
   ];
 
   return (
     <div className="bg-white border-b border-slate-100 py-4 md:py-6 overflow-hidden relative">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 flex items-center justify-between gap-6 md:gap-16">
         <div className="flex-shrink-0">
-          <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] text-slate-400">Premium Partners</span>
+          <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.2em] text-slate-400">Tyre brands</span>
         </div>
         
         <div className="flex-1 overflow-hidden relative group">
