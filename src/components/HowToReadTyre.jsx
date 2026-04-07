@@ -18,11 +18,11 @@ const HowToReadTyre = () => {
             </div>
 
             <p className="text-sm sm:text-base md:text-xl text-slate-600 leading-relaxed font-medium">
-              Every tyre carries a code on its sidewall that reveals everything you need to know before ordering. For example, <span className="font-bold text-slate-900 bg-slate-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs sm:text-sm md:text-base">205/55 R16 91V</span> — the first number (<strong>205</strong>) is the section width in millimetres, <strong>55</strong> is the aspect ratio (sidewall height as a percentage of width), <strong>R</strong> means radial construction, and <strong>16</strong> is the wheel diameter in inches. The last figures (<strong>91V</strong>) indicate load capacity and maximum speed rating.
+              Your tyre size is printed on the sidewall — for example, <span className="font-bold text-slate-900 bg-slate-200 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-xs sm:text-sm md:text-base">205/55 R16 91V</span>. This tells you the width (205mm), aspect ratio (55%), construction type (R = Radial), rim diameter (16"), load index (91) and speed rating (V).
             </p>
 
             <p className="text-xs sm:text-sm md:text-lg text-slate-500 leading-relaxed font-medium">
-              Getting these numbers right is critical — fitting the wrong size affects braking, handling, and can even invalidate your insurance. If you're unsure, simply give us a call or use our registration lookup tool and we'll identify the exact tyre your vehicle needs.
+              Not sure of your size? Give us a call or use our free registration lookup tool — we'll find the exact match for your vehicle.
             </p>
 
             {/* Quick reference chips */}
