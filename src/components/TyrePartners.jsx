@@ -21,7 +21,7 @@ const TyrePartners = () => {
   ];
 
   return (
-    <div className="bg-[#EAEEF3] border-b border-black/5 py-4 md:py-6 overflow-hidden relative">
+    <div className="bg-white border-b border-slate-100 py-4 md:py-6 overflow-hidden relative">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 flex items-center justify-between gap-6 md:gap-16">
 
 
@@ -39,8 +39,8 @@ const TyrePartners = () => {
           </div>
 
           {/* Gradients for smooth fade */}
-          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#EAEEF3] to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#EAEEF3] to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
         </div>
       </div>
     </div>
