@@ -3,11 +3,76 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Zap, Shield, Award } fro
 
 const ContactPage = () => {
     const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [statusMessage, setStatusMessage] = useState('');
+    const [formData, setFormData] = useState({
+        fullName: '',
+        phoneNumber: '',
+        postcode: '',
+        serviceRequired: '',
+        message: '',
+    });
 
-    const handleSubmit = (e) => {
+    const serviceOptions = [
+        { value: '', label: 'Choose here' },
+        { value: 'Immediate Emergency Fitting', label: 'Immediate Emergency Fitting' },
+        { value: 'Premium Tyre Service', label: 'Premium Tyre Service' },
+        { value: 'Puncture Repair', label: 'Puncture Repair' },
+    ];
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 5000);
+        setIsSubmitting(true);
+        setStatusMessage('');
+
+        try {
+            const response = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/contact-requests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    data: {
+                        fullName: formData.fullName,
+                        phoneNumber: formData.phoneNumber,
+                        postcode: formData.postcode,
+                        serviceRequired: formData.serviceRequired,
+                        message: formData.message,
+                    },
+                }),
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text().catch(() => null);
+                let errorMessage = 'Unable to submit request.';
+                try {
+                    const errorData = errorText ? JSON.parse(errorText) : null;
+                    errorMessage = errorData?.error || errorData?.message || errorMessage;
+                } catch {
+                    errorMessage = errorText || errorMessage;
+                }
+                throw new Error(errorMessage);
+            }
+
+            setSubmitted(true);
+            setFormData({
+                fullName: '',
+                phoneNumber: '',
+                postcode: '',
+                serviceRequired: '',
+                message: '',
+            });
+            setStatusMessage('Your request has been sent. We will contact you shortly.');
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (error) {
+            setStatusMessage(error.message || 'Failed to send request. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleChange = (field) => (event) => {
+        setFormData((prev) => ({ ...prev, [field]: event.target.value }));
     };
 
     return (
@@ -146,37 +211,85 @@ const ContactPage = () => {
 
                                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-2.5">
-                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1">Full Name</label>
-                                        <input required type="text" placeholder="e.g. Lewis Hamilton" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner" />
+                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1" htmlFor="fullName">Full Name</label>
+                                        <input
+                                            id="fullName"
+                                            required
+                                            type="text"
+                                            value={formData.fullName}
+                                            onChange={handleChange('fullName')}
+                                            placeholder="e.g. Lewis Hamilton"
+                                            className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner"
+                                        />
                                     </div>
                                     <div className="space-y-2.5">
-                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1">Direct Mobile</label>
-                                        <input required type="tel" placeholder="+44 (0) 7..." className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner" />
+                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1" htmlFor="phoneNumber">Direct Mobile</label>
+                                        <input
+                                            id="phoneNumber"
+                                            required
+                                            type="tel"
+                                            value={formData.phoneNumber}
+                                            onChange={handleChange('phoneNumber')}
+                                            placeholder="+44 (0) 7..."
+                                            className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner"
+                                        />
                                     </div>
                                     <div className="space-y-2.5 md:col-span-2">
-                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1">Current Sector / Postcode</label>
-                                        <input required type="text" placeholder="e.g. GU11 3HY" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner" />
+                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1" htmlFor="postcode">Current Sector / Postcode</label>
+                                        <input
+                                            id="postcode"
+                                            required
+                                            type="text"
+                                            value={formData.postcode}
+                                            onChange={handleChange('postcode')}
+                                            placeholder="e.g. GU11 3HY"
+                                            className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 shadow-inner"
+                                        />
                                     </div>
                                     <div className="space-y-2.5 md:col-span-2">
-                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1">Service Required</label>
+                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1" htmlFor="serviceRequired">Service Required</label>
                                         <div className="relative">
-                                            <select className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all appearance-none cursor-pointer shadow-inner">
-                                                <option>IMMEDIATE EMERGENCY FITTING</option>
-                                                <option>SCHEDULED MOBILE REPLACEMENT</option>
-                                                <option>ROADSIDE PUNCTURE REPAIR</option>
-                                                <option>COMMERCIAL FLEET SUPPORT</option>
+                                            <select
+                                                id="serviceRequired"
+                                                required
+                                                value={formData.serviceRequired}
+                                                onChange={handleChange('serviceRequired')}
+                                                className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all appearance-none cursor-pointer shadow-inner"
+                                            >
+                                                {serviceOptions.map((option) => (
+                                                    <option key={option.value} value={option.value} disabled={option.value === ''}>
+                                                        {option.label}
+                                                    </option>
+                                                ))}
                                             </select>
                                             <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none opacity-20">▼</div>
                                         </div>
                                     </div>
                                     <div className="space-y-2.5 md:col-span-2">
-                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1">Mission Details / Tyre Size</label>
-                                        <textarea required rows="4" placeholder="How can we assist you today?" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 resize-none shadow-inner"></textarea>
+                                        <label className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] pl-1" htmlFor="message">Mission Details / Tyre Size</label>
+                                        <textarea
+                                            id="message"
+                                            required
+                                            rows="4"
+                                            value={formData.message}
+                                            onChange={handleChange('message')}
+                                            placeholder="How can we assist you today?"
+                                            className="w-full bg-slate-50 border-2 border-transparent focus:border-[#FB7E10] focus:bg-white rounded-2xl px-6 py-5 font-bold text-black outline-none transition-all placeholder:text-gray-300 resize-none shadow-inner"
+                                        />
                                     </div>
+                                    {statusMessage && (
+                                        <div className="md:col-span-2 rounded-3xl border border-[#FB7E10]/30 bg-[#FB7E10]/5 px-6 py-5 text-sm font-bold text-[#0B1528]">
+                                            {statusMessage}
+                                        </div>
+                                    )}
                                     <div className="md:col-span-2 pt-4">
-                                        <button type="submit" className="group w-full bg-[#0B1528] text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-lg hover:bg-black transition-all shadow-xl flex items-center justify-center gap-4 active:scale-[0.98]">
-                                            <Send size={24} className="text-[#FB7E10] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /> 
-                                            Schedule Deployment
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="group w-full bg-[#0B1528] disabled:cursor-not-allowed disabled:opacity-60 text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-lg hover:bg-black transition-all shadow-xl flex items-center justify-center gap-4 active:scale-[0.98]"
+                                        >
+                                            <Send size={24} className="text-[#FB7E10] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                            {isSubmitting ? 'Submitting...' : 'Schedule Deployment'}
                                         </button>
                                     </div>
                                 </form>

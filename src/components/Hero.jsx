@@ -1,8 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 
 const Hero = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phoneNumber: '',
+    serviceType: servicesData[0]?.title || '',
+    tyreSize: '',
+    timingSlot: 'As Soon As Possible'
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    setError('');
+    setSuccess(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess(false);
+
+    // Validation
+    if (!formData.fullName.trim()) {
+      setError('Full name is required');
+      setLoading(false);
+      return;
+    }
+    if (!formData.phoneNumber.trim()) {
+      setError('Phone number is required');
+      setLoading(false);
+      return;
+    }
+    if (!formData.tyreSize.trim()) {
+      setError('Tyre size is required');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            fullName: formData.fullName,
+            phoneNumber: formData.phoneNumber,
+            serviceType: formData.serviceType,
+            tyreSize: formData.tyreSize,
+            timingSlot: formData.timingSlot,
+            bookingStatus: 'Pending'
+          }
+        })
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.error?.message || 'Failed to submit appointment');
+      }
+
+      setSuccess(true);
+      setFormData({
+        fullName: '',
+        phoneNumber: '',
+        serviceType: servicesData[0]?.title || '',
+        tyreSize: '',
+        timingSlot: 'As Soon As Possible'
+      });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setSuccess(false), 5000);
+    } catch (err) {
+      setError(err.message || 'Failed to submit appointment. Please try again.');
+      console.error('Appointment submission error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="relative min-h-[600px] flex items-center bg-gray-900 overflow-hidden">
       {/* Background Image with Overlay */}
@@ -63,13 +151,28 @@ const Hero = () => {
                 <h2 className="text-2xl font-black tracking-tighter uppercase">INSTANT APPOINTMENT</h2>
               </div>
 
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {error && (
+                  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-sm font-medium">
+                    {error}
+                  </div>
+                )}
+
+                {success && (
+                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-sm font-medium">
+                    ✓ Appointment request submitted successfully! We'll contact you shortly.
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
                     FULL NAME
                   </label>
                   <input
                     type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     placeholder="John Doe"
                     className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
                   />
@@ -81,6 +184,9 @@ const Hero = () => {
                   </label>
                   <input
                     type="text"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleInputChange}
                     placeholder="000-000-0000"
                     className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
                   />
@@ -91,7 +197,11 @@ const Hero = () => {
                     SERVICE TYPE
                   </label>
                   <div className="relative">
-                    <select className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
+                    <select 
+                      name="serviceType"
+                      value={formData.serviceType}
+                      onChange={handleInputChange}
+                      className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
                       {servicesData.map((service, index) => (
                         <option key={index} value={service.title}>{service.title}</option>
                       ))}
@@ -107,6 +217,9 @@ const Hero = () => {
                     </label>
                     <input
                       type="text"
+                      name="tyreSize"
+                      value={formData.tyreSize}
+                      onChange={handleInputChange}
                       placeholder="e.g. 225/45 R17"
                       className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all text-sm font-medium"
                     />
@@ -116,7 +229,11 @@ const Hero = () => {
                       TIMING SLOT
                     </label>
                     <div className="relative">
-                      <select className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium">
+                      <select 
+                        name="timingSlot"
+                        value={formData.timingSlot}
+                        onChange={handleInputChange}
+                        className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium">
                         <option>As Soon As Possible</option>
                         <option>Morning (8AM - 12PM)</option>
                         <option>Afternoon (12PM - 4PM)</option>
@@ -129,9 +246,10 @@ const Hero = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#0B1528] text-white py-4.5 rounded-xl font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 mt-6 hover:bg-slate-900 transition-all active:scale-[0.98]"
+                  disabled={loading}
+                  className="w-full bg-[#0B1528] text-white py-4.5 rounded-xl font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 mt-6 hover:bg-slate-900 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  REQUEST APPROVAL
+                  {loading ? 'SUBMITTING...' : 'REQUEST APPROVAL'}
                   <ArrowRight size={20} strokeWidth={3} />
                 </button>
               </form>
