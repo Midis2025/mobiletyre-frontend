@@ -3,7 +3,7 @@ export const servicesData = [
     id: 'premium-tyre-service',
     title: "Premium Tyre Service",
     image: "/images/premier.avif",
-    description: "Expert tyre fitting and maintenance for all vehicle types. We use state-of-the-art equipment to ensure your tyres are fitted perfectly, providing maximum safety and performance on the road.",
+    description: "We find the right tyre for your vehicle and budget, then fit and balance it at your location. Bridgestone, Michelin, Continental, Goodyear — all available.",
     features: [
       "Precision Balancing",
       "TPMS Sensor Check",
@@ -16,7 +16,8 @@ export const servicesData = [
     id: 'puncture-repair',
     title: "Puncture Repair",
     image: "/images/puncture.avif",
-    description: "Got a flat? Our expert mobile technicians can quickly and safely perform puncture repairs to British Standards, getting you back on the road safely without the cost of a new tyre.",
+    description: "Most punctures are repairable — and fixing one costs far less than replacing the tyre. We assess the damage on the spot and give you an honest answer before touching anything.",
+    cta: "Book a Puncture Repair",
     features: [
       "BS AU 159 Compliant Repair",
       "Fast At-Home Service",
@@ -28,7 +29,7 @@ export const servicesData = [
     id: 'trailer-tyre-fitting',
     title: "Mobile Trailer Tyre Fitting",
     image: "/images/mobile trailer.avif",
-    description: "Specialized mobile fitting for trailers, caravans, and horseboxes. We come to your storage location or home to ensure your leisure vehicle is ready for the road.",
+    description: "Trailers, caravans, light commercials — we come to your home or business premises and handle it all without you needing to tow a thing to a garage.",
     features: [
       "Caravan Specialists",
       "Horsebox Tyres",
@@ -40,7 +41,8 @@ export const servicesData = [
     id: '24-7-tyre-service',
     title: "24/7 Tyre Service",
     image: "/images/24 7.avif",
-    description: "Round-the-clock emergency tyre response. Whether it's 3 AM or mid-day on Christmas, our rapid response team is always one call away.",
+    description: "Bank holidays, 2am, rush hour — it doesn't matter. If you've got a tyre problem, we're available and we'll come to you, no questions asked.",
+    cta: "Call Us Anytime",
     features: [
       "Rapid Response",
       "Midnight Availability",
@@ -52,7 +54,7 @@ export const servicesData = [
     id: 'precision-wheel-balancing',
     title: "Precision Wheel Balancing",
     image: "/images/precision wheel.avif",
-    description: "Eliminate vibrations and ensure even tyre wear with our mobile precision balancing service using high-spec digital balancers.",
+    description: "Unbalanced wheels wear your tyres unevenly and make your car vibrate. That's why we include a full wheel balance with every tyre fitting — no extra charge.",
     features: [
       "Vibration Removal",
       "Digital Balancing",
@@ -64,7 +66,8 @@ export const servicesData = [
     id: 'emergency-tyre-fitting',
     title: "Emergency Tyre Fitting",
     image: "/images/emergency.avif",
-    description: "Stuck roadside with a blown tyre? Our emergency unit is dispatched immediately to get you back on your way in under 60 minutes.",
+    description: "Blowout on the dual carriageway? Flat spotted before a long drive? Call us and a technician heads to you straight away — fully equipped and ready to fit.",
+    cta: "Get Emergency Help Now",
     features: [
       "Roadside Dispatch",
       "M-way Safety Protocol",
@@ -76,7 +79,7 @@ export const servicesData = [
     id: 'locking-wheel-nut-removal',
     title: "Locking Wheel Nut Removal",
     image: "/images/locking.jpg",
-    description: "Lost your locking wheel nut key or have a damaged nut? We provide expert non-destructive locking wheel nut removal without damaging your precious alloys.",
+    description: "Lost your locking wheel nut key? Without it, nothing can be changed. Our specialist tools remove locking nuts safely — no damage to your alloys, no fuss.",
     features: [
       "Non-Destructive Removal",
       "All Vehicle Makes",

@@ -43,8 +43,8 @@ const Navbar = () => {
     <>
       <nav
         className={`sticky top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 h-24 md:h-28 transition-all duration-500 z-[100] border-b ring-1 ring-white/10 ${scrolled
-            ? 'bg-white/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border-white/20 py-2'
-            : 'bg-white/20 backdrop-blur-lg border-transparent py-4'
+          ? 'bg-white/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border-white/20 py-2'
+          : 'bg-white/20 backdrop-blur-lg border-transparent py-4'
           }`}
       >
         {/* Logo */}
@@ -143,8 +143,8 @@ const Navbar = () => {
                   to={to}
                   onClick={(e) => { if (to === '#') e.preventDefault(); }}
                   className={`flex items-center justify-between w-full p-4 rounded-2xl transition-all ${isActive(to)
-                      ? 'text-[#FB7E10] bg-orange-50/50 shadow-inner'
-                      : 'text-slate-700 hover:bg-slate-50 active:bg-orange-50/30'
+                    ? 'text-[#FB7E10] bg-orange-50/50 shadow-inner'
+                    : 'text-slate-700 hover:bg-slate-50 active:bg-orange-50/30'
                     }`}
                 >
                   <div className="flex items-center gap-4">
@@ -168,8 +168,8 @@ const Navbar = () => {
                         key={subItem.to}
                         to={subItem.to}
                         className={`flex items-center gap-3 py-3 px-4 rounded-xl text-xs font-bold transition-all ${isActive(subItem.to)
-                            ? 'text-[#FB7E10] bg-orange-50'
-                            : 'text-slate-500 bg-slate-50/50 hover:bg-slate-50'
+                          ? 'text-[#FB7E10] bg-orange-50'
+                          : 'text-slate-500 bg-slate-50/50 hover:bg-slate-50'
                           }`}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-[#FB7E10]"></div>

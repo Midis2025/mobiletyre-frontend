@@ -45,7 +45,7 @@ const Process = () => {
             <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight md:leading-[0.85] text-black uppercase">
               FLAT TYRE? <br /> <span className="text-[#FB7E10]">REACH US INSTANTLY</span>
             </h2>
-            <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto md:mx-0">Our specialized deployment sequence ensures zero downtime. Precision engineered response, 24/7/365.</p>
+            <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto md:mx-0">A flat tyre is stressful enough without the wait. Our 24/7 emergency callout covers all of Surrey and Hampshire — call us and we'll be on our way.</p>
           </div>
 
           <div className="space-y-8 md:space-y-12 relative">
@@ -57,19 +57,19 @@ const Process = () => {
                 idx: "01",
                 icon: <Phone size={28} />,
                 title: "COMMUNICATION",
-                desc: "Call our emergency line. Our technicians are dispatched within 60 minutes nationwide."
+                desc: "The moment you call, we'll tell you exactly when to expect us. No vague estimates, no being left in the dark."
               },
               {
                 idx: "02",
                 icon: <Quote size={28} />,
                 title: "UPFRONT QUOTE",
-                desc: "Receive a transparent, fixed-price quote instantly. Zero hidden fees, guaranteed."
+                desc: "Not in a rush? Book a slot that fits your day. We work around you, not the other way around."
               },
               {
                 idx: "03",
                 icon: <CreditCard size={28} />,
                 title: "RAPID EXECUTION",
-                desc: "Certified fitters arrive on-site. Secure card payment and you're back on your way."
+                desc: "Our vans carry a broad range of tyre sizes — so we're ready to fit the moment we arrive. No second trips, no delays."
               }
             ].map((step, i) => (
               <div key={i} className="flex gap-6 md:gap-10 items-start group relative">

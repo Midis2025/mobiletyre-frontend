@@ -20,22 +20,21 @@ const CTA = () => {
             READY FOR THE<br className="hidden sm:block" />ROAD AHEAD?
           </h2>
           <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed">
-            At Mobile Tyre Champions, we fit and replace tyres for leading manufacturers including Rolls-Royce, Bentley, Porsche, Lamborghini, BMW, Mercedes-Benz, Audi, and Range Rover—ensuring precise fitment, calibration, and reliable on-site convenience every time.
-          </p>
+            We cover Aldershot, Farnham, Fleet, Camberley, Guildford and the whole of Surrey and Hampshire — any time of day or night. Got a tyre giving you trouble? Don't wait — get in touch and we'll sort it.
+             </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 pt-2 md:pt-4">
-            <button className="w-full sm:w-auto bg-[#FB7E10] text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-black text-base md:text-lg hover:bg-orange-600 transition-all shadow-xl active:scale-95">
-              Book Service
-            </button>
-            <a href="tel:+447494024653" className="flex items-center gap-3 md:gap-4 group cursor-pointer hover:scale-105 transition-all">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#FB7E10]/20 group-hover:border-[#FB7E10]">
-                <Phone size={20} className="text-white scale-75 md:scale-100 group-hover:text-[#FB7E10]" />
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-[9px] md:text-[10px] font-black text-white/40 uppercase tracking-widest group-hover:text-[#FB7E10]">Priority Hotline</span>
-                <span className="text-white font-black text-lg md:text-xl tracking-tight group-hover:text-[#FB7E10] tracking-tighter">+44 7494 024653</span>
-              </div>
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 pt-4">
+            <a 
+              href="tel:+447494024653"
+              className="w-full sm:w-auto bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-black text-base md:text-xl hover:bg-orange-600 transition-all shadow-2xl active:scale-95 uppercase tracking-widest text-center"
+            >
+              Call Now
             </a>
+            <button 
+              className="w-full sm:w-auto bg-slate-800 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-black text-base md:text-xl hover:bg-slate-700 transition-all shadow-2xl active:scale-95 uppercase tracking-widest text-center"
+            >
+              Request a Callback
+            </button>
           </div>
         </div>
       </div>

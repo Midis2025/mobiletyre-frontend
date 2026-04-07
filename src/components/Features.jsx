@@ -61,9 +61,10 @@ const Features = () => {
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 leading-[0.9] mb-4">
             Trusted by the <span className="text-[#FB7E10]">Best in Motion</span>
           </h2>
+         
           <p className="text-slate-400 text-xs md:text-sm font-bold uppercase tracking-widest max-w-lg">
-            Serving the UK's most popular car brands — on every road, every day
-          </p>
+            We stock and fit tyres from the brands UK drivers trust — Bridgestone, Goodyear, Michelin, Continental and more.
+           </p>
         </div>
 
         {/* The Marquee Track */}
@@ -97,17 +98,19 @@ const Features = () => {
       </div>
 
       {/* Heading */}
-      <div className="mb-10 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
+      <div className="mb-10 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start group">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black max-w-xl uppercase">
           Precision Engineering.<br className="hidden sm:block" />Roadside Reality.
         </h2>
-        <div className="w-16 h-1.5 bg-[#FB7E10] mt-4"></div>
+        <p className="mt-4 text-slate-500 text-sm md:text-lg font-bold max-w-2xl leading-relaxed">
+          Great tyres, fitted by people who know what they're doing, wherever you happen to be.
+        </p>
       </div>
 
       {/* Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Card 1: Ultra-Rapid Deployment (Span 2) */}
-        <div className="lg:col-span-2 bg-[#FB7E10] rounded-2xl md:rounded-3xl p-6 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all">
+        <div className="lg:col-span-2 bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-6 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all">
           <div className="absolute right-0 bottom-0 pointer-events-none opacity-5 translate-x-1/4 translate-y-1/4 group-hover:scale-110 transition-transform duration-700">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-96 h-96 text-white">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -115,8 +118,8 @@ const Features = () => {
           </div>
 
           <div className="relative z-10">
-            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-8 border border-orange-400">
-              <svg className="w-6 h-6 text-[#FB7E10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-8 border border-blue-400">
+              <svg className="w-6 h-6 text-[#1c3b7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M12 12L16 10" />
                 <path d="M12 7V12" />
@@ -124,15 +127,14 @@ const Features = () => {
             </div>
             <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-white">Ultra-Rapid Deployment</h3>
             <p className="text-white/90 font-medium leading-relaxed max-w-md">
-              Our proprietary dispatch algorithm routes the nearest technician to your GPS coordinates in seconds. No waiting on hold, just instant action.
-            </p>
+             When you're stuck, every minute counts. We keep technicians spread across Surrey and Hampshire so we reach you fast — and we give you a realistic arrival time and stick to it.   </p>
           </div>
         </div>
 
         {/* Card 2: Expertise Guaranteed */}
         <div className="bg-[#0B1528] rounded-2xl md:rounded-3xl p-6 md:p-10 text-white hover:shadow-xl transition-all">
           <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 md:mb-8">
-            <svg className="w-6 h-6 text-[#FB7E10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg className="w-6 h-6 text-[#1c3b7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 15L15 21L21 21L18 15" />
               <path d="M9 15L6 21L0 21L3 15" />
               <circle cx="12" cy="9" r="6" />
@@ -141,33 +143,25 @@ const Features = () => {
           </div>
           <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Expertise Guaranteed</h3>
           <p className="text-gray-400 font-medium leading-relaxed mb-10">
-            Every technician is IMI certified with a minimum of 5 years field experience in luxury and performance vehicles.
-          </p>
-          <div className="flex -space-x-3">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0B1528] bg-gray-600 overflow-hidden">
-                <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=crew${i}`} alt="Avatar" className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
+            Cars, SUVs, vans, 4x4s — our trained technicians handle them all. You get main-dealer quality without ever having to leave your home or the roadside.  </p>
+          
         </div>
 
         {/* Card 3: 24/7 Kinetic Support */}
-        <div className="bg-[#FB7E10] rounded-2xl md:rounded-3xl p-6 md:p-10 hover:shadow-lg transition-all">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 md:mb-8 border border-orange-400">
-            <svg className="w-6 h-6 text-[#FB7E10]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <div className="bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-6 md:p-10 hover:shadow-lg transition-all">
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 md:mb-8 border border-blue-400">
+            <svg className="w-6 h-6 text-[#1c3b7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 6V12L16 14" />
             </svg>
           </div>
           <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-white">24/7 Kinetic Support</h3>
           <p className="text-white/90 font-medium leading-relaxed">
-            Christmas, New Year's, or 3 AM on a Tuesday. We never sleep because the roads never close.
-          </p>
+            You'll speak to a real person who gives you a straight answer — no jargon, no upselling, just honest advice about what your tyres need and what it'll cost.  </p>
         </div>
 
         {/* Card 4: Quote (Span 2) */}
-        <div className="lg:col-span-2 bg-[#FB7E10] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg hover:shadow-xl transition-all">
+        <div className="lg:col-span-2 bg-[#1c3b7f] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg hover:shadow-xl transition-all">
           <div className="p-6 md:p-10 flex-1 flex flex-col justify-center text-center md:text-left">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-4 md:mb-6 leading-tight uppercase">
               "The best service I've ever experienced on the road."

@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <footer className="bg-[#0B1528] pt-16 md:pt-20 pb-8 md:pb-10 px-4 sm:px-10 lg:px-20 border-t border-white/5">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 lg:gap-20">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 md:gap-12 lg:gap-10">
                 {/* Brand */}
-                <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start">
+                <div className="space-y-6 md:space-y-8 text-center sm:text-left flex flex-col items-center sm:items-start lg:col-span-1">
                     <Link to="/" className="flex items-center h-16 md:h-20">
                         <img src="/images/MTC logo 3.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
                     </Link>
                     <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
-                        Engineered for the unexpected. We provide premium roadside tyre services for discerning drivers across the UK.
+                        Mobile Tyre Champions is a 24/7 mobile tyre service based in Aldershot, covering Surrey and Hampshire. We come to you at home, at work or at the roadside — fast, honest and fully mobile.
                     </p>
                     <div className="flex items-center gap-3">
                         <a
@@ -37,6 +37,15 @@ const Footer = () => {
                             </svg>
                         </a>
                     </div>
+                </div>                {/* Our Services */}
+                <div className="space-y-8 lg:mt-2 text-center sm:text-left">
+                    <h4 className="text-white font-black text-lg uppercase tracking-tight">Our Services</h4>
+                    <div className="flex flex-col items-center sm:items-start space-y-4">
+                        <Link to="/services/emergency-tyre-fitting" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Emergency Tyre Fitting</Link>
+                        <Link to="/services/precision-wheel-balancing" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Wheel Balancing</Link>
+                        <Link to="/services/locking-wheel-nut-removal" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Locking Wheel Nut Removal</Link>
+                        <Link to="/services/trailer-tyre-fitting" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Mobile Trailer Tyre Fitting</Link>
+                    </div>
                 </div>
 
                 {/* Quick Links */}
@@ -44,8 +53,8 @@ const Footer = () => {
                     <h4 className="text-white font-black text-lg uppercase tracking-tight">Quick Links</h4>
                     <div className="flex flex-col items-center sm:items-start space-y-4">
                         <Link to="/" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Home</Link>
-                        <Link to="/about" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">About Us</Link>
                         <Link to="/services" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Services</Link>
+                        <Link to="/about" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">About Us</Link>
                         <Link to="/locations" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Locations</Link>
                         <Link to="/contact" className="text-gray-400 hover:text-[#FB7E10] transition-colors text-sm font-medium">Contact Us</Link>
                     </div>
@@ -88,14 +97,13 @@ const Footer = () => {
             </div>
 
             {/* Copyright */}
-            <div className="max-w-7xl mx-auto pt-10 md:pt-20 mt-10 md:mt-20 border-t border-white/5 flex flex-col items-center justify-between gap-4">
-                <div className="flex items-center gap-4 md:gap-6 order-1 md:order-2">
-                    <span className="text-gray-600 text-[10px] md:text-xs font-semibold">UK-WIDE SERVICE</span>
-                    <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-[#FB7E10]"></div>
-                    <span className="text-gray-600 text-[10px] md:text-xs font-semibold">EST. 2012</span>
-                </div>
-                <p className="text-gray-500 text-[10px] md:text-xs font-medium order-2 md:order-1 text-center">
-                    © 2026 Mobile Tyre Champions. All rights reserved.
+            <div className="max-w-7xl mx-auto pt-10 mt-10 border-t border-white/5 text-center px-4">
+                <p className="text-gray-500 text-[10px] md:text-xs font-medium space-x-2">
+                    <span>© 2025 Mobile Tyre Champions. All rights reserved.</span>
+                    <span className="text-gray-700 hidden sm:inline">|</span>
+                    <Link to="/privacy" className="hover:text-[#FB7E10] transition-colors">Privacy Policy</Link>
+                    <span className="text-gray-700 hidden sm:inline">|</span>
+                    <Link to="/terms" className="hover:text-[#FB7E10] transition-colors">Terms and Conditions</Link>
                 </p>
             </div>
         </footer>

@@ -32,13 +32,16 @@ const Hero = () => {
             </h1>
 
             <p className="max-w-md text-gray-300 text-sm md:text-lg leading-relaxed">
-              Premium mobile tyre fitting service. Emergency roadside assistance or scheduled home fitting. Night or day, we keep you moving.
-            </p>
+              Stuck with a flat? Got a puncture on your way to work? We come straight to you, any time of the day or night, anywhere across Surrey and Hampshire.
+               </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 w-full max-w-sm sm:max-w-none">
-              <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent">
+              <a 
+                href="tel:+447494024653"
+                className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent"
+              >
                 Call Now: +44 7494 024653
-              </button>
+              </a>
               <a
                 href="https://wa.me/447495336005"
                 target="_blank"
