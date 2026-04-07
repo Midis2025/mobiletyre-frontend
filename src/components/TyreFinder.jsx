@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Car, Ruler, ChevronDown, HelpCircle, AlertCircle } from 'lucide-react';
 
 const TyreFinder = () => {
@@ -8,6 +8,7 @@ const TyreFinder = () => {
     const [searching, setSearching] = useState(false);
     const [error, setError] = useState('');
     const [sortBy, setSortBy] = useState('relevance');
+    const tyreResultsRef = useRef(null);
     
     // Form States
     const [width, setWidth] = useState('');
@@ -92,6 +93,12 @@ const TyreFinder = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (activeTab === 'size' && tyres.length > 0 && tyreResultsRef.current) {
+            tyreResultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [activeTab, tyres]);
 
     const handleRegSearch = async (e) => {
         e.preventDefault();
@@ -401,7 +408,7 @@ const TyreFinder = () => {
 
             {/* ── SEARCH RESULTS SECTION ─────────────────────────────────── */}
             {hasSearched && (
-                <div className="mt-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div ref={tyreResultsRef} className="mt-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="space-y-8">
                         {/* Results Header */}
                         <div className="flex items-center justify-between">
