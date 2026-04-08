@@ -41,7 +41,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="bg-[#f8fafc] py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-10 lg:px-20 overflow-hidden relative border-y border-slate-100/50">
+    <div className="bg-[#f8fafc] py-8 xs:py-10 sm:py-12 md:py-5 lg:py-10 px-4 sm:px-10 lg:px-20 overflow-hidden relative border-y border-slate-100/50">
       {/* Dynamic Background Texture */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 

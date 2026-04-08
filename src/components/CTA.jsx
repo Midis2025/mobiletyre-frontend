@@ -3,7 +3,7 @@ import { Phone } from 'lucide-react';
 
 const CTA = () => {
   return (
-    <div className="bg-white py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-10 lg:px-20">
+    <div className="bg-white pt-0 pb-8 xs:pt-0 xs:pb-10 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-10 lg:px-20">
       <div className="max-w-7xl mx-auto relative rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-black min-h-[350px] md:min-h-[450px] flex items-center p-6 md:p-16 lg:p-20 shadow-2xl">
         {/* Background Tread Pattern */}
         <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-30 md:opacity-40 pointer-events-none">

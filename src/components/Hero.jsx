@@ -6,6 +6,7 @@ const Hero = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
+    location: '',
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
     timingSlot: 'As Soon As Possible'
@@ -42,6 +43,11 @@ const Hero = () => {
       setLoading(false);
       return;
     }
+    if (!formData.location.trim()) {
+      setError('Location is required');
+      setLoading(false);
+      return;
+    }
     if (!formData.tyreSize.trim()) {
       setError('Tyre size is required');
       setLoading(false);
@@ -58,6 +64,7 @@ const Hero = () => {
           data: {
             fullName: formData.fullName,
             phoneNumber: formData.phoneNumber,
+            location: formData.location,
             serviceType: formData.serviceType,
             tyreSize: formData.tyreSize,
             timingSlot: formData.timingSlot,
@@ -76,6 +83,7 @@ const Hero = () => {
       setFormData({
         fullName: '',
         phoneNumber: '',
+        location: '',
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
         timingSlot: 'As Soon As Possible'
@@ -188,6 +196,20 @@ const Hero = () => {
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     placeholder="000-000-0000"
+                    className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+                    LOCATION
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    placeholder="Enter your location or postcode"
                     className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
                   />
                 </div>
