@@ -103,7 +103,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-10 md:py-12">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column */}
           <div className="text-white space-y-4 md:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">

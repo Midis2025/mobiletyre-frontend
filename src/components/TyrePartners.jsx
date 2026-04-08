@@ -20,7 +20,7 @@ const TyrePartners = () => {
   ];
 
   return (
-    <div className="bg-white border-b border-slate-100 py-4 md:py-6 overflow-hidden relative">
+    <div className="bg-white border-b border-slate-100 py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 overflow-hidden relative">
       <div className="max-w-[1400px] mx-auto px-4 md:px-10 flex items-center justify-between gap-6 md:gap-16">
 
 

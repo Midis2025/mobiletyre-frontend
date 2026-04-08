@@ -3,7 +3,7 @@ import { Phone, Quote, Zap, ArrowRight, ShieldCheck, CreditCard, CheckCircle } f
 
 const Process = () => {
   return (
-    <div className="bg-slate-50 py-12 md:py-24 px-4 sm:px-10 lg:px-20 relative overflow-hidden">
+    <div className="bg-slate-50 py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-10 lg:px-20 relative overflow-hidden">
 
       {/* Background Accent (Subtle) */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-100/30 rounded-full blur-[150px] -mr-48 -mt-48"></div>
@@ -37,7 +37,7 @@ const Process = () => {
         </div>
 
         {/* Left Content - Steps */}
-        <div className="lg:w-1/2 p-6 md:p-16 lg:p-24 flex flex-col justify-center space-y-10 md:space-y-16">
+        <div className="lg:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 flex flex-col justify-center space-y-10 md:space-y-16">
           <div className="space-y-6 text-center md:text-left">
             <div className="inline-flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
               <span className="text-[#FB7E10] font-black uppercase text-[10px] tracking-widest tracking-tighter">Operational Protocol</span>

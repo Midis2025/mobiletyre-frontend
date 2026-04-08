@@ -4,7 +4,7 @@ import { servicesData } from '../data/servicesData';
 
 const Services = () => {
   return (
-    <div className="bg-white py-12 px-4 sm:px-10 lg:px-20">
+    <div className="bg-white py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 px-4 sm:px-10 lg:px-20">
       {/* Heading */}
       <div className="mb-8 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start group">
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter text-black uppercase leading-tight">
@@ -35,7 +35,7 @@ const Services = () => {
             </div>
 
             {/* Content Overlay */}
-            <div className="absolute inset-x-0 bottom-6 md:bottom-12 flex flex-col items-center space-y-3 md:space-y-4 px-4 text-center">
+            <div className="absolute inset-x-0 bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 xl:bottom-12 flex flex-col items-center space-y-3 md:space-y-4 px-4 text-center">
               <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white drop-shadow-lg leading-tight uppercase">
                 {service.title}
               </h3>
