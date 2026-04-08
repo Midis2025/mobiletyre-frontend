@@ -27,7 +27,7 @@ const TyreFinder = () => {
     const widthOptions = ['205', '225', '245', '255', '265', '275', '285'];
     const heightOptions = ['30', '35', '40', '45', '50', '55', '60', '65'];
     const diameterOptions = ['R14', 'R15', 'R16', 'R17', 'R18', 'R19', 'R20'];
-    const brandOptions = ['', 'Michelin', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
+    const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
     const seasonOptions = ['Summer', 'Winter', 'All Season'];
 
     // Fetch tyres from API

@@ -2,7 +2,6 @@ import React from 'react';
 
 const TyrePartners = () => {
   const brands = [
-    { name: 'Michelin', logo: 'https://www.carlogos.org/tire-logos/michelin-logo.png' },
     { name: 'Bridgestone', logo: 'https://www.carlogos.org/tire-logos/bridgestone-logo.png' },
     { name: 'Continental', logo: 'https://www.carlogos.org/tire-logos/continental-logo.png' },
     { name: 'Pirelli', logo: 'https://www.carlogos.org/tire-logos/pirelli-logo.png' },

@@ -27,8 +27,6 @@ const Features = () => {
     { src: "https://www.carlogos.org/car-logos/porsche-logo.png", name: "Porsche" },
     // Lexus
     { src: "https://www.carlogos.org/car-logos/lexus-logo.png", name: "Lexus" },
-    // --- Iconic Tyre Brands ---
-    { src: "https://www.carlogos.org/tire-logos/michelin-logo.png", name: "Michelin" },
     // --- Luxury Brands ---
     // Bentley
     { src: "https://www.carlogos.org/car-logos/bentley-logo-2002-640.png", name: "Bentley" },
@@ -63,7 +61,7 @@ const Features = () => {
           </h2>
          
           <p className="text-slate-400 text-xs md:text-sm font-bold uppercase tracking-widest max-w-lg">
-            We stock and fit tyres from the brands UK drivers trust — Bridgestone, Goodyear, Michelin, Continental and more.
+            We stock and fit tyres from the brands UK drivers trust — Bridgestone, Goodyear, Continental and more.
            </p>
         </div>
 

@@ -3,7 +3,7 @@ export const servicesData = [
     id: 'premium-tyre-service',
     title: "Premium Tyre Service",
     image: "/images/premier.avif",
-    description: "We find the right tyre for your vehicle and budget, then fit and balance it at your location. Bridgestone, Michelin, Continental, Goodyear — all available.",
+    description: "We find the right tyre for your vehicle and budget, then fit and balance it at your location. Bridgestone, Continental, Goodyear — all available.",
     features: [
       "Precision Balancing",
       "TPMS Sensor Check",
