@@ -1,21 +1,57 @@
 import React, { useState } from 'react';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
-
+ 
 const Hero = () => {
+  const locations = [
+    'Guildford',
+    'Woking',
+    'Farnham',
+    'Farnborough',
+    'Aldershot',
+    'Petersfield',
+    'Haslemere',
+    'Godalming',
+    'Cranleigh',
+    'Alton',
+    'Bagshot',
+    'Bordon',
+    'Fleet',
+    'Hindhead',
+    'Liphook',
+    'Lightwater',
+    'Liss',
+    'Midhurst',
+    'Petworth',
+    'Sandhurst',
+    'Virginia Water',
+    'Windlesham',
+    'Yateley',
+    'Ascot',
+    'Bracknell',
+    'Basingstoke',
+    'Southampton',
+    'Frimley',
+    'Tongham',
+    'Church Crookham',
+    'Ash',
+    'Ash Vale',
+    'Hankley Common'
+  ];
+ 
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
-    location: '',
+    location: locations[0] || '',
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
     timingSlot: 'As Soon As Possible'
   });
-
+ 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
+ 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -25,13 +61,13 @@ const Hero = () => {
     setError('');
     setSuccess(false);
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setSuccess(false);
-
+ 
     // Validation
     if (!formData.fullName.trim()) {
       setError('Full name is required');
@@ -53,7 +89,7 @@ const Hero = () => {
       setLoading(false);
       return;
     }
-
+ 
     try {
       const response = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/appointments', {
         method: 'POST',
@@ -72,23 +108,23 @@ const Hero = () => {
           }
         })
       });
-
+ 
       const responseData = await response.json();
-
+ 
       if (!response.ok) {
         throw new Error(responseData.error?.message || 'Failed to submit appointment');
       }
-
+ 
       setSuccess(true);
       setFormData({
         fullName: '',
         phoneNumber: '',
-        location: '',
+        location: locations[0] || '',
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
         timingSlot: 'As Soon As Possible'
       });
-
+ 
       // Clear success message after 5 seconds
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
@@ -98,7 +134,7 @@ const Hero = () => {
       setLoading(false);
     }
   };
-
+ 
   return (
     <div className="relative min-h-[600px] flex items-center bg-gray-900 overflow-hidden">
       {/* Background Image with Overlay */}
@@ -110,7 +146,7 @@ const Hero = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
       </div>
-
+ 
       <div className="container mx-auto px-4 md:px-6 relative z-10 py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column */}
@@ -121,18 +157,18 @@ const Hero = () => {
                 UK'S FAST MOBILE TYRE SERVICE – 24/7
               </span>
             </div>
-
+ 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
               The Help You Need, Exactly <br className="hidden sm:block" />
               <span className="text-[#FB7E10]"> Where You Are.</span>
             </h1>
-
+ 
             <p className="max-w-md text-gray-300 text-sm md:text-lg leading-relaxed">
               Stuck with a flat? Got a puncture on your way to work? We come straight to you, any time of the day or night, anywhere across Surrey and Hampshire.
                </p>
-
+ 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 w-full max-w-sm sm:max-w-none">
-              <a 
+              <a
                 href="tel:+447494024653"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent"
               >
@@ -148,30 +184,30 @@ const Hero = () => {
               </a>
             </div>
           </div>
-
+ 
           {/* Right Column - Form */}
           <div className="flex justify-center lg:justify-end">
             <div className="bg-white rounded-3xl p-8 shadow-2xl w-full max-w-md relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/30 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-
+ 
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-[6px] h-8 bg-black"></div>
                 <h2 className="text-2xl font-black tracking-tighter uppercase">INSTANT APPOINTMENT</h2>
               </div>
-
+ 
               <form className="space-y-6" onSubmit={handleSubmit}>
                 {error && (
                   <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg text-sm font-medium">
                     {error}
                   </div>
                 )}
-
+ 
                 {success && (
                   <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg text-sm font-medium">
                     ✓ Appointment request submitted successfully! We'll contact you shortly.
                   </div>
                 )}
-
+ 
                 <div>
                   <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
                     FULL NAME
@@ -185,7 +221,7 @@ const Hero = () => {
                     className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
                   />
                 </div>
-
+ 
                 <div>
                   <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
                     PHONE NUMBER
@@ -199,27 +235,31 @@ const Hero = () => {
                     className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
                   />
                 </div>
-
+ 
                 <div>
                   <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
                     LOCATION
                   </label>
-                  <input
-                    type="text"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleInputChange}
-                    placeholder="Enter your location or postcode"
-                    className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
-                  />
+                  <div className="relative">
+                    <select
+                      name="location"
+                      value={formData.location}
+                      onChange={handleInputChange}
+                      className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
+                      {locations.map((loc, idx) => (
+                        <option key={idx} value={loc}>{loc}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                  </div>
                 </div>
-
+ 
                 <div>
                   <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
                     SERVICE TYPE
                   </label>
                   <div className="relative">
-                    <select 
+                    <select
                       name="serviceType"
                       value={formData.serviceType}
                       onChange={handleInputChange}
@@ -231,7 +271,7 @@ const Hero = () => {
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                   </div>
                 </div>
-
+ 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
@@ -251,7 +291,7 @@ const Hero = () => {
                       TIMING SLOT
                     </label>
                     <div className="relative">
-                      <select 
+                      <select
                         name="timingSlot"
                         value={formData.timingSlot}
                         onChange={handleInputChange}
@@ -265,7 +305,7 @@ const Hero = () => {
                     </div>
                   </div>
                 </div>
-
+ 
                 <button
                   type="submit"
                   disabled={loading}
@@ -282,5 +322,5 @@ const Hero = () => {
     </div>
   );
 };
-
+ 
 export default Hero;
