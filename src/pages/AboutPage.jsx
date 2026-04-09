@@ -115,8 +115,8 @@ const AboutPage = () => {
             </h1>
 
             <p className="text-gray-300 text-base md:text-xl leading-relaxed max-w-2xl">
-              We exist to make tyre care hassle-free. Whether you're stuck on the roadside or planning a service day, our team delivers premium tyre services directly to you — with expert technicians, fully equipped mobile vans, and zero waiting rooms.
-            </p>
+              We exist to make tyre care hassle-free. Whether you're stuck at the roadside or planning a service day, our team delivers premium mobile tyre fitting directly to you — with expert technicians, fully equipped vans, and zero waiting rooms.
+             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a href="tel:+447494024653" className="flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-8 py-4 rounded-xl font-black text-base hover:bg-orange-600 transition-all shadow-xl active:scale-95">

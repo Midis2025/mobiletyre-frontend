@@ -18,6 +18,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import LockingWheelNutRemoval from './pages/LockingWheelNutRemoval';
 import TrailerTyreFitting from './pages/TrailerTyreFitting';
 import TyrePartners from './components/TyrePartners';
+import NotFoundPage from './pages/NotFoundPage';
 
 /* ── Scroll to top on route change ─────────────────────────────────────── */
 const ScrollToTop = () => {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/services/trailer-tyre-fitting" element={<TrailerTyreFitting />} />
           <Route path="/services/:id" element={<ServiceDetail />} />
           <Route path="/locations" element={<LocationsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
         <WhatsAppButton />
