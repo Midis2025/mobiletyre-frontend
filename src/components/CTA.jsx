@@ -1,5 +1,5 @@
-import React from 'react';
-import { Phone } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const CTA = () => {
   return (
@@ -30,11 +30,13 @@ const CTA = () => {
             >
               Call Now
             </a>
-            <button 
-              className="w-full sm:w-auto bg-slate-800 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-black text-base md:text-xl hover:bg-slate-700 transition-all shadow-2xl active:scale-95 uppercase tracking-widest text-center"
+            <Link 
+              to="/contact"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-800 text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-black text-base md:text-xl hover:bg-[#0B1528] transition-all shadow-2xl active:scale-95 uppercase tracking-widest text-center"
             >
               Request a Callback
-            </button>
+              <ArrowRight size={20} />
+            </Link>
           </div>
         </div>
       </div>

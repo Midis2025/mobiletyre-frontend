@@ -144,7 +144,8 @@ const Hero = () => {
           alt="Tire background"
           className="w-full h-full object-cover opacity-60 scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 md:via-black/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
       </div>
  
       <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-12 md:py-20 lg:py-28">
@@ -187,12 +188,16 @@ const Hero = () => {
  
           {/* Right Column - Form */}
           <div className="flex justify-center md:justify-end">
-            <div className="bg-white rounded-3xl p-8 shadow-2xl w-full max-w-md relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/30 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] w-full max-w-md relative overflow-hidden border border-white/20">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/40 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100/20 rounded-full -ml-12 -mb-12 blur-3xl"></div>
  
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-[6px] h-8 bg-black"></div>
-                <h2 className="text-2xl font-black tracking-tighter uppercase">INSTANT APPOINTMENT</h2>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-[6px] h-10 bg-[#FB7E10] rounded-full"></div>
+                <div>
+                  <h2 className="text-2xl font-black tracking-tighter uppercase leading-none">INSTANT</h2>
+                  <h2 className="text-2xl font-black tracking-tighter uppercase leading-none text-[#FB7E10]">APPOINTMENT</h2>
+                </div>
               </div>
  
               <form className="space-y-6" onSubmit={handleSubmit}>
@@ -218,7 +223,7 @@ const Hero = () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="John Doe"
-                    className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
+                    className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all font-semibold outline-none"
                   />
                 </div>
  
@@ -232,7 +237,7 @@ const Hero = () => {
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     placeholder="000-000-0000"
-                    className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium"
+                    className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all font-semibold outline-none"
                   />
                 </div>
  
@@ -245,7 +250,7 @@ const Hero = () => {
                       name="location"
                       value={formData.location}
                       onChange={handleInputChange}
-                      className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
+                      className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 appearance-none text-gray-700 font-bold focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all outline-none">
                       {locations.map((loc, idx) => (
                         <option key={idx} value={loc}>{loc}</option>
                       ))}
@@ -263,7 +268,7 @@ const Hero = () => {
                       name="serviceType"
                       value={formData.serviceType}
                       onChange={handleInputChange}
-                      className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 font-medium focus:ring-2 focus:ring-[#FB7E10] transition-all">
+                      className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 appearance-none text-gray-700 font-bold focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all outline-none">
                       {servicesData.map((service, index) => (
                         <option key={index} value={service.title}>{service.title}</option>
                       ))}
@@ -283,7 +288,7 @@ const Hero = () => {
                       value={formData.tyreSize}
                       onChange={handleInputChange}
                       placeholder="e.g. 225/45 R17"
-                      className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 placeholder-gray-400 focus:ring-2 focus:ring-[#FB7E10] transition-all text-sm font-medium"
+                      className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all text-sm font-bold outline-none"
                     />
                   </div>
                   <div>
@@ -295,7 +300,7 @@ const Hero = () => {
                         name="timingSlot"
                         value={formData.timingSlot}
                         onChange={handleInputChange}
-                        className="w-full bg-[#EAEEF3] border-none rounded-lg px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-2 focus:ring-[#FB7E10] transition-all font-medium">
+                        className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 appearance-none text-gray-700 text-sm focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all font-bold outline-none">
                         <option>As Soon As Possible</option>
                         <option>Morning (8AM - 12PM)</option>
                         <option>Afternoon (12PM - 4PM)</option>

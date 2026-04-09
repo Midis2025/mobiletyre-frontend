@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, ArrowRight, Shield, Clock, Star, Users, Wrench, MapPin, CheckCircle, Zap, Award, HeartHandshake } from 'lucide-react';
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
@@ -14,32 +15,32 @@ const values = [
   {
     icon: <Zap className="w-6 h-6 text-[#FB7E10]" />,
     title: 'Speed Without Compromise',
-    desc: 'Our dispatch algorithm routes the nearest certified technician to your GPS location within seconds — average arrival under 40 minutes.',
+    desc: 'Our dispatchers match you to the nearest certified technician so your GPS guides us to you in seconds — average arrival under 40 miles.',
   },
   {
     icon: <Shield className="w-6 h-6 text-[#FB7E10]" />,
     title: 'Workshop-Grade Equipment',
-    desc: 'Every van carries the same tools, machines, and stock as a full workshop. No quality trade-offs, just convenience.',
+    desc: 'Every van runs the same tools, machines, and stock as a full workshop. No cutting corners, no compromise — just convenience.',
   },
   {
     icon: <Award className="w-6 h-6 text-[#FB7E10]" />,
     title: 'IMI-Certified Technicians',
-    desc: 'Every technician holds IMI certification with a minimum of 5 years in field experience, including luxury and performance vehicles.',
+    desc: '  Every technician holds a minimum of 5 years full certification, including cars and vans and far more vehicle types.',
   },
   {
     icon: <HeartHandshake className="w-6 h-6 text-[#FB7E10]" />,
     title: 'Transparent Pricing',
-    desc: 'No hidden fees, no nasty surprises. You get an upfront quote covering tyres, fitting, and all services before we start.',
+    desc: 'No hidden fees, no nasty surprises. You get upfront quotes covering tyres, fitting, and all services before we start.',
   },
   {
     icon: <Clock className="w-6 h-6 text-[#FB7E10]" />,
     title: '24/7 — Rain or Shine',
-    desc: 'Christmas, New Year\'s, 3 AM on a Tuesday — we never close because the roads never do.',
+    desc: 'Available 24 hours a day, 7 days a week — including bank holidays, late nights, and early mornings. If you need us, we’re there. No exceptions.',
   },
   {
     icon: <MapPin className="w-6 h-6 text-[#FB7E10]" />,
     title: 'We Come to You',
-    desc: 'At home, at work, or stranded roadside — we bring the workshop to your location. No towing fees, no waiting rooms.',
+    desc: 'At home, at work, or stranded roadside — we bring the van safely to your location. No garage visits, no waiting rooms.',
   },
 ];
 
@@ -58,7 +59,7 @@ const services = [
 
 const testimonials = [
   {
-    quote: "The best service I've ever experienced on the road. 30 minutes flat, and I was back driving my Porsche.",
+    quote: "The best service I've ever experienced on the road. Called them after a blowout on the A3 and they were with me in 30 minutes. They even checked my spare tyre before leaving. Absolutely outstanding when driving my Porsche.",
     name: 'James T.',
     role: 'Porsche 911 Owner',
     seed: 'crew1',
@@ -152,9 +153,9 @@ const AboutPage = () => {
 
       {/* ── OUR STORY ─────────────────────────────────────────────────────── */}
       <section className="bg-white py-16 md:py-24 px-4 sm:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           {/* Image side */}
-          <div className="w-full lg:w-1/2 relative">
+          <div className="w-full md:w-1/2 relative">
             <div className="rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
               <img
                 src="/images/hero image.avif"
@@ -176,7 +177,7 @@ const AboutPage = () => {
           </div>
 
           {/* Text side */}
-          <div className="w-full lg:w-1/2 space-y-6">
+          <div className="w-full md:w-1/2 space-y-6">
             <div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black">
                 We Bring the<br />
@@ -210,7 +211,7 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto">
           {/* heading */}
           <div className="mb-12 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black max-w-xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black md:max-w-xl">
               Why Thousands Choose<br />
               <span className="text-[#FB7E10]">Mobile Tyre Champions</span>
             </h2>
@@ -218,7 +219,7 @@ const AboutPage = () => {
           </div>
 
           {/* 6-card bento */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {values.map((v, i) => (
               <div
                 key={i}
@@ -259,26 +260,35 @@ const AboutPage = () => {
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className={`rounded-2xl md:rounded-3xl p-6 md:p-8 flex flex-col gap-6 hover:shadow-xl transition-all duration-300 ${i === 1 ? 'bg-[#FB7E10] text-white' : 'bg-[#F1F3F6]' }`}
+                className={`rounded-2xl md:rounded-3xl p-6 md:p-8 flex flex-col gap-6 transition-all duration-500 group cursor-default ${
+                  i === 1 
+                  ? 'bg-[#FB7E10] text-white shadow-2xl scale-105 z-10' 
+                  : 'bg-[#F1F3F6] text-slate-700 hover:bg-[#0B1528] hover:text-white hover:shadow-2xl hover:-translate-y-2' 
+                }`}
               >
                 {/* stars */}
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, si) => (
-                    <Star key={si} size={16} fill={i === 1 ? 'white' : '#FB7E10'} className={i === 1 ? 'text-white' : 'text-[#FB7E10]'} />
+                    <Star 
+                      key={si} 
+                      size={16} 
+                      fill={i === 1 ? 'white' : '#FB7E10'} 
+                      className={`transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-[#FB7E10] group-hover:text-white group-hover:fill-white'}`} 
+                    />
                   ))}
                 </div>
-                <p className={`font-bold leading-relaxed text-base flex-1 ${i === 1 ? 'text-white' : 'text-gray-800'}`}>
+                <p className={`font-bold leading-relaxed text-base flex-1 transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-gray-800 group-hover:text-white'}`}>
                   "{t.quote}"
                 </p>
                 <div className="flex items-center gap-3">
                   <img
                     src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${t.seed}`}
                     alt={t.name}
-                    className={`w-10 h-10 rounded-full border-2 ${i === 1 ? 'border-white/40' : 'border-[#FB7E10]/30'} bg-gray-300`}
+                    className={`w-10 h-10 rounded-full border-2 transition-all duration-500 ${i === 1 ? 'border-white/40' : 'border-[#FB7E10]/30 group-hover:border-white/40'} bg-gray-300`}
                   />
                   <div>
-                    <div className={`font-black text-sm ${i === 1 ? 'text-white' : 'text-black'}`}>{t.name}</div>
-                    <div className={`text-xs font-medium ${i === 1 ? 'text-white/70' : 'text-gray-500'}`}>{t.role}</div>
+                    <div className={`font-black text-sm transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-black group-hover:text-white'}`}>{t.name}</div>
+                    <div className={`text-xs font-medium transition-colors duration-500 ${i === 1 ? 'text-white/70' : 'text-gray-500 group-hover:text-white/70'}`}>{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -353,10 +363,13 @@ const AboutPage = () => {
                 <Phone size={18} fill="white" />
                 Call +44 7494 024653
               </a>
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-black text-base md:text-lg hover:bg-white/20 transition-all">
+              <Link 
+                to="/contact"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-black text-base md:text-lg hover:bg-[#0B1528] hover:border-transparent transition-all shadow-xl active:scale-95"
+              >
                 Book Appointment
                 <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

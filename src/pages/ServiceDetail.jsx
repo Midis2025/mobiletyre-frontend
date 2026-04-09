@@ -148,9 +148,12 @@ const ServiceDetail = () => {
                                     ))}
                                 </div>
 
-                                <button className="mt-8 w-full flex items-center justify-center gap-3 bg-[#1E63C4] text-white py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all shadow-xl active:scale-95 border border-blue-400/20">
+                                <Link 
+                                    to="/contact"
+                                    className="mt-8 w-full flex items-center justify-center gap-3 bg-[#1E63C4] text-white py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all shadow-xl active:scale-95 border border-blue-400/20"
+                                >
                                     Make Appointment
-                                </button>
+                                </Link>
                            </div>
                         </div>
                     </div>
@@ -182,9 +185,12 @@ const ServiceDetail = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center gap-8">
-                            <button className="w-full sm:w-auto bg-[#FF6600] text-white px-12 py-5 rounded-xl font-black uppercase tracking-widest text-base hover:bg-orange-600 transition-all shadow-[0_10px_40px_rgba(255,102,0,0.3)] active:scale-95">
+                            <Link 
+                                to="/contact"
+                                className="w-full sm:w-auto bg-[#FF6600] text-white px-12 py-5 rounded-xl font-black uppercase tracking-widest text-base hover:bg-orange-600 transition-all shadow-[0_10px_40px_rgba(255,102,0,0.3)] active:scale-95 text-center"
+                            >
                                 Book Service
-                            </button>
+                            </Link>
 
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
