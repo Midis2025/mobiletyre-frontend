@@ -147,10 +147,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
       </div>
  
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-12 md:py-20 lg:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
           {/* Left Column */}
-          <div className="text-white space-y-4 md:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="text-white space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
             <div className="inline-flex items-center gap-2 bg-[#33251a] border border-[#fb7e10]/30 px-3 md:px-4 py-1.5 rounded-full">
               <span className="text-orange-500">⚡</span>
               <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-orange-400">
@@ -158,16 +158,16 @@ const Hero = () => {
               </span>
             </div>
  
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight">
-              The Help You Need, Exactly <br className="hidden sm:block" />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              The Help You Need, Exactly <br className="hidden lg:block" />
               <span className="text-[#FB7E10]"> Where You Are.</span>
             </h1>
  
-            <p className="max-w-md text-gray-300 text-sm md:text-lg leading-relaxed">
+            <p className="max-w-md text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
               Stuck with a flat? Got a puncture on your way to work? We come straight to you, any time of the day or night, anywhere across Surrey and Hampshire.
-               </p>
+            </p>
  
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 w-full max-w-sm sm:max-w-none">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full max-w-sm md:max-w-none">
               <a
                 href="tel:+447494024653"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent"
@@ -186,7 +186,7 @@ const Hero = () => {
           </div>
  
           {/* Right Column - Form */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center md:justify-end">
             <div className="bg-white rounded-3xl p-8 shadow-2xl w-full max-w-md relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/30 rounded-full -mr-16 -mt-16 blur-3xl"></div>
  

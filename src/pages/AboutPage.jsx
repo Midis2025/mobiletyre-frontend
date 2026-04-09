@@ -4,10 +4,10 @@ import { Phone, ArrowRight, Shield, Clock, Star, Users, Wrench, MapPin, CheckCir
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 
 const stats = [
-  { value: '4.9★', label: 'Google Rating', sub: '500+ reviews' },
+  { value: '4.9★', label: 'Google Rating', sub: '500+ Verified Reviews' },
+  { value: '24/7', label: 'Available', sub: 'Every Day of the Year' },
+  { value: '10k+', label: 'Jobs Done', sub: 'Across Surrey & Hampshire' },
   { value: '30min', label: 'Avg Response', sub: 'Guaranteed' },
-  { value: '24/7', label: 'Available', sub: 'Every day of the year' },
-  { value: '10k+', label: 'Jobs Done', sub: 'Across the UK' },
 ];
 
 const values = [
@@ -186,11 +186,11 @@ const AboutPage = () => {
             </div>
 
             <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-              Mobile Tyre Champions was built on a simple belief — <strong>no driver should be stranded</strong>. Our mobile operations mean no waiting in garages, no towing fees. You stay where you are, and we come to you with the same equipment and expertise as a workshop.
-            </p>
+              Mobile Tyre Champions was built on a simple belief — no driver should be stranded. Our mobile operation means no waiting in garages, no lengthy delays. You stay where you are, and we come to you with the same equipment and expertise as a workshop.
+              </p>
             <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-              Based at <strong>Grosvenor Road, Aldershot, Postcode: GU11 3HY</strong>, we serve customers across the UK with a large stock, expert technicians, and fully equipped mobile vans — delivering convenience, safety, and transparency with every job.
-            </p>
+              Based at Grosvenor Road, Aldershot, Postcode GU11 3HY, we serve customers across the UK with a large stock of expert technicians and fully equipped mobile vans — delivering convenience, safety, and transparency with every job.
+             </p>
 
             {/* service bullets */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
