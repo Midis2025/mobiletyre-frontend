@@ -13,6 +13,42 @@ const Footer = () => {
                     <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs mx-auto md:mx-0 text-center md:text-left">
                         Mobile Tyre Champions is a 24/7 mobile tyre fitting service based at Grosvenor Road, Aldershot GU11 3HY, covering Surrey and Hampshire. We come to you at home, at work, or on the roadside — fast, honest, and fully mobile.
                     </p>
+
+                    {/* Social Media Icons */}
+                    <div className="flex items-center justify-center md:justify-start gap-4">
+                        <a 
+                            href="https://www.facebook.com/people/Mobile-Tyre-Champions/61572150444121/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#FB7E10] hover:text-white transition-all duration-300 border border-white/10 group"
+                        >
+                            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a 
+                            href="https://www.instagram.com/mobiletyrechampions/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#FB7E10] hover:text-white transition-all duration-300 border border-white/10 group"
+                        >
+                            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a 
+                            href="https://www.tiktok.com/@mobiletyrechampions?is_from_webapp=1&sender_device=pc" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#FB7E10] hover:text-white transition-all duration-300 border border-white/10 group"
+                        >
+                            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.47-.88-.64-1.6-1.53-2.03-2.52V15.14c.05 3.44-2.14 6.99-5.73 7.84-3.94 1.12-8.38-1.12-9.61-4.99-1.3-3.79 1.12-8.38 5.73-8.84.44-.04.88-.04 1.32.02v4.01c-.44-.06-.88-.06-1.32-.02-1.99.23-3.72 2.05-3.6 4.09.12 2.04 2.14 3.73 4.13 3.42 1.99-.31 3.42-2.31 3.42-4.33V0h1.36z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
                 {/* Column 2: Our Services */}

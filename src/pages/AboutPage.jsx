@@ -152,7 +152,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── OUR STORY ─────────────────────────────────────────────────────── */}
-      <section className="bg-white py-16 md:py-24 px-4 sm:px-10 lg:px-20">
+      <section className="bg-white py-6 md:py-8 px-4 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           {/* Image side */}
           <div className="w-full md:w-1/2 relative">
@@ -165,15 +165,7 @@ const AboutPage = () => {
               />
             </div>
             {/* floating badge */}
-            <div className="absolute -bottom-6 -right-4 md:right-8 bg-[#FB7E10] rounded-2xl px-6 py-4 shadow-xl text-white text-center">
-              <div className="text-3xl font-black">4.9</div>
-              <div className="text-xs font-bold uppercase tracking-wider opacity-90">Google Rating</div>
-              <div className="flex gap-0.5 justify-center mt-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={12} fill="white" className="text-white" />
-                ))}
-              </div>
-            </div>
+           
           </div>
 
           {/* Text side */}
@@ -207,7 +199,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── WHY CHOOSE US ─────────────────────────────────────────────────── */}
-      <section id="why-us" className="bg-[#F1F3F6] py-16 md:py-24 px-4 sm:px-10 lg:px-20">
+      <section id="why-us" className="bg-[#F1F3F6] py-6 md:py-8 px-4 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto">
           {/* heading */}
           <div className="mb-12 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start">
@@ -246,7 +238,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
-      <section className="bg-white py-16 md:py-24 px-4 sm:px-10 lg:px-20">
+      <section className="bg-white py-6 md:py-8 px-4 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-black">
@@ -298,7 +290,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── CONTACT INFO STRIP ────────────────────────────────────────────── */}
-      <section className="bg-[#0B1528] py-12 md:py-16 px-4 sm:px-10 lg:px-20">
+      <section className="bg-[#0B1528] py-8 md:py-10 px-4 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {/* Address */}
           <div className="flex flex-col items-center gap-3">
@@ -339,7 +331,7 @@ const AboutPage = () => {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <section className="bg-white py-12 px-4 sm:px-10 lg:px-20">
+      <section className="bg-white py-8 px-4 sm:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto relative rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-black min-h-[350px] md:min-h-[420px] flex items-center p-6 md:p-16 lg:p-20 shadow-2xl">
           {/* bg image */}
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-30 md:opacity-40 pointer-events-none">
