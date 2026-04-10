@@ -79,7 +79,7 @@ const ContactPage = () => {
         <div className="font-['Outfit'] bg-slate-50 min-h-screen text-slate-900 overflow-x-hidden">
             
             {/* ── HERO SECTION ── */}
-            <section className="relative pt-16 pb-32 md:pt-24 md:pb-48 px-4 border-b border-gray-200 overflow-hidden bg-white">
+            <section className="relative pt-16 pb-12 md:pt-24 md:pb-20 px-4 border-b border-gray-200 overflow-hidden bg-white">
                 <div className="absolute inset-0 z-0">
                     <img 
                         src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=2070&auto=format&fit=crop" 
@@ -107,17 +107,18 @@ const ContactPage = () => {
             </section>
 
             {/* ── CONTACT GRID ── */}
-            <section className="py-20 px-4 md:px-10 lg:px-20 relative z-20">
+            <section className="pt-8 md:pt-16 pb-20 px-4 md:px-10 lg:px-20 relative z-20">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                     
                     {/* Left: Contact Info (4 cols) */}
                     <div className="lg:col-span-4 space-y-12">
-                        <div className="space-y-4">
+                        <div className="space-y-4 flex flex-col items-center lg:items-start text-center lg:text-left">
                             <div className="flex items-center gap-2">
                                 <div className="w-10 h-[2px] bg-[#FB7E10]"></div>
                                 <span className="text-[#FB7E10] font-black uppercase text-xs tracking-widest">Connect With Us</span>
+                                <div className="w-10 h-[2px] bg-[#FB7E10] lg:hidden"></div>
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase leading-none text-black">Speak to our <br /> Expert Team.</h2>
+                            <h2 className="text-4xl md:text-5xl font-black tracking-tight uppercase leading-none text-black">Speak to our <br className="hidden sm:block" /> Expert Team.</h2>
                         </div>
 
                         <div className="space-y-6">
@@ -201,7 +202,7 @@ const ContactPage = () => {
 
                             <div className="space-y-12">
                                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10 border-b border-gray-100">
-                                    <div className="space-y-3">
+                                    <div className="space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
                                         <h3 className="text-black font-black text-3xl sm:text-7xl uppercase tracking-tighter leading-[0.8]">
                                             INITIATE <br /> <span className="text-[#FB7E10]">CONTACT</span>
                                         </h3>
@@ -286,10 +287,11 @@ const ContactPage = () => {
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="group w-full bg-[#0B1528] disabled:cursor-not-allowed disabled:opacity-60 text-white py-6 rounded-2xl font-black uppercase tracking-[0.3em] text-lg hover:bg-black transition-all shadow-xl flex items-center justify-center gap-4 active:scale-[0.98]"
+                                            className="group w-full bg-gradient-to-r from-[#FB7E10] via-[#ff9743] to-[#FB7E10] bg-[length:200%_auto] hover:bg-right text-white py-5 md:py-6 rounded-2xl font-black uppercase tracking-[0.25em] text-base md:text-lg transition-all duration-500 shadow-[0_20px_40px_-10px_rgba(251,126,16,0.5)] hover:shadow-[0_25px_50px_-15px_rgba(251,126,16,0.8)] hover:-translate-y-1 flex items-center justify-center active:scale-[0.98] relative overflow-hidden border border-white/20 ring-4 ring-[#FB7E10]/10"
                                         >
-                                            <Send size={24} className="text-[#FB7E10] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                            {isSubmitting ? 'Submitting...' : 'Schedule Deployment'}
+                                            {/* Spotlight effect */}
+                                            <div className="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-[35deg] blur-md"></div>
+                                            <span className="relative z-10 drop-shadow-md">{isSubmitting ? 'Submitting...' : 'Schedule Deployment'}</span>
                                         </button>
                                     </div>
                                 </form>
