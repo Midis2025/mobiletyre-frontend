@@ -8,14 +8,14 @@ const Footer = () => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-[#FB7E10]/30 to-transparent"></div>
             
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 justify-items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 xl:gap-12 justify-items-center items-start">
                     {/* Column 1: About */}
                     <div className="space-y-6 flex flex-col items-center">
                         <Link to="/" className="flex items-center h-16 md:h-20">
                             <img src="/images/MTC logo 3.png" alt="Mobile Tyre Champions" className="h-full w-auto max-w-full object-contain" />
                         </Link>
-                        <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs">
-                            Mobile Tyre Champions is a 24/7 mobile tyre fitting service based at Grosvenor Road, Aldershot GU11 3HY, covering Surrey and Hampshire.
+                        <p className="text-gray-400 text-sm font-medium leading-relaxed max-w-xs mx-auto">
+                            Mobile Tyre Champions is a 24/7 mobile tyre fitting service based at Grosvenor Road, Aldershot GU11 3HY.
                         </p>
 
                         {/* Social Media Icons */}
@@ -56,7 +56,7 @@ const Footer = () => {
                     {/* Column 2: Our Services */}
                     <div className="space-y-6 flex flex-col items-center">
                         <h4 className="text-white font-bold text-lg uppercase tracking-wider">Our Services</h4>
-                        <div className="flex flex-col space-y-4">
+                        <div className="flex flex-col space-y-3.5">
                             {[
                                 { name: 'Emergency Tyre Fitting', path: '/services/emergency-tyre-fitting' },
                                 { name: 'Wheel Balancing', path: '/services/precision-wheel-balancing' },
@@ -67,7 +67,7 @@ const Footer = () => {
                                 <Link 
                                     key={service.path}
                                     to={service.path} 
-                                    className="text-gray-400 hover:text-[#FB7E10] transition-all text-sm font-medium hover:scale-105 duration-200 flex items-center justify-center group"
+                                    className="text-gray-400 hover:text-[#FB7E10] transition-all text-sm font-medium hover:scale-105 duration-200"
                                 >
                                     {service.name}
                                 </Link>
@@ -75,56 +75,35 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 3: Links and Support Combined Grid for better spacing */}
-                    <div className="md:col-span-1 lg:col-span-1 space-y-12 flex flex-col items-center w-full">
-                        <div className="space-y-6 flex flex-col items-center">
-                            <h4 className="text-white font-bold text-lg uppercase tracking-wider">Quick Links</h4>
-                            <div className="flex flex-col space-y-4 text-gray-400 text-sm font-medium">
-                                {[
-                                    { name: 'Home', path: '/' },
-                                    { name: 'Services', path: '/services' },
-                                    { name: 'About', path: '/about' },
-                                    { name: 'Locations', path: '/locations' },
-                                    { name: 'Contact', path: '/contact' }
-                                ].map((link) => (
-                                    <Link 
-                                        key={link.name}
-                                        to={link.path} 
-                                        className="hover:text-[#FB7E10] transition-all hover:scale-105 duration-200"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="space-y-6 flex flex-col items-center">
-                            <h4 className="text-white font-bold text-lg uppercase tracking-wider">Support</h4>
-                            <div className="flex flex-col space-y-4 text-gray-400 text-sm font-medium">
-                                {[
-                                    { name: 'Privacy Policy', path: '/privacy' },
-                                    { name: 'Terms of Service', path: '/terms' },
-                                    { name: 'Cookie Policy', path: '/cookies' },
-                                    { name: 'Accessibility', path: '/accessibility' }
-                                ].map((support) => (
-                                    <Link 
-                                        key={support.name}
-                                        to={support.path} 
-                                        className="hover:text-[#FB7E10] transition-all hover:scale-105 duration-200"
-                                    >
-                                        {support.name}
-                                    </Link>
-                                ))}
-                            </div>
+                    {/* Column 3: Quick Links */}
+                    <div className="space-y-6 flex flex-col items-center">
+                        <h4 className="text-white font-bold text-lg uppercase tracking-wider">Quick Links</h4>
+                        <div className="flex flex-col space-y-3.5 text-gray-400 text-sm font-medium">
+                            {[
+                                { name: 'Home', path: '/' },
+                                { name: 'Services', path: '/services' },
+                                { name: 'About', path: '/about' },
+                                { name: 'Locations', path: '/locations' },
+                                { name: 'Contact', path: '/contact' }
+                            ].map((link) => (
+                                <Link 
+                                    key={link.name}
+                                    to={link.path} 
+                                    className="hover:text-[#FB7E10] transition-all hover:scale-105 duration-200"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
                     {/* Column 4: Hotline Card */}
-                    <div className="flex flex-col items-center lg:items-end w-full">
-                        <div className="bg-gradient-to-br from-[#111A2C] to-[#0A1222] border border-white/10 rounded-3xl p-8 space-y-6 text-center shadow-2xl relative group w-full max-w-[350px] mx-auto lg:mr-0">
+                    <div className="flex flex-col items-center w-full">
+                        <div className="bg-gradient-to-br from-[#111A2C] to-[#0A1222] border border-white/10 rounded-3xl p-6 xl:p-8 space-y-6 text-center shadow-2xl relative group w-full max-w-[320px] mx-auto">
                             <div className="absolute inset-0 bg-gradient-to-tr from-[#FB7E10]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
                             
                             <div className="space-y-1 relative">
-                                <span className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-[0.2em] block">24/7 Emergency Line</span>
+                                <span className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-[0.2em] block">24/7 Hotline</span>
                                 <h4 className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap">
                                     +44 7494 024653
                                 </h4>
@@ -150,8 +129,8 @@ const Footer = () => {
 
                 {/* Copyright Section */}
                 <div className="pt-10 mt-16 border-t border-white/5">
-                    <div className="flex flex-col items-center justify-center gap-6 px-4">
-                        <p className="text-gray-500 text-xs font-medium text-center">
+                    <div className="flex flex-col items-center justify-center gap-6 px-4 text-center">
+                        <p className="text-gray-500 text-xs font-medium">
                             © 2025 Mobile Tyre Champions. All rights reserved.
                         </p>
                         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[11px] font-bold uppercase tracking-wider text-gray-500">
