@@ -29,7 +29,7 @@ const Services = () => {
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                className={`w-full h-full ${service.fit === 'contain' ? 'object-contain bg-white' : 'object-cover'} transition-transform duration-1000 group-hover:scale-105`}
               />
               <div className="absolute inset-0 bg-black/50 md:bg-black/40 group-hover:bg-black/30 transition-all duration-500"></div>
             </div>

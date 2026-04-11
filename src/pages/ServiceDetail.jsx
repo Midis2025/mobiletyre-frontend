@@ -28,7 +28,7 @@ const ServiceDetail = () => {
                     <img
                         src={service.image}
                         alt={service.title}
-                        className="w-full h-full object-cover scale-105"
+                        className={`w-full h-full ${service.fit === 'contain' ? 'object-contain bg-white' : 'object-cover'} scale-105`}
                     />
                     {/* Dark Overlay (Gradient matches common luxury automotive styles) */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />

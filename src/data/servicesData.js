@@ -53,7 +53,8 @@ export const servicesData = [
   {
     id: 'precision-wheel-balancing',
     title: "Precision Wheel Balancing",
-    image: "/images/precision wheel.avif",
+    image: "/images/Untitled-design-7-2.png",
+    fit: "contain",
     description: "Unbalanced wheels wear your tyres unevenly and make your car vibrate. That's why we include a full wheel balance with every tyre fitting — no extra charge.",
     features: [
       "Vibration Removal",
