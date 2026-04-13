@@ -42,22 +42,24 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`sticky top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 h-24 md:h-28 transition-all duration-500 z-[100] border-b ring-1 ring-white/10 ${scrolled
-          ? 'bg-white/40 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border-white/20 py-2'
-          : 'bg-white/20 backdrop-blur-lg border-transparent py-4'
+        className={`sticky top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 h-24 md:h-28 transition-all duration-500 z-[100] ${scrolled
+          ? 'bg-black/95 backdrop-blur-2xl shadow-2xl py-2'
+          : 'bg-black py-4'
           }`}
       >
         {/* Logo */}
         <Link to="/" className="flex items-center h-full py-1 sm:py-2 w-1/2 sm:w-auto">
-          <img
-            src="/images/MTC logo 2.png"
-            alt="Mobile Tyre Champions"
-            className="h-20 md:h-24 w-auto max-w-full object-contain drop-shadow-md transition-all duration-500 hover:scale-105"
-          />
+          <div className="bg-white p-1 md:p-1.5 rounded-lg flex items-center justify-center aspect-square h-16 md:h-20 shadow-lg hover:scale-105 transition-all duration-500 overflow-hidden">
+            <img
+              src="/images/MTC logo 2.png"
+              alt="Mobile Tyre Champions"
+              className="h-full w-full object-contain"
+            />
+          </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-10 text-[13px] font-bold text-slate-800 uppercase tracking-wider">
+        <div className="hidden lg:flex items-center gap-10 text-[13px] font-bold text-white uppercase tracking-wider">
           {links.map(({ label, to, isNew, dropdown }) => (
             <div key={label} className="relative group">
               <Link
@@ -78,12 +80,12 @@ const Navbar = () => {
               </Link>
 
               {dropdown && (
-                <div className="absolute top-full left-[-20px] mt-4 w-72 bg-white/70 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50 ring-1 ring-white/20">
+                <div className="absolute top-full left-[-20px] mt-4 w-72 bg-black/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50 ring-1 ring-white/5">
                   {dropdown.map((subItem) => (
                     <Link
                       key={subItem.to}
                       to={subItem.to}
-                      className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-orange-50/50 transition-all font-semibold"
+                      className="block px-6 py-3 text-[13px] text-white/70 hover:text-[#FB7E10] hover:bg-white/5 transition-all font-semibold"
                     >
                       {subItem.label}
                     </Link>
@@ -107,7 +109,7 @@ const Navbar = () => {
           </a>
 
           <button
-            className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${isMenuOpen ? 'bg-[#FB7E10] text-white' : 'bg-white shadow-sm border border-slate-100 text-slate-900'
+            className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${isMenuOpen ? 'bg-[#FB7E10] text-white' : 'bg-white/10 border border-white/10 text-white'
               }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -124,8 +126,8 @@ const Navbar = () => {
           }`}>
           {/* Header */}
           <div className="p-6 flex items-center justify-between border-b border-slate-100 bg-slate-50/50">
-            <div className="h-12">
-              <img src="/images/MTC logo 2.png" alt="Logo" className="h-full w-auto object-contain" />
+            <div className="bg-white p-1 rounded flex items-center justify-center aspect-square h-10 shadow-sm">
+              <img src="/images/MTC logo 2.png" alt="Logo" className="h-full w-full object-contain" />
             </div>
             <button
               onClick={() => setIsMenuOpen(false)}
