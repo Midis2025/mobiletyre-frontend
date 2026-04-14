@@ -1,7 +1,28 @@
 import React from 'react';
-import { Phone, CheckCircle, AlertTriangle, PenTool, PoundSterling, PhoneCall, HelpCircle, Wrench } from 'lucide-react';
+import { Phone, CheckCircle, AlertTriangle, PenTool, PoundSterling, PhoneCall, HelpCircle, Wrench, ChevronDown, ShieldCheck, Zap } from 'lucide-react';
 
 const LockingWheelNutRemoval = () => {
+    const [openFaq, setOpenFaq] = React.useState(null);
+
+    const toggleFaq = (index) => {
+        setOpenFaq(openFaq === index ? null : index);
+    };
+
+    const faqs = [
+        {
+            q: "Do I need the key for a mobile tyre replacement?",
+            a: "Yes. However, if your key is lost, simply notify us in advance so we can dispatch our technician with the specialist locking wheel nut removal equipment alongside your new tyres."
+        },
+        {
+            q: "Will this process damage my alloy wheels?",
+            a: "Not when done correctly! Our trained technicians use professional, non-invasive tools designed specifically to extract the nut without harming the lacquer or powder coating of your alloys."
+        },
+        {
+            q: "Where should I look for my key before calling?",
+            a: "Common hiding places include the glove compartment, boot side compartments, under the boot floor, seat pockets, or under the seats. If you still can't find it, we're here to help."
+        }
+    ];
+
     return (
         <div className="bg-white min-h-screen">
             {/* HERO SECTION */}
@@ -25,17 +46,32 @@ const LockingWheelNutRemoval = () => {
                         Locking Wheel <br className="hidden md:block"/> <span className="text-[#FB7E10]">Nut Removal</span>
                     </h1>
                     
-                    <p className="text-slate-300 max-w-2xl mx-auto font-medium text-base md:text-lg mb-10 leading-relaxed">
-                        Lost your locking wheel nut key? Seized or damaged nuts? Mobile Tyre Champions provides 100% damage-free removal at your home, work, or roadside.
+                    <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10 max-w-4xl mx-auto">
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <ShieldCheck size={20} className="text-[#FB7E10]" />
+                            <span>100% Damage-Free</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <Zap size={20} className="text-[#FB7E10]" />
+                            <span>Instant Dispatch</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <CheckCircle size={20} className="text-[#FB7E10]" />
+                            <span>Expert Techs</span>
+                        </div>
+                    </div>
+
+                    <p className="text-slate-300 max-w-2xl mx-auto font-medium text-base md:text-xl mb-10 leading-relaxed px-4">
+                        Lost your locking wheel nut key? Seized or damaged nuts? We provide emergency, specialist removal at your home or work.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a
                             href="tel:+447494024653"
-                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-10 py-5 rounded-xl font-black text-lg uppercase tracking-widest hover:bg-orange-600 transition-all shadow-[0_0_40px_rgba(251,126,16,0.4)] hover:scale-105 active:scale-95"
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-12 py-5 rounded-xl font-black text-lg uppercase tracking-[0.15em] hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/40 hover:-translate-y-1 active:translate-y-0"
                         >
                             <Phone size={24} fill="white" className="stroke-none" />
-                            Call Us Now
+                            Call Now
                         </a>
                     </div>
                 </div>
@@ -48,18 +84,37 @@ const LockingWheelNutRemoval = () => {
                     {/* Left: Detailed Info */}
                     <div className="lg:w-2/3 space-y-16">
                         
-                        {/* Intro */}
-                        <div className="space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-black text-black leading-[1.1] tracking-tight uppercase">
-                                When Locking Wheel Nuts <br className="hidden md:block"/> <span className="text-[#FB7E10]">Become a Problem</span>
-                            </h2>
-                            <div className="w-16 h-1.5 bg-[#FB7E10]" />
-                            <p className="text-gray-500 font-medium leading-relaxed text-base md:text-lg pt-4">
-                                Modern vehicles are commonly fitted with locking wheel nuts to prevent theft. However, they become a real headache when the key is lost, damaged, or the nuts themselves seize due to over-tightening with harsh air-guns instead of torque wrenches. 
-                            </p>
-                            <p className="text-gray-500 font-medium leading-relaxed text-base md:text-lg">
-                                Attempting DIY removal with reverse thread sockets or chisels often leads to cracked wheel studs and severe alloy damage. Our mobile specialists are fully equipped to remove locking wheel nuts safely and without damaging your alloy wheels.
-                            </p>
+                        <div className="space-y-8">
+                            <div className="space-y-4">
+                                <h2 className="text-3xl md:text-6xl font-black text-black leading-[1] tracking-tighter uppercase">
+                                    THE SPECIALIST <br className="hidden md:block"/> <span className="text-[#FB7E10]">REMOVAL SOLUTION</span>
+                                </h2>
+                                <div className="w-20 h-2 bg-[#FB7E10]" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600 font-medium leading-relaxed text-base md:text-lg">
+                                <div className="space-y-4">
+                                    <p>
+                                        Modern vehicles are commonly fitted with locking wheel nuts to prevent theft. However, they become a real headache when the key is lost, damaged, or the nuts themselves seize due to over-tightening. 
+                                    </p>
+                                    <ul className="space-y-3">
+                                        {["Lost or misplaced key", "Damaged or worn key head", "Overtightened with air-guns", "Seized due to corrosion"].map((item, idx) => (
+                                            <li key={idx} className="flex items-center gap-3 text-sm font-black text-black uppercase tracking-tight">
+                                                <div className="w-1.5 h-1.5 bg-[#FB7E10] rounded-full" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="space-y-4">
+                                    <p>
+                                        Attempting DIY removal with improper tools often leads to cracked wheel studs and severe alloy damage. Our specialists ensure a non-invasive extraction.
+                                    </p>
+                                    <div className="p-4 bg-orange-50 border-l-4 border-[#FB7E10] italic text-sm font-bold text-orange-900">
+                                        "99% of our removals are completed in under 15 minutes per wheel with zero alloy damage."
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Grid Features */}
@@ -109,23 +164,31 @@ const LockingWheelNutRemoval = () => {
 
                         {/* FAQs */}
                         <div className="space-y-8">
-                            <h2 className="text-3xl font-black text-black uppercase tracking-tight flex items-center gap-4">
-                                <HelpCircle size={32} className="text-[#FB7E10]" />
-                                Common Questions
-                            </h2>
-                            <div className="space-y-6">
-                                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-black uppercase tracking-tight text-slate-900 mb-3">Do I need the key for a mobile tyre replacement?</h4>
-                                    <p className="text-slate-500 font-medium leading-relaxed">Yes. However, if your key is lost, simply notify us in advance so we can dispatch our technician with the specialist locking wheel nut removal equipment alongside your new tyres.</p>
-                                </div>
-                                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-black uppercase tracking-tight text-slate-900 mb-3">Will this process damage my alloy wheels?</h4>
-                                    <p className="text-slate-500 font-medium leading-relaxed">Not when done correctly! Our trained technicians use professional, non-invasive tools designed specifically to extract the nut without harming the lacquer or powder coating of your alloys.</p>
-                                </div>
-                                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                                    <h4 className="text-lg font-black uppercase tracking-tight text-slate-900 mb-3">Where should I look for my key before calling?</h4>
-                                    <p className="text-slate-500 font-medium leading-relaxed">Common hiding places include the glove compartment, boot side compartments, under the boot floor, seat pockets, or under the seats. If you still can't find it, we're here to help.</p>
-                                </div>
+                            <div className="space-y-2">
+                                <h2 className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight flex items-center gap-4">
+                                    <HelpCircle size={32} className="text-[#FB7E10]" />
+                                    Common Questions
+                                </h2>
+                                <p className="text-gray-500 font-bold uppercase text-[10px] tracking-[0.2em] pl-1">Everything you need to know about locking nut removal</p>
+                            </div>
+                            
+                            <div className="space-y-3">
+                                {faqs.map((faq, idx) => (
+                                    <div key={idx} className="bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden transition-all duration-300">
+                                        <button 
+                                            onClick={() => toggleFaq(idx)}
+                                            className="w-full flex items-center justify-between p-6 text-left group"
+                                        >
+                                            <span className="text-sm md:text-base font-black uppercase tracking-tight text-slate-900 group-hover:text-[#FB7E10] transition-colors">{faq.q}</span>
+                                            <ChevronDown size={20} className={`text-slate-400 transition-transform duration-300 ${openFaq === idx ? 'rotate-180 text-[#FB7E10]' : ''}`} />
+                                        </button>
+                                        <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                            <p className="text-slate-600 font-medium leading-relaxed text-sm">
+                                                {faq.a}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -158,10 +221,10 @@ const LockingWheelNutRemoval = () => {
                                 </div>
 
                                 <div className="pt-8 border-t border-white/20">
-                                    <h4 className="uppercase font-black text-xs tracking-widest text-white/70 mb-4 text-center">Request Immediate Dispatch</h4>
-                                    <a href="tel:+447494024653" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-50 transition-all shadow-xl active:scale-95">
-                                        <PhoneCall size={20} />
-                                        07494 024653
+                                    <h4 className="uppercase font-black text-[10px] tracking-[0.3em] text-white/70 mb-4 text-center">Standardized Response Line</h4>
+                                    <a href="tel:+447494024653" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-900 hover:text-white transition-all shadow-xl active:scale-95">
+                                        <Phone size={20} />
+                                        Call Now
                                     </a>
                                 </div>
                            </div>

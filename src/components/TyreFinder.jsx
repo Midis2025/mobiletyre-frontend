@@ -109,7 +109,7 @@ const TyreFinder = () => {
         const normalizedReg = regNumber.replace(/\s+/g, '').toUpperCase();
 
         if (!normalizedReg) {
-            setError('Please enter a registration number');
+            setError('Please enter a valid UK registration number');
             return;
         }
 
@@ -120,7 +120,7 @@ const TyreFinder = () => {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data?.error?.message || 'Failed to fetch registration data');
+                throw new Error(data?.error?.message || 'Technical error during DVLA lookup');
             }
 
             const results = data.data || [];
@@ -138,7 +138,7 @@ const TyreFinder = () => {
             }
         } catch (err) {
             console.error('Vehicle search error:', err);
-            setError('Failed to search vehicle. Please try again.');
+            setError('DVLA lookup failed. Please check your internet connection or enter size manually.');
             setVehicleResult(null);
             setVehicleNotFound(false);
         } finally {
@@ -192,21 +192,26 @@ const TyreFinder = () => {
                     <div className="w-full lg:w-2/3 space-y-10">
                         {activeTab === 'size' ? (
                             <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-                                <h3 className="text-3xl font-black text-black tracking-tight uppercase">
-                                    Search for <span className="text-[#FB7E10]">Tyres by Size</span>
-                                </h3>
+                                <div className="space-y-4">
+                                    <h3 className="text-3xl font-black text-black tracking-tight uppercase">
+                                        Search for <span className="text-[#FB7E10]">Tyres by Size</span>
+                                    </h3>
+                                    <p className="text-gray-500 text-sm font-medium leading-relaxed max-w-xl">
+                                        Enter your tyre measurements (e.g., <span className="text-black font-black">205/55 R16</span>). You can find these on your tyre's sidewall.
+                                    </p>
+                                </div>
 
                                 <form onSubmit={fetchTyres} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                         {/* Width */}
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Width</label>
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Width (Wide)</label>
                                             <div className="relative">
                                                 <select
                                                     value={width}
                                                     onChange={(e) => setWidth(e.target.value)}
-                                                    className="w-full bg-white border-2 border-slate-100 rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer">
-                                                    <option value="">Select Width</option>
+                                                    className={`w-full bg-white border-2 ${!width && error.includes('Width') ? 'border-red-500' : 'border-slate-100'} rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer shadow-sm`}>
+                                                    <option value="">Choose Width</option>
                                                     {widthOptions.map(w => (
                                                         <option key={w} value={w}>{w}</option>
                                                     ))}
@@ -216,13 +221,13 @@ const TyreFinder = () => {
                                         </div>
                                         {/* Height */}
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Height</label>
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Profile (Height)</label>
                                             <div className="relative">
                                                 <select
                                                     value={height}
                                                     onChange={(e) => setHeight(e.target.value)}
-                                                    className="w-full bg-white border-2 border-slate-100 rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer">
-                                                    <option value="">Select Height</option>
+                                                    className={`w-full bg-white border-2 ${!height && error.includes('Height') ? 'border-red-500' : 'border-slate-100'} rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer shadow-sm`}>
+                                                    <option value="">Choose Profile</option>
                                                     {heightOptions.map(h => (
                                                         <option key={h} value={h}>{h}</option>
                                                     ))}
@@ -232,13 +237,13 @@ const TyreFinder = () => {
                                         </div>
                                         {/* Diameter */}
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Diameter</label>
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Rim (Diameter)</label>
                                             <div className="relative">
                                                 <select
                                                     value={diameter}
                                                     onChange={(e) => setDiameter(e.target.value)}
-                                                    className="w-full bg-white border-2 border-slate-100 rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer">
-                                                    <option value="">Select Diameter</option>
+                                                    className={`w-full bg-white border-2 ${!diameter && error.includes('Diameter') ? 'border-red-500' : 'border-slate-100'} rounded-xl px-4 py-4 appearance-none font-bold text-black focus:border-[#FB7E10] outline-none transition-all cursor-pointer shadow-sm`}>
+                                                    <option value="">Choose Diameter</option>
                                                     {diameterOptions.map(d => (
                                                         <option key={d} value={d}>{d}</option>
                                                     ))}
@@ -300,18 +305,31 @@ const TyreFinder = () => {
 
                                         <button
                                             type="submit"
-                                            className="w-full sm:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black uppercase tracking-widest text-base sm:text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50"
+                                            className="w-full sm:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-8 sm:px-12 py-5 sm:py-6 rounded-xl sm:rounded-2xl font-black uppercase tracking-widest text-base sm:text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3 group"
                                             disabled={loading}
                                         >
-                                            {loading ? 'SEARCHING...' : 'Search Tyres'}
+                                            {loading ? (
+                                                <>
+                                                    <span className="animate-spin h-5 w-5 border-2 border-white/20 border-t-white rounded-full"></span>
+                                                    INITIATING SEARCH...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    CHECK AVAILABILITY & PRICES
+                                                    <ChevronDown className="rotate-270 group-hover:translate-x-1 transition-transform" size={20} />
+                                                </>
+                                            )}
                                         </button>
                                     </div>
 
                                     {error && (
-                                        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-                                            <div className="flex items-start gap-3">
-                                                <AlertCircle className="text-red-500 mt-0.5 flex-shrink-0" size={20} />
-                                                <p className="text-red-700 font-semibold text-sm">{error}</p>
+                                        <div className="bg-red-50 border-l-4 border-red-500 p-5 rounded-xl animate-in fade-in slide-in-from-top-2">
+                                            <div className="flex items-start gap-4">
+                                                <AlertCircle className="text-red-500 mt-0.5 flex-shrink-0" size={24} />
+                                                <div className="space-y-1">
+                                                    <p className="text-red-900 font-black uppercase text-xs tracking-widest">Incomplete Information</p>
+                                                    <p className="text-red-700 font-medium text-sm leading-relaxed">{error}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -342,10 +360,15 @@ const TyreFinder = () => {
                                         </div>
                                         <button
                                             type="submit"
-                                            className="w-full md:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50"
+                                            className="w-full md:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3"
                                             disabled={searching}
                                         >
-                                            {searching ? 'FINDING...' : 'Tyre Search'}
+                                            {searching ? (
+                                                <>
+                                                    <span className="animate-spin h-5 w-5 border-2 border-white/20 border-t-white rounded-full"></span>
+                                                    VERIFYING...
+                                                </>
+                                            ) : 'Identify Vehicle'}
                                         </button>
                                     </div>
 
@@ -356,8 +379,14 @@ const TyreFinder = () => {
                                     )}
 
                                     {vehicleNotFound && !error && (
-                                        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-                                            <p className="text-yellow-700 font-semibold">Vehicle not found</p>
+                                        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-5 rounded-xl animate-in shake duration-500">
+                                            <div className="flex items-start gap-4">
+                                                <AlertCircle className="text-yellow-600 mt-0.5 flex-shrink-0" size={24} />
+                                                <div className="space-y-1">
+                                                    <p className="text-yellow-900 font-black uppercase text-xs tracking-widest">No Vehicle Match</p>
+                                                    <p className="text-yellow-700 font-medium text-sm leading-relaxed">We couldn't identify registration <span className="font-bold underline">{regNumber}</span>. Please double-check or search by tyre size.</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     )}
 
@@ -486,12 +515,32 @@ const TyreFinder = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div className="bg-white rounded-2xl p-12 text-center border border-gray-100">
-                                <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                                <h3 className="text-2xl font-black text-black mb-2 uppercase">No Tyres Found</h3>
-                                <p className="text-gray-600 max-w-md mx-auto mb-6">
-                                    We couldn't find any tyres matching your criteria. Try adjusting your search filters or contact us for help.
+                            <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-gray-100 shadow-2xl overflow-hidden relative group">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-orange-100 transition-colors"></div>
+                                <AlertCircle className="w-16 h-16 text-[#FB7E10] mx-auto mb-6" />
+                                <h3 className="text-2xl sm:text-3xl font-black text-black mb-2 uppercase">No Matching Tyres Found</h3>
+                                <p className="text-gray-500 max-w-md mx-auto mb-8 font-medium">
+                                    We don't have an immediate match in our automated stock, but <span className="text-black font-black">our experts can find them for you.</span> Fill in your details below.
                                 </p>
+                                
+                                <div className="max-w-md mx-auto bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-[2rem] text-left">
+                                     <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); alert('Request submitted! We’ll contact you shortly.'); }}>
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Mobile Number</label>
+                                            <input required type="tel" placeholder="Enter valid mobile" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none" />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Postcode</label>
+                                            <input required type="text" placeholder="Enter valid postcode" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none" />
+                                        </div>
+                                        <div className="pt-2">
+                                            <button className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white font-black uppercase tracking-widest py-4 rounded-xl shadow-lg transition-all active:scale-95">
+                                                Request Tyre Options
+                                            </button>
+                                        </div>
+                                     </form>
+                                </div>
+
                                 <button
                                     onClick={() => {
                                         setTyres([]);
@@ -501,7 +550,7 @@ const TyreFinder = () => {
                                         setDiameter('');
                                         setBrand('');
                                     }}
-                                    className="bg-[#FB7E10] hover:bg-orange-600 text-white font-black uppercase tracking-widest px-8 py-3 rounded-xl transition-all"
+                                    className="mt-8 text-gray-400 hover:text-black font-black uppercase text-xs tracking-[0.2em] border-b border-transparent hover:border-black transition-all"
                                 >
                                     Try Another Search
                                 </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, CheckCircle, Clock, MapPin, Wrench, ShieldCheck, Truck, Route, PhoneCall, Gauge } from 'lucide-react';
+import { Phone, CheckCircle, Clock, MapPin, Wrench, ShieldCheck, Truck, Route, PhoneCall, Gauge, Star, Users, Zap } from 'lucide-react';
 
 const TrailerTyreFitting = () => {
     return (
@@ -25,41 +25,81 @@ const TrailerTyreFitting = () => {
                         Mobile Trailer <br className="hidden md:block"/> <span className="text-[#FB7E10]">Tyre Fitting</span>
                     </h1>
                     
-                    <p className="text-slate-300 max-w-2xl mx-auto font-medium text-base md:text-lg mb-10 leading-relaxed">
-                        Don’t drive miles just to change tyres — we come to your trailer wherever it is parked, even in remote or rural spots.
+                    <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <ShieldCheck size={20} className="text-[#FB7E10]" />
+                            <span>10/10 Safety Rated</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <Zap size={20} className="text-[#FB7E10]" />
+                            <span>Rapid 60m Arrival</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
+                            <Star size={20} className="text-[#FB7E10]" />
+                            <span>4.9/5 Star Reviews</span>
+                        </div>
+                    </div>
+
+                    <p className="text-slate-300 max-w-2xl mx-auto font-medium text-base md:text-xl mb-10 leading-relaxed px-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+                        Don’t drive on dangerous tyres. Our specialist mobile units come to your trailer, RV, or campervan 24/7/365.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a
                             href="tel:+447494024653"
-                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-10 py-5 rounded-xl font-black text-lg uppercase tracking-widest hover:bg-orange-600 transition-all shadow-[0_0_40px_rgba(251,126,16,0.4)] hover:scale-105 active:scale-95"
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-12 py-5 rounded-xl font-black text-lg uppercase tracking-[0.15em] hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/40 hover:-translate-y-1 active:translate-y-0"
                         >
                             <Phone size={24} fill="white" className="stroke-none" />
-                            Call Us Now
+                            Call Now
                         </a>
                     </div>
                 </div>
             </section>
 
             {/* MAIN CONTENT */}
-            <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-20 bg-white">
+            <section className="py-12 md:py-16 px-4 sm:px-10 lg:px-20 bg-white">
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
                     
                     {/* Left: Detailed Info */}
                     <div className="lg:w-2/3 space-y-16">
                         
-                        {/* Intro */}
-                        <div className="space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-black text-black leading-[1.1] tracking-tight uppercase">
-                                Expert Tyre Service <br className="hidden md:block"/> <span className="text-[#FB7E10]">At Your Location</span>
-                            </h2>
-                            <div className="w-16 h-1.5 bg-[#FB7E10]" />
-                            <p className="text-gray-500 font-medium leading-relaxed text-base md:text-lg pt-4">
-                                Trailers, motorhomes, RVs, and campervans require specialized care due to their higher load ratings and heavier structures. Traveling to a workshop with a flat or damaged trailer tyre can be stressful, dangerous, or completely impossible if you're stranded in a rural or remote location.
-                            </p>
-                            <p className="text-gray-500 font-medium leading-relaxed text-base md:text-lg">
-                                That's where Mobile Tyre Champions steps in. We aim to reach you within about an hour with a fully equipped mobile response van to handle all your trailer tyre work right where you are.
-                            </p>
+                        <div className="space-y-10">
+                            <div className="space-y-4">
+                                <h2 className="text-3xl md:text-6xl font-black text-black leading-[1] tracking-tighter uppercase">
+                                    THE TRAILER <br className="hidden md:block"/> <span className="text-[#FB7E10]">TYRE SPECIALISTS</span>
+                                </h2>
+                                <div className="w-20 h-2 bg-[#FB7E10]" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-600 font-medium leading-relaxed text-base md:text-lg">
+                                <div className="space-y-4">
+                                    <p>
+                                        Trailers and RVs require specialized care due to higher load ratings and heavier structures. Traveling to a workshop with a damaged trailer tyre is often dangerous or impossible.
+                                    </p>
+                                    <ul className="space-y-3">
+                                        {["24/7 Roadside Assistance", "Horsebox & Boat Trailers", "Expert RV & Motorhome Support", "Heavy-Duty Load Rated Tyres"].map((item, idx) => (
+                                            <li key={idx} className="flex items-center gap-3 text-sm font-black text-black uppercase tracking-tight">
+                                                <div className="w-1.5 h-1.5 bg-[#FB7E10] rounded-full" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="space-y-4">
+                                    <p>
+                                        Mobile Tyre Champions delivers expert response within Surrey and Hampshire. We reach you within 60 minutes with fully equipped specialist mobile vans.
+                                    </p>
+                                    <div className="p-5 bg-slate-900 rounded-3xl text-white flex items-center gap-5 border border-white/10 shadow-xl">
+                                        <div className="w-12 h-12 bg-[#FB7E10] rounded-2xl flex items-center justify-center shrink-0">
+                                            <Users size={24} className="text-white" />
+                                        </div>
+                                        <div>
+                                            <p className="text-2xl font-black leading-none">15,000+</p>
+                                            <p className="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Trailers Serviced</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Why Use Our Service grid */}
@@ -98,49 +138,71 @@ const TrailerTyreFitting = () => {
                             </div>
                         </div>
 
+                        {/* How It Works Process */}
+                        <div className="space-y-10 pt-4">
+                            <div className="text-center md:text-left space-y-2">
+                                <h3 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight">Our 3-Step Process</h3>
+                                <div className="w-12 h-1 bg-[#FB7E10] mx-auto md:mx-0" />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {[
+                                    { step: "01", title: "Immediate Call", desc: "Contact our 24/7 hotline with your location and tyre size." },
+                                    { step: "02", title: "Rapid Dispatch", desc: "A specialist mobile unit is dispatched within minutes to your site." },
+                                    { step: "03", title: "Expert Fitting", desc: "On-site tyre mounting, balancing, and safety inspection." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="bg-white border-2 border-slate-50 p-6 rounded-[2rem] hover:border-[#FB7E10]/30 transition-all shadow-sm">
+                                        <span className="text-4xl font-black text-[#FB7E10]/20 block mb-4">{item.step}</span>
+                                        <h4 className="text-lg font-black uppercase text-black mb-2">{item.title}</h4>
+                                        <p className="text-gray-500 text-sm font-medium leading-relaxed">{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                         {/* What We Provide List */}
-                        <div className="space-y-8 bg-[#0B1528] p-8 md:p-12 rounded-3xl relative overflow-hidden">
+                        <div className="space-y-8 bg-[#0B1528] p-8 md:p-12 rounded-[3rem] relative overflow-hidden shadow-2xl">
                             <div className="absolute top-0 right-0 -translate-y-4 translate-x-4 opacity-[0.03] pointer-events-none">
                                 <Wrench size={300} className="text-white" />
                             </div>
                             
-                            <h2 className="text-3xl font-black text-white uppercase tracking-tight relative z-10">What We Provide</h2>
+                            <h2 className="text-3xl font-black text-white uppercase tracking-tight relative z-10">Technical Specifications</h2>
                             
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10 pt-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 relative z-10 pt-4">
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 bg-[#FB7E10] rounded-xl flex items-center justify-center shrink-0">
-                                        <Route size={20} className="text-white" />
+                                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Route size={24} className="text-[#FB7E10]" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">On-Site Tyres & Sidewalls Inspection</h4>
-                                        <p className="text-slate-400 text-sm">Thorough technical assessment.</p>
+                                        <h4 className="text-lg font-bold text-white mb-1 uppercase tracking-tight">Technical Assessment</h4>
+                                        <p className="text-slate-400 text-sm font-medium leading-relaxed">Thorough on-site sidewall & structural integrity inspection.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 bg-[#FB7E10] rounded-xl flex items-center justify-center shrink-0">
-                                        <Truck size={20} className="text-white" />
+                                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Truck size={24} className="text-[#FB7E10]" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Removal & Mounting of New Tyres</h4>
-                                        <p className="text-slate-400 text-sm">Safe, scratch-free mechanical handling.</p>
+                                        <h4 className="text-lg font-bold text-white mb-1 uppercase tracking-tight">Precision Mounting</h4>
+                                        <p className="text-slate-400 text-sm font-medium leading-relaxed">Safe, non-marking mechanical fitting for heavy-duty alloys.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 bg-[#FB7E10] rounded-xl flex items-center justify-center shrink-0">
-                                        <Gauge size={20} className="text-white" />
+                                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <Gauge size={24} className="text-[#FB7E10]" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Precision Wheel Balancing</h4>
-                                        <p className="text-slate-400 text-sm">Ensuring smooth driving stability.</p>
+                                        <h4 className="text-lg font-bold text-white mb-1 uppercase tracking-tight">High-Load Balancing</h4>
+                                        <p className="text-slate-400 text-sm font-medium leading-relaxed">Eliminating vibration for structural stability at speed.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 bg-[#FB7E10] rounded-xl flex items-center justify-center shrink-0">
-                                        <ShieldCheck size={20} className="text-white" />
+                                    <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                                        <ShieldCheck size={24} className="text-[#FB7E10]" />
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-bold text-white mb-1">Load & Pressure Safety Checks</h4>
-                                        <p className="text-slate-400 text-sm">Optimized for maximum structural weight.</p>
+                                        <h4 className="text-lg font-bold text-white mb-1 uppercase tracking-tight">Compliance & Safety</h4>
+                                        <p className="text-slate-400 text-sm font-medium leading-relaxed">Full pressure and torque safety checks for trailer loading.</p>
                                     </div>
                                 </div>
                             </div>
@@ -175,10 +237,10 @@ const TrailerTyreFitting = () => {
                                 </div>
 
                                 <div className="pt-8 border-t border-white/20">
-                                    <h4 className="uppercase font-black text-xs tracking-widest text-white/70 mb-4 text-center">Get Mobile Support Now</h4>
-                                    <a href="tel:+447494024653" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-50 transition-all shadow-xl active:scale-95">
-                                        <PhoneCall size={20} />
-                                        07494 024653
+                                    <h4 className="uppercase font-black text-[10px] tracking-[0.3em] text-white/70 mb-4 text-center">Standard Response Line</h4>
+                                    <a href="tel:+447494024653" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-900 hover:text-white transition-all shadow-xl active:scale-95">
+                                        <Phone size={20} />
+                                        Call Now
                                     </a>
                                 </div>
                            </div>
