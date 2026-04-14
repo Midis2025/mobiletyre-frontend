@@ -79,7 +79,7 @@ const ContactPage = () => {
         <div className="font-['Outfit'] bg-slate-50 min-h-screen text-slate-900 overflow-x-hidden">
             
             {/* ── HERO SECTION ── */}
-            <section className="relative pt-16 pb-12 md:pt-24 md:pb-20 px-4 border-b border-gray-200 overflow-hidden bg-white">
+            <section className="relative pt-8 pb-6 md:pt-12 md:pb-10 px-4 border-b border-gray-200 overflow-hidden bg-white">
                 <div className="absolute inset-0 z-0">
                     <img 
                         src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=2070&auto=format&fit=crop" 
@@ -107,7 +107,7 @@ const ContactPage = () => {
             </section>
 
             {/* ── CONTACT GRID ── */}
-            <section className="pt-8 md:pt-16 pb-20 px-4 md:px-10 lg:px-20 relative z-20">
+            <section className="pt-4 md:pt-6 pb-10 px-4 md:px-10 lg:px-20 relative z-20">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                     
                     {/* Left: Contact Info (4 cols) */}
@@ -128,7 +128,7 @@ const ContactPage = () => {
                                 </div>
                                 <div className="space-y-1 sm:space-y-0.5 min-w-0 w-full">
                                     <span className="block text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">Emergency Phone</span>
-                                    <span className="block text-lg sm:text-2xl font-black text-black leading-tight break-words">+44 7494 024653</span>
+                                    <span className="block text-lg sm:text-2xl font-black text-black leading-tight break-words group-hover:text-[#FB7E10] transition-colors">+44 7494 024653</span>
                                 </div>
                             </a>
 
@@ -158,7 +158,7 @@ const ContactPage = () => {
                                 </div>
                                 <div className="space-y-1 sm:space-y-0.5 min-w-0 w-full">
                                     <span className="block text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">Support Email</span>
-                                    <span className="block text-base sm:text-xl font-black text-black leading-tight lowercase break-all sm:break-normal">info@mobiletyrechampions.com</span>
+                                    <span className="block text-base sm:text-xl font-black text-black leading-tight lowercase break-all sm:break-normal group-hover:text-[#FB7E10] transition-colors">info@mobiletyrechampions.com</span>
                                 </div>
                             </a>
                         </div>

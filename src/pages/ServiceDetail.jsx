@@ -198,7 +198,7 @@ const ServiceDetail = () => {
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] leading-none mb-1 text-center sm:text-left">Priority Hotline</span>
-                                    <span className="text-white font-black text-2xl tracking-tight leading-none">+44 7494 024653</span>
+                                    <a href="tel:+447494024653" className="text-white font-black text-2xl tracking-tight leading-none hover:text-[#FF6600] transition-colors">+44 7494 024653</a>
                                 </div>
                             </div>
                         </div>

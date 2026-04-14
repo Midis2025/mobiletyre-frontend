@@ -104,9 +104,9 @@ const Footer = () => {
                             
                             <div className="space-y-1 relative">
                                 <span className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-[0.2em] block">24/7 Hotline</span>
-                                <h4 className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap">
+                                <a href="tel:+447494024653" className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap hover:text-[#FB7E10] transition-colors">
                                     +44 7494 024653
-                                </h4>
+                                </a>
                             </div>
                             
                             <div className="flex flex-col gap-4 items-center relative">
