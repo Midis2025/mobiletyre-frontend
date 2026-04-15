@@ -60,7 +60,6 @@ const Footer = () => {
                             {[
                                 { name: 'Emergency Tyre Fitting', path: '/services/emergency-tyre-fitting' },
                                 { name: 'Wheel Balancing', path: '/services/precision-wheel-balancing' },
-                                { name: 'Tyre Sales', path: '/services/tyre-sales' },
                                 { name: 'Locking Wheel Nut Removal', path: '/services/locking-wheel-nut-removal' },
                                 { name: 'Mobile Trailer Tyre Fitting', path: '/services/trailer-tyre-fitting' }
                             ].map((service) => (

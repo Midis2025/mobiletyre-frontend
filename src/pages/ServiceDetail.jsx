@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { servicesData } from '../data/servicesData';
-import { Phone, CheckCircle, ArrowRight, ShieldCheck, Clock, MapPin } from 'lucide-react';
+import { Phone, CheckCircle, ShieldCheck, Clock, MapPin, Star, Zap, Wrench, ArrowRight } from 'lucide-react';
 
 const ServiceDetail = () => {
     const { id } = useParams();
@@ -19,10 +19,12 @@ const ServiceDetail = () => {
         );
     }
 
+    const isEmergency = service.priority || service.category === 'Emergency';
+
     return (
-        <div className="bg-white min-h-screen">
-            {/* ── HERO SECTION - As requested in screenshot ───────────────────────── */}
-            <section className="relative h-[100vh] flex flex-col justify-end items-center overflow-hidden">
+        <div className="bg-slate-50 min-h-screen">
+            {/* ── HERO SECTION ───────────────────────── */}
+            <section className="relative h-[80vh] min-h-[600px] flex flex-col justify-end items-center overflow-hidden border-b-[10px] border-[#FB7E10]">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -30,130 +32,168 @@ const ServiceDetail = () => {
                         alt={service.title}
                         className={`w-full h-full ${service.fit === 'contain' ? 'object-contain bg-white' : 'object-cover'} scale-105`}
                     />
-                    {/* Dark Overlay (Gradient matches common luxury automotive styles) */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/80 to-black/30" />
                 </div>
 
                 {/* Hero Content */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-20 pb-20 md:pb-32 text-center animate-fadeIn">
-                    <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-12 drop-shadow-2xl">
+                <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-10 lg:px-20 pb-16 md:pb-24 text-center">
+                    {/* Urgency Badge */}
+                    {isEmergency && (
+                        <div className="inline-flex items-center gap-2 bg-red-600/90 text-white px-4 py-1.5 rounded-full mb-6 border border-red-400 shadow-[0_0_20px_rgba(220,38,38,0.4)] animate-pulse">
+                            <Zap size={14} fill="currentColor" />
+                            <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">Immediate 24/7 Dispatch</span>
+                        </div>
+                    )}
+                    
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-6 drop-shadow-2xl">
                         {service.title}
                     </h1>
+                    
+                    <p className="text-gray-300 font-medium md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed text-sm sm:text-base">
+                        {isEmergency 
+                            ? "Stranded? Our mobile units are on standby. We come directly to your location with everything needed to get you back on the road safely." 
+                            : service.description}
+                    </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    {/* Single Primary CTA */}
+                    <div className="flex flex-col items-center justify-center gap-4">
                         <a
                             href="tel:+447494024653"
-                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#1E63C4] text-white px-10 py-5 rounded-xl font-black text-lg uppercase tracking-widest hover:bg-blue-700 transition-all shadow-[0_0_50px_rgba(30,99,196,0.3)] hover:scale-105 active:scale-95"
+                            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-12 py-5 rounded-xl font-black text-lg md:text-xl uppercase tracking-widest hover:bg-orange-600 transition-all shadow-2xl hover:-translate-y-1 active:translate-y-0"
                         >
-                            <Phone size={24} fill="white" className="stroke-none" />
-                            Call Us Now
+                            <Phone size={24} fill="white" className="stroke-none animate-bounce" />
+                            Call Now: 07494 024653
                         </a>
+                        <p className="text-white/60 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                            <CheckCircle size={14} className="text-[#FB7E10]" /> No hidden callout fees
+                        </p>
                     </div>
-                </div>
-                
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-30">
-                    <span className="text-white text-[10px] uppercase font-black tracking-widest">Discover More</span>
-                    <ArrowRight size={16} className="text-white rotate-90" />
                 </div>
             </section>
 
-            {/* ── SERVICE DETAILS ─────────────────────────────────────────────────── */}
-            <section className="py-24 px-4 sm:px-10 lg:px-20 bg-white">
+            {/* ── MOBILE QUICK SUMMARY BAR ─────────────────────────────────────── */}
+            <section className="bg-white border-b border-gray-100 py-4 px-4 sticky top-[64px] z-40 shadow-sm md:hidden">
+                <div className="flex justify-between items-center max-w-md mx-auto text-xs font-bold uppercase tracking-widest text-[#0B1528]">
+                    <div className="flex flex-col items-center gap-1">
+                        <Clock size={16} className="text-[#FB7E10]" />
+                        <span className="text-[9px] text-gray-500">{isEmergency ? '30-60 Min ETA' : 'Fast Arrival'}</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 border-l border-r border-gray-100 px-4">
+                        <MapPin size={16} className="text-[#FB7E10]" />
+                        <span className="text-[9px] text-gray-500">We Come To You</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                        <Star size={16} className="text-[#FB7E10]" fill="currentColor"/>
+                        <span className="text-[9px] text-gray-500">4.9/5 Rating</span>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── TRUST SIGNALS BAR (Desktop mainly) ───────────────────────────── */}
+            <section className="hidden md:block bg-[#0B1528]">
+                <div className="max-w-7xl mx-auto flex justify-around py-6 px-10">
+                    {[
+                        { icon: Clock, title: isEmergency ? "Rapid 30-60 Min Response" : "Same Day Availability" },
+                        { icon: Star, title: `${service.rating || '4.9'} Average Rating (${service.reviews || '500+'} reviews)` },
+                        { icon: ShieldCheck, title: "Over 5,000 Jobs Completed" },
+                        { icon: Wrench, title: "Fully Equipped Mobile Units" }
+                    ].map((trust, idx) => (
+                        <div key={idx} className="flex items-center gap-3 text-white">
+                            <trust.icon size={24} className="text-[#FB7E10]" />
+                            <span className="font-bold text-sm tracking-wide">{trust.title}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* ── SERVICE DETAILS & PROCESS ────────────────────────────────────── */}
+            <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-20 bg-white">
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
                     
-                    {/* Left: Detailed Info */}
-                    <div className="lg:w-2/3 space-y-12">
-                        <div className="space-y-6">
-                            <div className="inline-flex items-center bg-gray-50 border border-gray-100 px-4 py-1.5 rounded-full shadow-sm">
-                                <span className="text-[#FB7E10] text-[10px] font-black uppercase tracking-widest">Services Detail</span>
+                    {/* Left: Step-by-Step Flow and Description */}
+                    <div className="lg:w-2/3 space-y-16">
+                        
+                        {/* Process Flow - Critical for UX */}
+                        <div className="space-y-8">
+                            <div className="space-y-2">
+                                <h2 className="text-3xl md:text-5xl font-black text-black leading-none tracking-tighter uppercase">
+                                    How It <span className="text-[#FB7E10]">Works</span>
+                                </h2>
+                                <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px]">Simple 3-Step Process</p>
                             </div>
                             
-                            <h2 className="text-4xl md:text-6xl font-black text-black leading-none tracking-tighter uppercase">
-                                <span className="text-[#FB7E10]">Expert Tyre Care</span> <br />
-                                for High-End Cars
-                            </h2>
-                            <div className="w-16 h-1 bg-[#FB7E10]" />
-                        </div>
-
-                        {/* Feature List */}
-                        <div className="space-y-10 pt-4">
-                            {/* Item 1 */}
-                            <div className="flex gap-6 items-start group">
-                                <div className="shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-[#FB7E10] border border-orange-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500">
-                                    <ShieldCheck size={24} />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 realtive">
+                                    <div className="text-4xl font-black text-slate-200 mb-2">01</div>
+                                    <h4 className="text-lg font-black uppercase text-black mb-2">Request Service</h4>
+                                    <p className="text-sm text-gray-500 leading-relaxed">Call our dispatch team. Provide your location and tyre size for an instant fixed quote.</p>
                                 </div>
-                                <div className="space-y-3">
-                                    <h4 className="text-xl font-black text-black uppercase tracking-tight">Precision Service, Zero Risk</h4>
-                                    <p className="text-gray-500 font-medium leading-relaxed max-w-xl">
-                                        Our team understands that luxury vehicles demand extra care. Every fitting is carried out with protective tools and non-contact mounting systems to preserve the integrity of your alloys. From pressure calibration to torque adjustment, each step is handled to perfection, keeping your performance smooth, balanced, and safe on every drive.
-                                    </p>
+                                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 realtive">
+                                    <div className="text-4xl font-black text-slate-200 mb-2">02</div>
+                                    <h4 className="text-lg font-black uppercase text-black mb-2">We Dispatch</h4>
+                                    <p className="text-sm text-gray-500 leading-relaxed">A fully-equipped mobile unit is dispatched immediately, with realistic ETA updates.</p>
                                 </div>
-                            </div>
-
-                            {/* Item 2 */}
-                            <div className="flex gap-6 items-start group">
-                                <div className="shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-[#FB7E10] border border-orange-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500">
-                                    <Clock size={24} />
-                                </div>
-                                <div className="space-y-3">
-                                    <h4 className="text-xl font-black text-black uppercase tracking-tight">24/7 On-Call Assistance</h4>
-                                    <p className="text-gray-500 font-medium leading-relaxed max-w-xl">
-                                        Whether you're stranded with a puncture at midnight or require a full tyre set replacement during the day, our mobile service reaches you anywhere — at home, office, or roadside. We're available round the clock to ensure your luxury car never stays off the road for long.
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Item 3 */}
-                            <div className="flex gap-6 items-start group">
-                                <div className="shrink-0 w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-[#FB7E10] border border-orange-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500">
-                                    <MapPin size={24} />
-                                </div>
-                                <div className="space-y-3">
-                                    <h4 className="text-xl font-black text-black uppercase tracking-tight">Trusted by Luxury Car Owners</h4>
-                                    <p className="text-gray-500 font-medium leading-relaxed max-w-xl">
-                                        Discerning clients trust Mobile Tyre Champions for care, confidentiality, and precision. We're known for our professionalism, premium-grade tools, and exceptional handling of high-end vehicles — maintaining showroom standards, even in mobile conditions.
-                                    </p>
+                                <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100 realtive">
+                                    <div className="text-4xl font-black text-orange-200 mb-2">03</div>
+                                    <h4 className="text-lg font-black uppercase text-[#FB7E10] mb-2">Problem Solved</h4>
+                                    <p className="text-sm text-gray-600 leading-relaxed">Your tyre is repaired or replaced precisely on-site. You're back on the road instantly.</p>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Text Description broken into scannable chunks */}
+                        <div className="space-y-6">
+                            <h3 className="text-2xl md:text-4xl font-black text-black leading-none tracking-tighter uppercase">
+                                Why Choose Us for <span className="text-[#FB7E10]">{service.title}</span>?
+                            </h3>
+                            <div className="prose prose-lg text-gray-500">
+                                <p>
+                                    {service.description} We bring the expertise of a professional workshop directly to your driveway, workplace, or the roadside.
+                                </p>
+                                <ul className="mt-8 space-y-4 list-none pl-0">
+                                    {service.features && service.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            <CheckCircle size={20} className="text-[#FB7E10] shrink-0 mt-0.5" />
+                                            <span className="font-bold text-slate-700">{feature}</span>
+                                        </li>
+                                    ))}
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle size={20} className="text-[#FB7E10] shrink-0 mt-0.5" />
+                                        <span className="font-bold text-slate-700">Digital wheel balancing included as standard where applicable</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle size={20} className="text-[#FB7E10] shrink-0 mt-0.5" />
+                                        <span className="font-bold text-slate-700">Old tyre environmental disposal</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
 
-                    {/* Right: "Services Include" Card Sidebar */}
+                    {/* Right: Sticky Sidebar CTA */}
                     <div className="lg:w-1/3 w-full sticky top-32">
-                        <div className="bg-[#0B1528] rounded-3xl p-10 text-white relative h-full shadow-2xl border border-white/5 overflow-hidden group">
-                           
-                           {/* Dark Decorative Gradient */}
-                           <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
-
-                           <div className="relative z-10 space-y-8">
-                                <h3 className="text-3xl font-black uppercase tracking-tight">Services Include:</h3>
+                        <div className="bg-[#0B1528] rounded-3xl p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden">
+                           <div className="relative z-10 space-y-6 text-center">
+                                <h3 className="text-3xl font-black uppercase tracking-tight leading-tight">
+                                    Need {service.title} <span className="text-[#FB7E10]">Now?</span>
+                                </h3>
                                 
-                                <p className="text-gray-400 font-medium leading-relaxed text-sm">
-                                    Our {service.title} covers full tyre removal and installation, dynamic wheel balancing, and TPMS recalibration. Each service includes a rim inspection, corrosion protection treatment if required, and final pressure optimization according to OEM guidelines. We also ensure the dashboard system is reset, ensuring your tyre performance and safety features work flawlessly.
+                                <p className="text-gray-400 font-medium text-sm">
+                                    Speak directly to our technicians. No middle-men, no call centers. Instant dispatch available.
                                 </p>
 
-                                {/* Feature List */}
-                                <div className="space-y-4 pt-4">
-                                    {[
-                                        "Luxury Vehicle Specialists",
-                                        "Damage-Free Handling",
-                                        "OEM-Approved Equipment",
-                                        "Convenient Mobile Service"
-                                    ].map((feature, i) => (
-                                        <div key={i} className="flex items-center gap-4 group/item">
-                                            <div className="w-2.5 h-2.5 rounded-full border-2 border-[#FB7E10] group-hover/item:bg-[#FB7E10] transition-colors" />
-                                            <span className="font-bold text-gray-300 group-hover/item:text-white transition-colors">{feature}</span>
-                                        </div>
-                                    ))}
+                                <div className="pt-4">
+                                    <a 
+                                        href="tel:+447494024653"
+                                        className="w-full flex items-center justify-center gap-3 bg-[#FB7E10] text-white py-5 rounded-xl font-black uppercase tracking-widest text-base hover:bg-orange-600 transition-all shadow-xl active:scale-95"
+                                    >
+                                        <Phone size={20} fill="currentColor" /> Call 07494 024653
+                                    </a>
                                 </div>
-
-                                <Link 
-                                    to="/contact"
-                                    className="mt-8 w-full flex items-center justify-center gap-3 bg-[#1E63C4] text-white py-5 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-blue-700 transition-all shadow-xl active:scale-95 border border-blue-400/20"
-                                >
-                                    Make Appointment
-                                </Link>
+                                <p className="text-[#FB7E10] text-[10px] font-black uppercase tracking-widest pt-2">
+                                    Live operator available
+                                </p>
                            </div>
                         </div>
                     </div>
@@ -161,47 +201,23 @@ const ServiceDetail = () => {
             </section>
 
             {/* ── FINAL CTA SECTION ───────────────────────────────────────────────── */}
-            <section className="pb-24 px-4 sm:px-10 lg:px-20 bg-white">
-                <div className="max-w-7xl mx-auto relative rounded-[2.5rem] overflow-hidden bg-black min-h-[400px] flex items-center shadow-2xl group">
-                    {/* Background Image (Tyre texture) */}
-                    <div className="absolute inset-0 z-0">
-                        <img 
-                            src="/images/Gradient.jpg" 
-                            alt="Tyre Texture" 
-                            className="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-[3000ms] grayscale"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative z-10 p-10 md:p-20 space-y-10 max-w-3xl">
-                        <div className="space-y-6">
-                            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight uppercase">
-                                Ready for the <br /> Road Ahead?
-                            </h2>
-                            <p className="text-gray-400 font-medium leading-relaxed text-lg pr-4">
-                                At Mobile Tyre Champions, we fit and replace tyres for leading manufacturers including <span className="text-white">Rolls-Royce, Bentley, Porsche, Lamborghini, BMW, Mercedes-Benz, Audi, and Range Rover</span>—ensuring precise fitment, calibration, and reliable on-site convenience every time.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center gap-8">
-                            <Link 
-                                to="/contact"
-                                className="w-full sm:w-auto bg-[#FF6600] text-white px-12 py-5 rounded-xl font-black uppercase tracking-widest text-base hover:bg-orange-600 transition-all shadow-[0_10px_40px_rgba(255,102,0,0.3)] active:scale-95 text-center"
-                            >
-                                Book Service
-                            </Link>
-
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center border border-white/10">
-                                    <Phone size={24} className="text-[#FF6600]" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] leading-none mb-1 text-center sm:text-left">Priority Hotline</span>
-                                    <a href="tel:+447494024653" className="text-white font-black text-2xl tracking-tight leading-none hover:text-[#FF6600] transition-colors">+44 7494 024653</a>
-                                </div>
-                            </div>
-                        </div>
+            <section className="pb-16 px-4 sm:px-10 lg:px-20 bg-white">
+                <div className="max-w-7xl mx-auto bg-slate-900 rounded-[2.5rem] p-10 md:p-16 text-center shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+                    
+                    <div className="relative z-10 space-y-8 flex flex-col items-center">
+                        <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight uppercase max-w-2xl">
+                            Don't Let Tyre Issues <span className="text-[#FB7E10]">Slow You Down.</span>
+                        </h2>
+                        
+                        <a 
+                            href="tel:+447494024653"
+                            className="w-full sm:w-auto bg-[#FB7E10] text-white px-6 sm:px-10 md:px-16 py-4 md:py-6 rounded-2xl font-black uppercase tracking-widest text-sm sm:text-base md:text-xl hover:bg-white hover:text-slate-900 transition-all shadow-[0_0_30px_rgba(251,126,16,0.3)] active:scale-95 flex items-center justify-center gap-3 sm:gap-4 group"
+                        >
+                            <Phone size={20} className="sm:hidden animate-pulse" fill="currentColor" />
+                            <span className="whitespace-nowrap">Get Back On The Road</span> 
+                            <ArrowRight size={20} className="hidden sm:block group-hover:translate-x-1 transition-transform" />
+                        </a>
                     </div>
                 </div>
             </section>
@@ -210,3 +226,4 @@ const ServiceDetail = () => {
 };
 
 export default ServiceDetail;
+
