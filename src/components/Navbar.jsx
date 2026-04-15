@@ -99,10 +99,10 @@ const Navbar = () => {
         {/* Right side */}
         <div className="flex items-center gap-4">
           <a
-            href="tel:+447494024653"
+            href="tel:02071013856"
             className="hidden lg:flex items-center gap-2.5 bg-[#0B1528] text-white px-5 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-xl hover:bg-[#FB7E10] hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
           >
-            <span>+44 7494 024653</span>
+            <span>0207 101 3856</span>
             <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
               <Phone size={12} fill="currentColor" className="text-white" />
             </div>
@@ -187,11 +187,11 @@ const Navbar = () => {
           {/* User Actions Footer */}
           <div className="p-6 bg-slate-50 border-t border-slate-100 space-y-4">
             <a
-              href="tel:+447494024653"
+              href="tel:02071013856"
               className="flex items-center justify-center gap-3 bg-[#FB7E10] text-white w-full py-4 rounded-2xl font-black text-xs tracking-widest shadow-xl shadow-orange-500/20 active:scale-95 transition-all"
             >
               <Phone size={18} />
-              <span>+44 7494 024653</span>
+              <span>0207 101 3856</span>
             </a>
 
             <div className="flex items-center justify-between">

@@ -103,14 +103,14 @@ const Footer = () => {
                             
                             <div className="space-y-1 relative">
                                 <span className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-[0.2em] block">24/7 Hotline</span>
-                                <a href="tel:+447494024653" className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap hover:text-[#FB7E10] transition-colors">
-                                    +44 7494 024653
+                                <a href="tel:02071013856" className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap hover:text-[#FB7E10] transition-colors">
+                                    0207 101 3856
                                 </a>
                             </div>
                             
                             <div className="flex flex-col gap-4 items-center relative">
                                 <a
-                                    href="tel:+447494024653"
+                                    href="tel:02071013856"
                                     className="bg-[#FB7E10] text-white w-full py-3.5 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-orange-600 transition-all text-center shadow-lg shadow-orange-900/20 active:scale-[0.98] ring-4 ring-[#FB7E10]/10"
                                 >
                                     Call Now
