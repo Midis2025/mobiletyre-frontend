@@ -50,13 +50,13 @@ const LocationsPage = () => {
               Professional mobile tyre services delivered to your doorstep. We operate 24/7 across the following locations.
            </p>
 
-           <div className="max-w-lg mx-auto bg-white/90 backdrop-blur border border-gray-200 p-2 rounded-full shadow-lg flex items-center mt-8">
+           <div className="max-w-lg mx-auto bg-white/90 backdrop-blur border border-gray-200 p-2 sm:p-2 rounded-3xl sm:rounded-full shadow-lg flex flex-col sm:flex-row items-center mt-8 gap-2 sm:gap-0">
               <input 
                  type="text" 
                  placeholder="Enter your Postcode" 
-                 className="flex-1 bg-transparent px-6 py-4 outline-none font-bold text-black uppercase tracking-widest text-sm"
+                 className="w-full sm:flex-1 bg-transparent px-6 py-4 outline-none font-bold text-black uppercase tracking-widest text-xs sm:text-sm text-center sm:text-left"
               />
-              <button className="bg-[#0B1528] text-white px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest hover:bg-[#FB7E10] transition-colors shadow-md">
+              <button className="w-full sm:w-auto bg-[#0B1528] text-white px-8 py-4 sm:py-5 rounded-2xl sm:rounded-full font-black uppercase text-[10px] sm:text-xs tracking-widest hover:bg-[#FB7E10] transition-all shadow-md active:scale-95">
                  Check Area
               </button>
            </div>
