@@ -36,7 +36,7 @@ export const servicesData = [
   {
     id: 'trailer-tyre-fitting',
     title: "Mobile Trailer Tyre Fitting",
-    image: "https://www.morristrailers.co.uk/wp-content/uploads/2020/02/services-inner-banner-1536x384.jpg",
+    image: "/images/mobile trailer.avif",
     category: "Specialist",
     description: "Trailers, caravans, light commercials — we come to your home or business premises and handle it all without you needing to tow a thing to a garage.",
     cta: "Book a Service",

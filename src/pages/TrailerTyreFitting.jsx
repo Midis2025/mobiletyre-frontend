@@ -8,7 +8,7 @@ const TrailerTyreFitting = () => {
             <section className="relative h-[80vh] min-h-[600px] flex flex-col justify-end items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="https://www.morristrailers.co.uk/wp-content/uploads/2020/02/services-inner-banner-1536x384.jpg"
+                        src="/images/mobile trailer.avif"
                         alt="Mobile Trailer Tyre Fitting Banner"
                         className="w-full h-full object-cover scale-105"
                     />
