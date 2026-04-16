@@ -29,6 +29,7 @@ const TyreFinder = () => {
     const [hasSearched, setHasSearched] = useState(false);
     const [vehicleResult, setVehicleResult] = useState(null);
     const [vehicleNotFound, setVehicleNotFound] = useState(false);
+    const [arrangeMatched, setArrangeMatched] = useState(null); // existing callbacks for reg
 
     // Available options for dropdowns
     const widthOptions = ['135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285'];
@@ -83,7 +84,22 @@ const TyreFinder = () => {
 
         setSearching(true);
 
-        // Directly go to arrange call back
+        // Try to fetch any existing arrange-a-call-backs records for this reg
+        try {
+            const url = `https://enduring-morning-cf86e59201.strapiapp.com/api/arrange-a-call-backs?filters[regNumber][$eq]=${encodeURIComponent(regNumber)}`;
+            const resp = await fetch(url);
+            if (resp.ok) {
+                const json = await resp.json().catch(() => null);
+                const match = json?.data && json.data.length ? json.data[0].attributes || json.data[0] : null;
+                setArrangeMatched(match);
+            } else {
+                setArrangeMatched(null);
+            }
+        } catch (err) {
+            setArrangeMatched(null);
+        }
+
+        // Directly go to arrange call back (keep UX timing)
         setTimeout(() => {
             setSearching(false);
             setHasSearched(true);
@@ -458,6 +474,21 @@ const TyreFinder = () => {
                                                     <p className="text-gray-500 uppercase tracking-[0.2em] text-[10px] font-black">Tyre Size</p>
                                                     <p className="text-black font-semibold">{`${vehicleResult.tyreWidth}/${vehicleResult.tyreHeight} R${vehicleResult.tyreDiameter}`}</p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {arrangeMatched && (
+                                        <div className="bg-white border border-gray-200 rounded-2xl p-6 mt-6">
+                                            <h4 className="text-xl font-black text-black mb-3">Previous Callback Request</h4>
+                                            <div className="text-sm text-gray-700 space-y-2">
+                                                <div><strong>Mobile:</strong> {arrangeMatched.mobileNumber || arrangeMatched.mobile}</div>
+                                                <div><strong>Postcode:</strong> {arrangeMatched.postcode}</div>
+                                                <div><strong>Reg:</strong> {arrangeMatched.regNumber || arrangeMatched.documentId}</div>
+                                                <div><strong>Tyre:</strong> {`${arrangeMatched.width || ''}${arrangeMatched.width ? '/' : ''}${arrangeMatched.height || ''} ${arrangeMatched.diameter || ''}`.trim()}</div>
+                                                <div><strong>Brand:</strong> {arrangeMatched.brand}</div>
+                                                <div><strong>Season:</strong> {arrangeMatched.Season || arrangeMatched.season}</div>
+                                                <div className="text-xs text-gray-400">Requested: {new Date(arrangeMatched.createdAt || arrangeMatched.publishedAt).toLocaleString()}</div>
                                             </div>
                                         </div>
                                     )}
