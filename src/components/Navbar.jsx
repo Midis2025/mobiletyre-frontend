@@ -42,15 +42,15 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 left-0 w-full z-[100] bg-[#FB7E10] shadow-xl">
       <nav
-        className={`w-full flex items-center justify-between px-4 md:px-10 h-20 md:h-24 transition-all duration-500 ${scrolled
+        className={`w-full grid grid-cols-3 lg:flex items-center justify-between px-4 md:px-10 h-20 md:h-24 transition-all duration-500 ${scrolled
           ? 'bg-[#FB7E10]/95 backdrop-blur-2xl'
           : 'bg-[#FB7E10]'
           }`}
       >
         {/* Logo (Left Part) */}
-        <div className="flex-1 flex justify-start">
+        <div className="flex justify-start items-center">
           <Link to="/" className="flex items-center h-full">
-            <div className="flex items-center justify-center h-16 md:h-20 hover:scale-110 transition-all duration-500">
+            <div className="flex items-center justify-center h-14 md:h-20 hover:scale-110 transition-all duration-500">
               <img
                 src="/images/MTC logo 2.png"
                 alt="Mobile Tyre Champions"
@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
 
         {/* Center Call Button (Mobile Only) */}
-        <div className="flex lg:hidden flex-1 justify-center scale-90 sm:scale-100">
+        <div className="flex lg:hidden justify-center items-center scale-90 sm:scale-100">
           <a
             href="tel:02071013856"
             className="flex items-center gap-2 bg-white text-[#FB7E10] px-4 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
@@ -72,13 +72,13 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Links (Center on Desktop) */}
-        <div className="hidden lg:flex flex-[2] items-center justify-center gap-10 text-[13px] font-bold text-white uppercase tracking-wider">
+        <div className="hidden lg:flex flex-[3] items-center justify-center gap-4 xl:gap-8 text-[12px] xl:text-[13px] font-bold text-white uppercase tracking-wider">
           {links.map(({ label, to, isNew, dropdown }) => (
             <div key={label} className="relative group">
               <Link
                 to={to}
                 onClick={(e) => { if (to === '#') e.preventDefault(); }}
-                className={`relative py-2 transition-all flex items-center gap-1.5 ${isActive(to) ? 'text-[#0B1528]' : 'hover:text-[#0B1528]'
+                className={`relative py-2 transition-all flex items-center gap-1.5 whitespace-nowrap ${isActive(to) ? 'text-[#0B1528]' : 'hover:text-[#0B1528]'
                   } group-hover:translate-y-[-1px]`}
               >
                 {label}
@@ -91,7 +91,7 @@ const Navbar = () => {
               {dropdown && (
                 <div className="absolute top-full left-[-20px] mt-4 w-72 bg-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-[#0B1528]/5 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50">
                   {dropdown.map((subItem) => (
-                    <Link key={subItem.to} to={subItem.to} className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-slate-50 transition-all font-semibold uppercase">{subItem.label}</Link>
+                    <Link key={subItem.to} to={subItem.to} className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-slate-50 transition-all font-semibold uppercase whitespace-nowrap">{subItem.label}</Link>
                   ))}
                 </div>
               )}
@@ -100,11 +100,11 @@ const Navbar = () => {
         </div>
 
         {/* Right side controls */}
-        <div className="flex-1 flex justify-end items-center gap-4">
+        <div className="flex justify-end items-center gap-4">
           <div className="hidden lg:block">
             <a
               href="tel:02071013856"
-              className="flex items-center gap-2 bg-white text-[#FB7E10] px-6 py-3 rounded-full font-black text-[13px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+              className="flex items-center gap-2 bg-white text-[#FB7E10] px-6 py-3 rounded-full font-black text-[13px] tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
             >
               <Phone size={14} fill="currentColor" />
               <span>0207 101 3856</span>

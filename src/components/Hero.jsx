@@ -140,7 +140,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero image.avif"
+          src="/images/dgoi36teejsuguvwboh4.avif"
           alt="Tire background"
           className="w-full h-full object-cover opacity-60 scale-110"
         />
