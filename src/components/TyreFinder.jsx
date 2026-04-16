@@ -16,6 +16,12 @@ const TyreFinder = () => {
     const [diameter, setDiameter] = useState('');
     const [brand, setBrand] = useState('');
     const [season, setSeason] = useState('Summer');
+    // Arrange a call back form state
+    const [arrangeMobile, setArrangeMobile] = useState('');
+    const [arrangePostcode, setArrangePostcode] = useState('');
+    const [arrangeSubmitting, setArrangeSubmitting] = useState(false);
+    const [arrangeStatus, setArrangeStatus] = useState('');
+    const [arrangeDebug, setArrangeDebug] = useState(null); // raw server error for debugging
 
     // Results State
     const [tyres, setTyres] = useState([]);
@@ -77,6 +83,108 @@ const TyreFinder = () => {
             setHasSearched(true);
             setTyres([]);
         }, 800);
+    };
+
+    const handleArrangeSubmit = async (e) => {
+        e.preventDefault();
+        setArrangeSubmitting(true);
+        setArrangeStatus('');
+
+        // Basic validation
+        if (!arrangeMobile || !arrangePostcode) {
+            setArrangeStatus('Please provide both mobile number and postcode.');
+            setArrangeSubmitting(false);
+            return;
+        }
+
+        // Build tyre object only when fields are present
+        const tyre = {};
+        if (width) tyre.width = width;
+        if (height) tyre.height = height;
+        // Normalize diameter: strip leading 'R' if present
+        const normalizedDiameter = diameter ? diameter.replace(/^R/i, '') : '';
+        if (normalizedDiameter) tyre.diameter = normalizedDiameter;
+        if (brand) tyre.brand = brand;
+        if (season) tyre.season = season;
+
+        // Build a human-readable title if possible
+        const parts = [];
+        if (brand) parts.push(brand);
+        if (width && height && normalizedDiameter) parts.push(`${width}/${height} ${normalizedDiameter}`);
+        else if (width && height) parts.push(`${width}/${height}`);
+        const title = parts.length ? parts.join(' ') : undefined;
+        if (title) tyre.title = title;
+
+        // Determine search context
+        const searchContext = activeTab === 'size' ? 'size' : activeTab === 'reg' ? 'reg' : 'results';
+
+        // Vehicle reg when available
+        const vehicleReg = regNumber ? regNumber.replace(/\s+/g, '').toUpperCase() : undefined;
+
+        // Construct exact payload matching backend fields
+        const payload = {
+            mobileNumber: arrangeMobile,
+            postcode: arrangePostcode,
+            width: width || null,
+            height: height || null,
+            diameter: normalizedDiameter || null,
+            brand: brand || null,
+            Season: season || null,
+            productId: null,
+            title: title || null,
+        };
+
+        // Debug: log payload sent to server
+        console.debug('Arrange-a-call-backs payload', payload);
+
+        try {
+            const res = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/arrange-a-call-backs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: payload }),
+            });
+
+            if (!res.ok) {
+                // Try to parse JSON error body, fall back to text
+                let serverBody = null;
+                try {
+                    serverBody = await res.json();
+                } catch {
+                    try {
+                        serverBody = await res.text();
+                    } catch {
+                        serverBody = null;
+                    }
+                }
+                console.error('Arrange-a-call-backs failed', { status: res.status, body: serverBody });
+                setArrangeDebug(serverBody);
+                const serverMsg = serverBody && typeof serverBody === 'object'
+                    ? (serverBody.error || serverBody.message || JSON.stringify(serverBody))
+                    : serverBody || `Server responded with status ${res.status}`;
+                // show server message to user
+                setArrangeStatus(typeof serverMsg === 'string' ? serverMsg : JSON.stringify(serverMsg));
+                // throw to trigger catch branch
+                throw new Error(typeof serverMsg === 'string' ? serverMsg : JSON.stringify(serverMsg));
+            }
+
+            // Optionally read created entity
+            try {
+                const created = await res.json().catch(() => null);
+                console.info('Arrange-a-call-backs created', created);
+            } catch (e) {
+                // ignore
+            }
+
+            setArrangeStatus('Request submitted — our experts will call you shortly.');
+            setArrangeDebug(null);
+            setArrangeMobile('');
+            setArrangePostcode('');
+            setTimeout(() => setArrangeStatus(''), 6000);
+        } catch (err) {
+            setArrangeStatus(err.message || 'Submission failed. Please try again.');
+        } finally {
+            setArrangeSubmitting(false);
+        }
     };
 
     return (
@@ -461,18 +569,42 @@ const TyreFinder = () => {
                                 </p>
                                 
                                 <div className="max-w-md mx-auto bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-[2rem] text-left">
-                                     <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); alert('Request submitted! We’ll contact you shortly.'); }}>
+                                     <form className="space-y-5" onSubmit={handleArrangeSubmit}>
                                         <div className="space-y-1.5">
                                             <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Mobile Number</label>
-                                            <input required type="tel" placeholder="Enter valid mobile" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none" />
+                                            <input
+                                                required
+                                                type="tel"
+                                                placeholder="Enter valid mobile"
+                                                value={arrangeMobile}
+                                                onChange={(e) => setArrangeMobile(e.target.value)}
+                                                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none"
+                                            />
                                         </div>
                                         <div className="space-y-1.5">
                                             <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Postcode</label>
-                                            <input required type="text" placeholder="Enter valid postcode" className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none" />
+                                            <input
+                                                required
+                                                type="text"
+                                                placeholder="Enter valid postcode"
+                                                value={arrangePostcode}
+                                                onChange={(e) => setArrangePostcode(e.target.value)}
+                                                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none"
+                                            />
                                         </div>
+                                        {arrangeStatus && (
+                                            <div className="text-sm font-bold text-[#0B1528] bg-[#FB7E10]/5 border border-[#FB7E10]/30 px-4 py-3 rounded-xl">{arrangeStatus}</div>
+                                        )}
+                                        {arrangeDebug && (
+                                            <pre className="mt-2 max-h-40 overflow-auto text-xs bg-black/5 border border-gray-200 p-3 rounded-md text-left whitespace-pre-wrap">{JSON.stringify(arrangeDebug, null, 2)}</pre>
+                                        )}
                                         <div className="pt-2">
-                                            <button className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white font-black uppercase tracking-widest py-4 rounded-xl shadow-lg transition-all active:scale-95">
-                                                Request A Call Back
+                                            <button
+                                                type="submit"
+                                                disabled={arrangeSubmitting}
+                                                className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white font-black uppercase tracking-widest py-4 rounded-xl shadow-lg transition-all active:scale-95 disabled:opacity-70"
+                                            >
+                                                {arrangeSubmitting ? 'Requesting...' : 'Request A Call Back'}
                                             </button>
                                         </div>
                                      </form>

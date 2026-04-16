@@ -54,6 +54,7 @@ const ContactPage = () => {
                 throw new Error(errorMessage);
             }
 
+            
             setSubmitted(true);
             setFormData({
                 fullName: '',
