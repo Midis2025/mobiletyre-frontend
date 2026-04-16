@@ -36,7 +36,7 @@ export const servicesData = [
   {
     id: 'trailer-tyre-fitting',
     title: "Mobile Trailer Tyre Fitting",
-    image: "/images/mobile trailer.avif",
+    image: "/images/high spppppppppppp (12).avif",
     category: "Specialist",
     description: "Trailers, caravans, light commercials — we come to your home or business premises and handle it all without you needing to tow a thing to a garage.",
     cta: "Book a Service",

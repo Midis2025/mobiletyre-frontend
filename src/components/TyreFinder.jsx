@@ -34,7 +34,7 @@ const TyreFinder = () => {
     // Available options for dropdowns
     const widthOptions = ['135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285'];
     const heightOptions = ['30', '35', '40', '45', '50', '55', '60', '65'];
-    const diameterOptions = ['R14', 'R15', 'R16', 'R17', 'R18', 'R19', 'R20'];
+    const diameterOptions = [ 'R15', 'R16', 'R17', 'R18', 'R19', 'R20', 'R21', 'R22', 'R23', 'R24'];
     const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
     const seasonOptions = ['Summer', 'Winter', 'All Season'];
 

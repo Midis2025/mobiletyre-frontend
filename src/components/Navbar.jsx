@@ -40,55 +40,58 @@ const Navbar = () => {
   const isActive = (to) => location.pathname === to;
 
   return (
-    <>
+    <div className="sticky top-0 left-0 w-full z-[100] bg-[#FB7E10] shadow-xl">
       <nav
-        className={`sticky top-0 left-0 w-full flex items-center justify-between px-4 md:px-10 h-24 md:h-28 transition-all duration-500 z-[100] ${scrolled
-          ? 'bg-black/95 backdrop-blur-2xl shadow-2xl py-2'
-          : 'bg-black py-4'
+        className={`w-full flex items-center justify-between px-4 md:px-10 h-20 md:h-24 transition-all duration-500 ${scrolled
+          ? 'bg-[#FB7E10]/95 backdrop-blur-2xl'
+          : 'bg-[#FB7E10]'
           }`}
       >
-        {/* Logo */}
-        <Link to="/" className="flex items-center h-full py-1 sm:py-2 w-1/2 sm:w-auto">
-          <div className="bg-white p-1 md:p-1.5 rounded-lg flex items-center justify-center aspect-square h-16 md:h-20 shadow-lg hover:scale-105 transition-all duration-500 overflow-hidden">
-            <img
-              src="/images/MTC logo 2.png"
-              alt="Mobile Tyre Champions"
-              className="h-full w-full object-contain"
-            />
-          </div>
-        </Link>
+        {/* Logo (Left Part) */}
+        <div className="flex-1 flex justify-start">
+          <Link to="/" className="flex items-center h-full">
+            <div className="flex items-center justify-center h-16 md:h-20 hover:scale-110 transition-all duration-500">
+              <img
+                src="/images/MTC logo 2.png"
+                alt="Mobile Tyre Champions"
+                className="h-full w-auto object-contain"
+              />
+            </div>
+          </Link>
+        </div>
 
-        {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-10 text-[13px] font-bold text-white uppercase tracking-wider">
+        {/* Center Call Button (Mobile Only) */}
+        <div className="flex lg:hidden flex-1 justify-center scale-90 sm:scale-100">
+          <a
+            href="tel:02071013856"
+            className="flex items-center gap-2 bg-white text-[#FB7E10] px-4 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+          >
+            <Phone size={14} fill="currentColor" />
+            <span>0207 101 3856</span>
+          </a>
+        </div>
+
+        {/* Desktop Links (Center on Desktop) */}
+        <div className="hidden lg:flex flex-[2] items-center justify-center gap-10 text-[13px] font-bold text-white uppercase tracking-wider">
           {links.map(({ label, to, isNew, dropdown }) => (
             <div key={label} className="relative group">
               <Link
                 to={to}
                 onClick={(e) => { if (to === '#') e.preventDefault(); }}
-                className={`relative py-2 transition-all flex items-center gap-1.5 ${isActive(to) ? 'text-[#FB7E10]' : 'hover:text-[#FB7E10]'
+                className={`relative py-2 transition-all flex items-center gap-1.5 ${isActive(to) ? 'text-[#0B1528]' : 'hover:text-[#0B1528]'
                   } group-hover:translate-y-[-1px]`}
               >
                 {label}
                 {isNew && (
-                  <span className="bg-[#FB7E10] text-white text-[7px] px-1.5 py-0.5 rounded-full font-black animate-bounce">NEW</span>
+                  <span className="bg-[#0B1528] text-white text-[7px] px-1.5 py-0.5 rounded-full font-black animate-bounce">NEW</span>
                 )}
                 {dropdown && <ChevronDown size={14} className="opacity-50 group-hover:rotate-180 transition-transform duration-500" />}
-
-                {/* Modern Indicator */}
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#FB7E10] transition-all duration-300 ${isActive(to) ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'
-                  }`}></span>
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#0B1528] transition-all duration-300 ${isActive(to) ? 'opacity-100 scale-100' : 'opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100'}`}></span>
               </Link>
-
               {dropdown && (
-                <div className="absolute top-full left-[-20px] mt-4 w-72 bg-black/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50 ring-1 ring-white/5">
+                <div className="absolute top-full left-[-20px] mt-4 w-72 bg-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-[#0B1528]/5 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50">
                   {dropdown.map((subItem) => (
-                    <Link
-                      key={subItem.to}
-                      to={subItem.to}
-                      className="block px-6 py-3 text-[13px] text-white/70 hover:text-[#FB7E10] hover:bg-white/5 transition-all font-semibold"
-                    >
-                      {subItem.label}
-                    </Link>
+                    <Link key={subItem.to} to={subItem.to} className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-slate-50 transition-all font-semibold uppercase">{subItem.label}</Link>
                   ))}
                 </div>
               )}
@@ -96,20 +99,20 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right side */}
-        <div className="flex items-center gap-4">
-          <a
-            href="tel:02071013856"
-            className="flex items-center gap-1.5 sm:gap-2.5 bg-[#0B1528] text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-black text-[10px] sm:text-[11px] tracking-widest shadow-xl hover:bg-[#FB7E10] hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
-          >
-            <span>0207 101 3856</span>
-            <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">
-              <Phone size={12} fill="currentColor" className="text-white" />
-            </div>
-          </a>
+        {/* Right side controls */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <div className="hidden lg:block">
+            <a
+              href="tel:02071013856"
+              className="flex items-center gap-2 bg-white text-[#FB7E10] px-6 py-3 rounded-full font-black text-[13px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+            >
+              <Phone size={14} fill="currentColor" />
+              <span>0207 101 3856</span>
+            </a>
+          </div>
 
           <button
-            className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${isMenuOpen ? 'bg-[#FB7E10] text-white' : 'bg-white/10 border border-white/10 text-white'
+            className={`lg:hidden p-2.5 rounded-xl transition-all duration-300 ${isMenuOpen ? 'bg-[#0B1528] text-white shadow-lg' : 'bg-white text-[#FB7E10] shadow-md hover:bg-slate-50'
               }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -203,7 +206,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
