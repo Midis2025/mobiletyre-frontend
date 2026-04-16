@@ -19,6 +19,7 @@ const TyreFinder = () => {
     // Arrange a call back form state
     const [arrangeMobile, setArrangeMobile] = useState('');
     const [arrangePostcode, setArrangePostcode] = useState('');
+    const [arrangeReg, setArrangeReg] = useState('');
     const [arrangeSubmitting, setArrangeSubmitting] = useState(false);
     const [arrangeStatus, setArrangeStatus] = useState('');
     const [arrangeDebug, setArrangeDebug] = useState(null); // raw server error for debugging
@@ -61,6 +62,11 @@ const TyreFinder = () => {
             tyreResultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, [activeTab, tyres]);
+
+    // Auto-fill arrange form reg number if a reg search was used
+    useEffect(() => {
+        if (regNumber && !arrangeReg) setArrangeReg(regNumber);
+    }, [regNumber]);
 
     const handleRegSearch = async (e) => {
         e.preventDefault();
@@ -132,6 +138,7 @@ const TyreFinder = () => {
             Season: season || null,
             productId: null,
             title: title || null,
+            regNumber: arrangeReg || null,
         };
 
         // Debug: log payload sent to server
@@ -578,6 +585,16 @@ const TyreFinder = () => {
                                                 placeholder="Enter valid mobile"
                                                 value={arrangeMobile}
                                                 onChange={(e) => setArrangeMobile(e.target.value)}
+                                                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none"
+                                            />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Registration Number</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Enter reg "
+                                                value={arrangeReg}
+                                                onChange={(e) => setArrangeReg(e.target.value)}
                                                 className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 font-bold text-black focus:border-[#FB7E10] outline-none"
                                             />
                                         </div>
