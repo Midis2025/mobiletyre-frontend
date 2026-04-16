@@ -100,7 +100,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <a
             href="tel:02071013856"
-            className="hidden lg:flex items-center gap-2.5 bg-[#0B1528] text-white px-5 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-xl hover:bg-[#FB7E10] hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
+            className="flex items-center gap-1.5 sm:gap-2.5 bg-[#0B1528] text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-black text-[10px] sm:text-[11px] tracking-widest shadow-xl hover:bg-[#FB7E10] hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
           >
             <span>0207 101 3856</span>
             <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center">

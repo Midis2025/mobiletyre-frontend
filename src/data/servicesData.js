@@ -36,7 +36,7 @@ export const servicesData = [
   {
     id: 'trailer-tyre-fitting',
     title: "Mobile Trailer Tyre Fitting",
-    image: "/images/mobile trailer.avif",
+    image: "https://www.morristrailers.co.uk/wp-content/uploads/2020/02/services-inner-banner-1536x384.jpg",
     category: "Specialist",
     description: "Trailers, caravans, light commercials — we come to your home or business premises and handle it all without you needing to tow a thing to a garage.",
     cta: "Book a Service",
@@ -53,7 +53,7 @@ export const servicesData = [
   {
     id: '24-7-tyre-service',
     title: "24/7 Tyre Service",
-    image: "/images/24 7.avif",
+    image: "/images/24 7 tyre.avif",
     priority: true,
     category: "Emergency",
     description: "Bank holidays, 2am, rush hour — it doesn't matter. If you've got a tyre problem, we're available and we'll come to you, no questions asked.",

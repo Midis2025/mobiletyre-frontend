@@ -24,13 +24,13 @@ const TyreFinder = () => {
     const [vehicleNotFound, setVehicleNotFound] = useState(false);
 
     // Available options for dropdowns
-    const widthOptions = ['205', '225', '245', '255', '265', '275', '285'];
+    const widthOptions = ['135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285'];
     const heightOptions = ['30', '35', '40', '45', '50', '55', '60', '65'];
     const diameterOptions = ['R14', 'R15', 'R16', 'R17', 'R18', 'R19', 'R20'];
     const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
     const seasonOptions = ['Summer', 'Winter', 'All Season'];
 
-    // Fetch tyres from API
+    // Fetch tyres from API (Simulate going straight to Call Back)
     const fetchTyres = async (e) => {
         e.preventDefault();
 
@@ -44,54 +44,10 @@ const TyreFinder = () => {
         setError('');
         setTyres([]);
 
-        try {
-            // Extract numeric diameter (e.g., R16 -> 16)
-            const diameterNumber = diameter.replace('R', '');
-
-            // Build filter query string for Strapi
-            const filters = [
-                `filters[width][$eq]=${width}`,
-                `filters[height][$eq]=${height}`,
-                `filters[diameter][$eq]=${diameterNumber}`,
-                `filters[season][$eq]=${season}`
-            ];
-
-            if (brand) {
-                filters.push(`filters[brand][$eq]=${brand}`);
-            }
-
-            const queryString = filters.join('&');
-            const url = `https://enduring-morning-cf86e59201.strapiapp.com/api/tyres?${queryString}`;
-
-            const response = await fetch(url);
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch tyres');
-            }
-
-            let results = data.data || [];
-
-            // Sort results
-            if (sortBy === 'price-low') {
-                results.sort((a, b) => a.price - b.price);
-            } else if (sortBy === 'price-high') {
-                results.sort((a, b) => b.price - a.price);
-            }
-
-            setTyres(results);
-            setHasSearched(true);
-
-            if (results.length === 0) {
-                setError(`No tyres found matching ${width}/${height} ${diameter}${brand ? ` - ${brand}` : ''}`);
-            }
-        } catch (err) {
-            console.error('Tyre search error:', err);
-            setError('Failed to search tyres. Please try again.');
-            setTyres([]);
-        } finally {
+        setTimeout(() => {
             setLoading(false);
-        }
+            setHasSearched(true);
+        }, 800);
     };
 
     useEffect(() => {
@@ -115,35 +71,12 @@ const TyreFinder = () => {
 
         setSearching(true);
 
-        try {
-            const response = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/vehicle-searches');
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data?.error?.message || 'Technical error during DVLA lookup');
-            }
-
-            const results = data.data || [];
-            const match = results.find((vehicle) => {
-                return vehicle.registrationNumber?.replace(/\s+/g, '').toUpperCase() === normalizedReg;
-            });
-
-            if (match) {
-                setVehicleResult(match);
-                setVehicleNotFound(false);
-                setError('');
-            } else {
-                setVehicleResult(null);
-                setVehicleNotFound(true);
-            }
-        } catch (err) {
-            console.error('Vehicle search error:', err);
-            setError('DVLA lookup failed. Please check your internet connection or enter size manually.');
-            setVehicleResult(null);
-            setVehicleNotFound(false);
-        } finally {
+        // Directly go to arrange call back
+        setTimeout(() => {
             setSearching(false);
-        }
+            setHasSearched(true);
+            setTyres([]);
+        }, 800);
     };
 
     return (
@@ -439,13 +372,17 @@ const TyreFinder = () => {
                         <div className="flex items-center justify-between">
                             <div>
                                 <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
-                                    {tyres.length > 0 ? `${tyres.length} Tyre${tyres.length !== 1 ? 's' : ''} Found` : 'No Results'}
+                                    {tyres.length > 0 ? `${tyres.length} Tyre${tyres.length !== 1 ? 's' : ''} Found` : 'Arrange A Call Back'}
                                 </h2>
-                                {tyres.length > 0 && (
+                                {activeTab === 'size' && width ? (
                                     <p className="text-gray-400 text-sm md:text-base mt-2">
-                                        {width}/{height} {diameter} • {season} • {brand || 'All Brands'}
+                                        Searched Size: {width}/{height} {diameter} • {season} • {brand || 'All Brands'}
                                     </p>
-                                )}
+                                ) : activeTab === 'reg' && regNumber ? (
+                                    <p className="text-gray-400 text-sm md:text-base mt-2">
+                                        Searched Reg: {regNumber.toUpperCase()}
+                                    </p>
+                                ) : null}
                             </div>
                         </div>
 
@@ -518,9 +455,9 @@ const TyreFinder = () => {
                             <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-gray-100 shadow-2xl overflow-hidden relative group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-orange-100 transition-colors"></div>
                                 <AlertCircle className="w-16 h-16 text-[#FB7E10] mx-auto mb-6" />
-                                <h3 className="text-2xl sm:text-3xl font-black text-black mb-2 uppercase">No Matching Tyres Found</h3>
+                                <h3 className="text-2xl sm:text-3xl font-black text-black mb-2 uppercase">Request Confirmation</h3>
                                 <p className="text-gray-500 max-w-md mx-auto mb-8 font-medium">
-                                    We don't have an immediate match in our automated stock, but <span className="text-black font-black">our experts can find them for you.</span> Fill in your details below.
+                                    Leave your details below and <span className="text-black font-black">our experts will call you back</span> to arrange your fitting, confirm availability and price.
                                 </p>
                                 
                                 <div className="max-w-md mx-auto bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-[2rem] text-left">
@@ -535,7 +472,7 @@ const TyreFinder = () => {
                                         </div>
                                         <div className="pt-2">
                                             <button className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white font-black uppercase tracking-widest py-4 rounded-xl shadow-lg transition-all active:scale-95">
-                                                Request Tyre Options
+                                                Request A Call Back
                                             </button>
                                         </div>
                                      </form>

@@ -49,6 +49,17 @@ const LocationsPage = () => {
            <p className="text-gray-500 text-lg md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
               Professional mobile tyre services delivered to your doorstep. We operate 24/7 across the following locations.
            </p>
+
+           <div className="max-w-lg mx-auto bg-white/90 backdrop-blur border border-gray-200 p-2 rounded-full shadow-lg flex items-center mt-8">
+              <input 
+                 type="text" 
+                 placeholder="Enter your Postcode" 
+                 className="flex-1 bg-transparent px-6 py-4 outline-none font-bold text-black uppercase tracking-widest text-sm"
+              />
+              <button className="bg-[#0B1528] text-white px-8 py-4 rounded-full font-black uppercase text-xs tracking-widest hover:bg-[#FB7E10] transition-colors shadow-md">
+                 Check Area
+              </button>
+           </div>
         </div>
       </section>
 
