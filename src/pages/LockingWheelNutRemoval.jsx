@@ -67,7 +67,7 @@ const LockingWheelNutRemoval = () => {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a
-                            href="tel:+447494024653"
+                            href="tel:02071013856"
                             className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-12 py-5 rounded-xl font-black text-lg uppercase tracking-[0.15em] hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/40 hover:-translate-y-1 active:translate-y-0"
                         >
                             <Phone size={24} fill="white" className="stroke-none" />
@@ -200,7 +200,7 @@ const LockingWheelNutRemoval = () => {
 
                                 <div className="pt-8 border-t border-white/20">
                                     <h4 className="uppercase font-black text-[10px] tracking-[0.3em] text-white/70 mb-4 text-center">Standardized Response Line</h4>
-                                    <a href="tel:+447494024653" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-900 hover:text-white transition-all shadow-xl active:scale-95">
+                                    <a href="tel:02071013856" className="w-full flex items-center justify-center gap-3 bg-white text-[#FB7E10] py-5 rounded-xl font-black uppercase tracking-widest text-sm md:text-base hover:bg-slate-900 hover:text-white transition-all shadow-xl active:scale-95">
                                         <Phone size={20} />
                                         Call Now
                                     </a>
