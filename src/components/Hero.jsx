@@ -142,7 +142,7 @@ const Hero = () => {
         <img
           src="/images/dgoi36teejsuguvwboh4.avif"
           alt="Tire background"
-          className="w-full h-full object-cover opacity-60 scale-110"
+          className="w-full h-full object-cover opacity-60 md:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 md:via-black/20 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
@@ -170,13 +170,13 @@ const Hero = () => {
  
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full max-w-sm md:max-w-none">
               <a
-                href="tel:02071013856"
+                href="tel:07494024653"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent"
               >
-                Call Now: 0207 101 3856
+                Call Now: 07494 024653
               </a>
               <a
-                href="https://wa.me/447495336005"
+                href="https://wa.me/447494024653"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#22C55E] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-green-600 transition-all border-2 border-transparent"

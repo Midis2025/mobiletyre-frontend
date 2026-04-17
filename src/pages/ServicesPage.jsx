@@ -27,7 +27,7 @@ const ServicesPage = () => {
             Emergency? We dispatch immediately — 24/7
           </span>
           <a
-            href="tel:02071013856"
+            href="tel:07494024653"
             className="flex items-center gap-2 bg-white text-[#FB7E10] px-5 py-1.5 rounded-full font-black text-xs md:text-sm uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow"
           >
             <Phone size={14} fill="currentColor" /> Call Now
@@ -112,10 +112,10 @@ const ServicesPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="tel:02071013856"
+              href="tel:07494024653"
               className="inline-flex items-center gap-3 bg-white text-[#FB7E10] px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-base md:text-xl hover:bg-[#0B1528] hover:text-white transition-all shadow-2xl"
             >
-              <Phone size={24} fill="currentColor" /> 0207 101 3856
+              <Phone size={24} fill="currentColor" /> 07494 024653
             </a>
             <Link
               to="/contact"
