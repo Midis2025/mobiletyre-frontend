@@ -170,10 +170,10 @@ const Hero = () => {
  
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full max-w-sm md:max-w-none">
               <a
-                href="tel:07494024653"
+                href="tel:+447494024653"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#FB7E10] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-orange-600 transition-all border-2 border-transparent"
               >
-                Call Now: 07494 024653
+                Call Now: +447494024653
               </a>
               <a
                 href="https://wa.me/447494024653"

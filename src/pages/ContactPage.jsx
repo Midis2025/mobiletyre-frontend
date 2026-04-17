@@ -123,13 +123,13 @@ const ContactPage = () => {
                         </div>
 
                         <div className="space-y-6">
-                             <a href="tel:07494024653" className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-6 md:p-8 bg-white border border-gray-100 rounded-3xl hover:shadow-2xl hover:border-[#FB7E10]/30 transition-all duration-500 shadow-xl overflow-hidden">
+                             <a href="tel:+447494024653" className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-6 md:p-8 bg-white border border-gray-100 rounded-3xl hover:shadow-2xl hover:border-[#FB7E10]/30 transition-all duration-500 shadow-xl overflow-hidden">
                                 <div className="shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-orange-50 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#FB7E10] border border-orange-100 group-hover:bg-[#FB7E10] group-hover:text-white group-active:bg-[#FB7E10] group-active:text-white transition-all duration-500">
                                     <Phone size={24} className="sm:w-8 sm:h-8" />
                                 </div>
                                 <div className="space-y-1 sm:space-y-0.5 min-w-0 w-full">
                                     <span className="block text-gray-400 text-[10px] font-black uppercase tracking-widest leading-none">Emergency Phone</span>
-                                    <span className="block text-lg sm:text-2xl font-black text-black leading-tight break-words group-hover:text-[#FB7E10] group-active:text-[#FB7E10] active:text-[#FB7E10] transition-colors">07494 024653</span>
+                                    <span className="block text-lg sm:text-2xl font-black text-black leading-tight break-words group-hover:text-[#FB7E10] group-active:text-[#FB7E10] active:text-[#FB7E10] transition-colors">+447494024653</span>
                                 </div>
                             </a>
 

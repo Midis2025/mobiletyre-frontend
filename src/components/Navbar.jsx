@@ -103,11 +103,11 @@ const Navbar = () => {
         <div className="flex justify-end items-center gap-4">
           <div className="hidden lg:block">
             <a
-              href="tel:07494024653"
+              href="tel:+447494024653"
               className="flex items-center gap-2 bg-white text-[#FB7E10] px-6 py-3 rounded-full font-black text-[13px] tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all whitespace-nowrap"
             >
               <Phone size={14} fill="currentColor" />
-              <span>07494 024653</span>
+              <span>+447494024653</span>
             </a>
           </div>
 
@@ -190,11 +190,11 @@ const Navbar = () => {
           {/* User Actions Footer */}
           <div className="p-6 bg-slate-50 border-t border-slate-100 space-y-4">
             <a
-              href="tel:07494024653"
+              href="tel:+447494024653"
               className="flex items-center justify-center gap-3 bg-[#FB7E10] text-white w-full py-4 rounded-2xl font-black text-xs tracking-widest shadow-xl shadow-orange-500/20 active:scale-95 transition-all"
             >
               <Phone size={18} />
-              <span>07494 024653</span>
+              <span>+447494024653</span>
             </a>
 
             <div className="flex items-center justify-between">

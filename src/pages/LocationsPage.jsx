@@ -186,8 +186,8 @@ const LocationsPage = () => {
             <p className="text-gray-500 font-bold uppercase tracking-[0.2em] text-xs md:text-sm max-w-2xl mx-auto">Our routes are updated daily. Call our specialized hotline to check live mobile technician availability in your specific area.</p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-               <a href="tel:07494024653" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-lg md:text-xl hover:bg-orange-600 hover:scale-105 transition-all shadow-xl active:scale-95 shadow-orange-900/10">
-                  <Phone size={24} fill="white" /> 07494 024653
+               <a href="tel:+447494024653" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-lg md:text-xl hover:bg-orange-600 hover:scale-105 transition-all shadow-xl active:scale-95 shadow-orange-900/10">
+                  <Phone size={24} fill="white" /> +447494024653
                </a>
                <a href="/contact" className="inline-flex items-center justify-center gap-4 bg-black text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-lg md:text-xl hover:bg-slate-800 transition-all shadow-xl active:scale-95">
                   Book A Fast Slot
