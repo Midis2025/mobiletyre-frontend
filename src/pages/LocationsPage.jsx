@@ -2,21 +2,46 @@ import React from 'react';
 import { MapPin, Phone, ArrowRight, Shield, Clock, Zap } from 'lucide-react';
 
 const locations = [
-  { name: 'Aldershot', region: 'Hampshire', status: 'Operational' },
-  { name: 'Alton', region: 'Hampshire', status: 'Operational' },
-  { name: 'Basingstoke', region: 'Hampshire', status: 'Operational' },
-  { name: 'Crowthorne', region: 'Berkshire', status: 'Operational' },
-  { name: 'Farnborough', region: 'Hampshire', status: 'Operational' },
-  { name: 'Farnham', region: 'Surrey', status: 'Operational' },
-  { name: 'Fleet', region: 'Hampshire', status: 'Operational' },
-  { name: 'Guildford', region: 'Surrey', status: 'Operational' },
-  { name: 'Hook', region: 'Hampshire', status: 'Operational' },
-  { name: 'London', region: 'Greater London', status: 'Operational' },
-  { name: 'Petersfield', region: 'Hampshire', status: 'Operational' },
-  { name: 'Southall', region: 'West London', status: 'Operational' },
-  { name: 'Southampton', region: 'Hampshire', status: 'Operational' },
-  { name: 'Uxbridge', region: 'West London', status: 'Operational' },
-  { name: 'Winchester', region: 'Hampshire', status: 'Operational' },
+  { name: 'Aldershot', region: 'Hampshire', postcode: 'GU11', status: 'Operational' },
+  { name: 'Alton', region: 'Hampshire', postcode: 'GU34', status: 'Operational' },
+  { name: 'Ascot', region: 'Berkshire', postcode: 'SL5', status: 'Operational' },
+  { name: 'Ash', region: 'Surrey', postcode: 'GU12', status: 'Operational' },
+  { name: 'Ash Vale', region: 'Surrey', postcode: 'GU12', status: 'Operational' },
+  { name: 'Bagshot', region: 'Surrey', postcode: 'GU19', status: 'Operational' },
+  { name: 'Basingstoke', region: 'Hampshire', postcode: 'RG21', status: 'Operational' },
+  { name: 'Bordon', region: 'Hampshire', postcode: 'GU35', status: 'Operational' },
+  { name: 'Bracknell', region: 'Berkshire', postcode: 'RG12', status: 'Operational' },
+  { name: 'Camberley', region: 'Surrey', postcode: 'GU15', status: 'Operational' },
+  { name: 'Church Crookham', region: 'Hampshire', postcode: 'GU52', status: 'Operational' },
+  { name: 'Cranleigh', region: 'Surrey', postcode: 'GU6', status: 'Operational' },
+  { name: 'Crowthorne', region: 'Berkshire', postcode: 'RG45', status: 'Operational' },
+  { name: 'Farnborough', region: 'Hampshire', postcode: 'GU14', status: 'Operational' },
+  { name: 'Farnham', region: 'Surrey', postcode: 'GU9', status: 'Operational' },
+  { name: 'Fleet', region: 'Hampshire', postcode: 'GU51', status: 'Operational' },
+  { name: 'Frimley', region: 'Surrey', postcode: 'GU16', status: 'Operational' },
+  { name: 'Godalming', region: 'Surrey', postcode: 'GU7', status: 'Operational' },
+  { name: 'Guildford', region: 'Surrey', postcode: 'GU1', status: 'Operational' },
+  { name: 'Hankley Common', region: 'Surrey', postcode: 'GU8', status: 'Operational' },
+  { name: 'Haslemere', region: 'Surrey', postcode: 'GU27', status: 'Operational' },
+  { name: 'Hindhead', region: 'Surrey', postcode: 'GU26', status: 'Operational' },
+  { name: 'Hook', region: 'Hampshire', postcode: 'RG27', status: 'Operational' },
+  { name: 'Lightwater', region: 'Surrey', postcode: 'GU18', status: 'Operational' },
+  { name: 'Liphook', region: 'Hampshire', postcode: 'GU30', status: 'Operational' },
+  { name: 'Liss', region: 'Hampshire', postcode: 'GU33', status: 'Operational' },
+  { name: 'London', region: 'Greater London', postcode: 'W1', status: 'Operational' },
+  { name: 'Midhurst', region: 'West Sussex', postcode: 'GU29', status: 'Operational' },
+  { name: 'Petersfield', region: 'Hampshire', postcode: 'GU31', status: 'Operational' },
+  { name: 'Petworth', region: 'West Sussex', postcode: 'GU28', status: 'Operational' },
+  { name: 'Sandhurst', region: 'Berkshire', postcode: 'GU47', status: 'Operational' },
+  { name: 'Southall', region: 'West London', postcode: 'UB1', status: 'Operational' },
+  { name: 'Southampton', region: 'Hampshire', postcode: 'SO14', status: 'Operational' },
+  { name: 'Tongham', region: 'Surrey', postcode: 'GU10', status: 'Operational' },
+  { name: 'Uxbridge', region: 'West London', postcode: 'UB8', status: 'Operational' },
+  { name: 'Virginia Water', region: 'Surrey', postcode: 'GU25', status: 'Operational' },
+  { name: 'Winchester', region: 'Hampshire', postcode: 'SO22', status: 'Operational' },
+  { name: 'Windlesham', region: 'Surrey', postcode: 'GU20', status: 'Operational' },
+  { name: 'Woking', region: 'Surrey', postcode: 'GU21', status: 'Operational' },
+  { name: 'Yateley', region: 'Hampshire', postcode: 'GU46', status: 'Operational' },
 ];
 
 const LocationsPage = () => {
@@ -28,7 +53,7 @@ const LocationsPage = () => {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[150px] -ml-64 -mb-64"></div>
 
       {/* ── HERO ── */}
-      <section className="relative pt-16 pb-32 md:pt-24 md:pb-48 px-4 border-b border-gray-200 z-10 overflow-hidden shadow-sm">
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 border-b border-gray-200 z-10 overflow-hidden shadow-sm">
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -64,42 +89,51 @@ const LocationsPage = () => {
       </section>
 
       {/* ── LOCATION GRID ── */}
-      <section className="py-20 px-6 relative z-10">
+      <section className="pt-4 pb-24 px-6 relative z-10 bg-[#F8FAFC]">
          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
                {locations.map((loc, index) => (
-                  <div key={index} className="group relative bg-white border border-gray-100 rounded-[2.5rem] p-8 md:p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden">
+                  <div key={index} className="group relative bg-white border border-slate-200 rounded-3xl p-0 hover:border-[#FB7E10] transition-all duration-500 overflow-hidden flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1">
                      
-                     <div className="space-y-6 relative z-10">
-                        <div className="flex justify-between items-start">
-                           <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-[#FB7E10] border border-gray-100 group-hover:bg-[#FB7E10] group-hover:text-white transition-all duration-500 shadow-sm">
-                              <MapPin size={28} />
+                     {/* Signature Side Pillar */}
+                     <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-slate-100 group-hover:bg-[#FB7E10] transition-colors duration-500"></div>
+
+                     <div className="p-8 md:p-10 space-y-8 flex-1">
+                        {/* Header: Postcode ID & Status */}
+                        <div className="flex justify-between items-start pl-2">
+                           <div>
+                              <span className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-2">Zone Identifier</span>
+                              <h4 className="text-3xl font-black text-[#0B1528] tracking-tighter group-hover:text-[#FB7E10] transition-colors">
+                                 {loc.postcode}
+                              </h4>
                            </div>
-                           <div className="flex items-center gap-2 bg-green-50 px-3 py-1 rounded-full border border-green-100 shadow-sm">
-                              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22C55E]"></span>
-                              <span className="text-green-700 text-[9px] font-black uppercase tracking-widest leading-none">{loc.status}</span>
+                           <div className="flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100 uppercase">
+                              <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                               <span className="text-slate-600 text-[10px] font-black tracking-widest">{loc.status}</span>
                            </div>
                         </div>
 
-                        <div className="space-y-1">
-                           <h3 className="text-3xl font-black text-black group-hover:text-[#FB7E10] transition-colors">{loc.name}</h3>
-                           <p className="text-gray-400 text-xs font-black uppercase tracking-[0.2em]">{loc.region}</p>
-                        </div>
-
-                        <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
-                           <div className="flex flex-col">
-                              <span className="text-gray-300 text-[9px] font-black uppercase tracking-widest">Arrival Time</span>
-                              <span className="text-gray-600 text-sm font-bold tracking-tight">30-60 Mins</span>
-                           </div>
-                           <div className="w-10 h-10 bg-[#FB7E10]/10 rounded-full flex items-center justify-center group-hover:bg-[#FB7E10] group-hover:text-white transition-all shadow-sm">
-                              <ArrowRight size={18} />
-                           </div>
+                        {/* Body: Location Name */}
+                        <div className="pl-2 space-y-2">
+                           <h3 className="text-4xl font-black text-black leading-none break-words">
+                              {loc.name}
+                           </h3>
+                           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">{loc.region}</p>
                         </div>
                      </div>
 
-                     {/* Watermark Logo Effect */}
-                     <div className="absolute right-[-5%] bottom-[-5%] text-9xl font-black text-slate-50 pointer-events-none group-hover:scale-105 transition-all duration-1000">
-                        {loc.name.charAt(0)}
+                     {/* Footer: Tech Data Strip */}
+                     <div className="bg-slate-50/80 border-t border-slate-100 px-8 md:px-10 py-6 flex items-center justify-between group-hover:bg-orange-50/30 transition-colors">
+                        <div className="flex flex-col">
+                           <span className="text-slate-300 text-[9px] font-black uppercase tracking-widest mb-1">Deployment Time</span>
+                           <div className="flex items-center gap-2">
+                              <Clock size={14} className="text-[#FB7E10]" />
+                              <span className="text-slate-700 text-sm font-black">30-60 MINS</span>
+                           </div>
+                        </div>
+                        <div className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-black group-hover:text-white group-hover:border-black transition-all duration-500 shadow-sm">
+                           <ArrowRight size={20} strokeWidth={3} />
+                        </div>
                      </div>
                   </div>
                ))}

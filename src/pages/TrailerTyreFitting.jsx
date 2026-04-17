@@ -128,7 +128,7 @@ const TrailerTyreFitting = () => {
                         {/* Custom Image Section */}
                         <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl h-[400px] border-8 border-white">
                             <img 
-                                src="/images/mobile-tyre-champions-van.jpg" 
+                                src="/images/Gemini_Generated_Image_mp8yt2mp8yt2mp8y 1.png" 
                                 alt="Mobile Tyre Champions Van" 
                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-1000"
                             />

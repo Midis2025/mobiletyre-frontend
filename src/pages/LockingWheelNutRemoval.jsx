@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, CheckCircle, AlertTriangle, PenTool, PoundSterling, PhoneCall, HelpCircle, Wrench, ChevronDown, ShieldCheck, Zap } from 'lucide-react';
+import { Phone, CheckCircle, AlertTriangle, PenTool, PhoneCall, HelpCircle, Wrench, ChevronDown, ShieldCheck, Zap } from 'lucide-react';
 
 const LockingWheelNutRemoval = () => {
     const [openFaq, setOpenFaq] = React.useState(null);
@@ -138,28 +138,6 @@ const LockingWheelNutRemoval = () => {
                                     We use professional Chrome Molybdenum Laser Locking Wheel Nut Removers that grip the outside of the nut dynamically, bypassing the need for the original key completely damage-free.
                                 </p>
                             </div>
-                        </div>
-
-                        {/* Cost Guide */}
-                        <div className="bg-[#0B1528] p-8 md:p-12 rounded-3xl relative overflow-hidden">
-                            <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 opacity-[0.03] pointer-events-none">
-                                <PoundSterling size={300} className="text-white" />
-                            </div>
-                            <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-8 relative z-10">Removal Cost Guide</h2>
-                            
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
-                                    <p className="text-[#FB7E10] font-black uppercase tracking-wider text-sm mb-2">Single Wheel</p>
-                                    <p className="text-white text-3xl md:text-4xl font-black tracking-tighter">£30 – £50</p>
-                                </div>
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
-                                    <p className="text-[#FB7E10] font-black uppercase tracking-wider text-sm mb-2">All Four Wheels</p>
-                                    <p className="text-white text-3xl md:text-4xl font-black tracking-tighter">£90 – £120</p>
-                                </div>
-                            </div>
-                            <p className="text-slate-400 font-medium mt-6 text-sm relative z-10 leading-relaxed">
-                                *Prices vary based on condition, location, and complexity. Severe DIY damage may incur additional labour charges. Always call for an exact quote.
-                            </p>
                         </div>
 
                         {/* FAQs */}

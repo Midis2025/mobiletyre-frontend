@@ -20,7 +20,7 @@ const CTA = () => {
             READY FOR THE<br className="hidden sm:block" />ROAD AHEAD?
           </h2>
           <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed">
-            We cover Aldershot, Farnham, Fleet, Camberley, Guildford and the whole of Surrey and Hampshire — any time of day or night. Got a tyre giving you trouble? Don't wait — get in touch and we'll sort it.
+            We cover GU11 Aldershot, GU9 Farnham, GU51 Fleet, GU15 Camberley, GU1 Guildford and the whole of Surrey and Hampshire — any time of day or night. Got a tyre giving you trouble? Don't wait — get in touch and we'll sort it.
              </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 pt-4">

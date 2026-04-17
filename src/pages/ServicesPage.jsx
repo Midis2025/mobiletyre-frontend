@@ -149,7 +149,7 @@ const ServicesPage = () => {
 
             {/* Rows */}
             {[
-              ['TRAVEL TIME', '0 MINS', 'WE ARRIVE AT YOU', '90–120 MINS', 'DRIVE + WAIT'],
+              ['TRAVEL TIME', '40 MINS', 'WE ARRIVE AT YOU', '90–120 MINS', 'DRIVE + WAIT'],
               ['OPERATIONAL MODE', 'WORK FROM HOME', 'WHILE WE FIT YOUR TYRES', 'IDLE', 'COLD WAITING ROOM'],
               ['PRICING', 'TRANSPARENT FIXED', 'NO HIDDEN SURPRISE', 'UNKNOWN', 'HIDDEN WORKSHOP FEES'],
               ['AVAILABILITY', '24/7/365', 'ANY TIME, ANY DAY', '9 AM – 5 PM', 'WEEKDAYS ONLY'],
