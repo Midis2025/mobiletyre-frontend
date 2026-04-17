@@ -25,7 +25,7 @@ const CTA = () => {
 
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 pt-4">
             <a 
-              href="tel:+447494024653"
+              href="tel:02071013856"
               className="w-full sm:w-auto bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-xl font-black text-base md:text-xl hover:bg-orange-600 transition-all shadow-2xl active:scale-95 uppercase tracking-widest text-center"
             >
               Call Now
