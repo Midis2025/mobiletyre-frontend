@@ -103,7 +103,7 @@ const Footer = () => {
                             
                             <div className="space-y-1 relative">
                                 <span className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-[0.2em] block">24/7 Hotline</span>
-                                <a href="tel:02071013856" className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap hover:text-[#FB7E10] transition-colors">
+                                <a href="" className="text-white font-black text-xl xl:text-2xl tracking-tight whitespace-nowrap hover:text-[#FB7E10] transition-colors">
                                     0207 101 3856
                                 </a>
                             </div>
