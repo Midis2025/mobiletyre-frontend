@@ -182,8 +182,7 @@ export const submitAppointment = async (appointmentData) => {
       postcode: appointmentData.postcode.trim(),
       address: appointmentData.address.trim(),
       latitude: appointmentData.latitude,
-      longitude: appointmentData.longitude,
-      appointmentStatus: 'pending' // Default status for new appointments
+      longitude: appointmentData.longitude
     }
   };
 

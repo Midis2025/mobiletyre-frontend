@@ -265,11 +265,6 @@ const MapPicker = ({
           </div>
         </div>
       </div>
-
-      {/* Info Badge */}
-      <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-800">
-        <p className="font-semibold">✅ Free Map: OpenStreetMap + Leaflet (No API Key Needed!)</p>
-      </div>
     </div>
   );
 };

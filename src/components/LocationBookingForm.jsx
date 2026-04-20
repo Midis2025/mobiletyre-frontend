@@ -422,11 +422,6 @@ const LocationBookingForm = () => {
             </>
           )}
         </button>
-
-        {/* Info Footer */}
-        <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
-          <p className="font-semibold">✓ We'll respond within 1 hour | ✓ Safe & Secure | ✓ No Hidden Charges</p>
-        </div>
       </form>
     </div>
   );
