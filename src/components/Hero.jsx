@@ -4,49 +4,55 @@ import { servicesData } from '../data/servicesData';
 
 const Hero = () => {
   const locations = [
-    'Guildford',
-    'Woking',
-    'Farnham',
-    'Farnborough',
-    'Aldershot',
-    'Petersfield',
-    'Haslemere',
-    'Godalming',
-    'Cranleigh',
-    'Alton',
-    'Bagshot',
-    'Bordon',
-    'Fleet',
-    'Hindhead',
-    'Liphook',
-    'Lightwater',
-    'Liss',
-    'Midhurst',
-    'Petworth',
-    'Sandhurst',
-    'Virginia Water',
-    'Windlesham',
-    'Yateley',
-    'Ascot',
-    'Bracknell',
-    'Basingstoke',
-    'Southampton',
-    'Frimley',
-    'Tongham',
-    'Church Crookham',
-    'Ash',
-    'Ash Vale',
-    'Hankley Common'
+    { name: 'Guildford', postcodes: ['GU1', 'GU2', 'GU3', 'GU4'] },
+    { name: 'Woking', postcodes: ['GU21', 'GU22', 'GU23', 'GU24'] },
+    { name: 'Farnham', postcodes: ['GU9', 'GU10'] },
+    { name: 'Farnborough', postcodes: ['GU14'] },
+    { name: 'Aldershot', postcodes: ['GU11', 'GU12'] },
+    { name: 'Petersfield', postcodes: ['GU31', 'GU32'] },
+    { name: 'Haslemere', postcodes: ['GU27'] },
+    { name: 'Godalming', postcodes: ['GU7', 'GU8'] },
+    { name: 'Cranleigh', postcodes: ['GU6'] },
+    { name: 'Alton', postcodes: ['GU34'] },
+    { name: 'Bagshot', postcodes: ['GU19'] },
+    { name: 'Bordon', postcodes: ['GU35'] },
+    { name: 'Fleet', postcodes: ['GU51', 'GU52'] },
+    { name: 'Hindhead', postcodes: ['GU26'] },
+    { name: 'Liphook', postcodes: ['GU30'] },
+    { name: 'Lightwater', postcodes: ['GU18'] },
+    { name: 'Liss', postcodes: ['GU33'] },
+    { name: 'Midhurst', postcodes: ['GU29'] },
+    { name: 'Petworth', postcodes: ['GU28'] },
+    { name: 'Sandhurst', postcodes: ['GU47'] },
+    { name: 'Virginia Water', postcodes: ['GU25'] },
+    { name: 'Windlesham', postcodes: ['GU20'] },
+    { name: 'Yateley', postcodes: ['GU46'] },
+    { name: 'Ascot', postcodes: ['SL5'] },
+    { name: 'Bracknell', postcodes: ['RG12', 'RG42'] },
+    { name: 'Basingstoke', postcodes: ['RG21', 'RG22', 'RG23', 'RG24'] },
+    { name: 'Southampton', postcodes: ['SO14', 'SO15', 'SO16', 'SO17', 'SO18', 'SO19', 'SO30', 'SO31', 'SO32'] },
+    { name: 'Frimley', postcodes: ['GU16'] },
+    { name: 'Tongham', postcodes: ['GU10'] },
+    { name: 'Church Crookham', postcodes: ['GU52'] },
+    { name: 'Ash', postcodes: ['GU12'] },
+    { name: 'Ash Vale', postcodes: ['GU12'] },
+    { name: 'Hankley Common', postcodes: ['GU10'] }
   ];
 
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
-    location: locations[0] || '',
+    location: locations[0]?.name || '',
+    postcode: locations[0]?.postcodes[0] || '',
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
     timingSlot: 'As Soon As Possible'
   });
+
+  const getPostcodesForLocation = (locationName) => {
+    const location = locations.find((loc) => loc.name === locationName);
+    return location?.postcodes || [];
+  };
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -54,10 +60,21 @@ const Hero = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+
+    if (name === 'location') {
+      const selectedLocation = locations.find((loc) => loc.name === value);
+      setFormData((prev) => ({
+        ...prev,
+        location: value,
+        postcode: selectedLocation?.postcodes[0] || ''
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+
     setError('');
     setSuccess(false);
   };
@@ -91,6 +108,9 @@ const Hero = () => {
     }
 
     try {
+      const locationValue = `${formData.location} – ${formData.postcode}`;
+      console.log('Submitting location:', locationValue);
+      
       const response = await fetch('https://enduring-morning-cf86e59201.strapiapp.com/api/appointments', {
         method: 'POST',
         headers: {
@@ -100,7 +120,7 @@ const Hero = () => {
           data: {
             fullName: formData.fullName,
             phoneNumber: formData.phoneNumber,
-            location: formData.location,
+            location: locationValue,
             serviceType: formData.serviceType,
             tyreSize: formData.tyreSize,
             timingSlot: formData.timingSlot,
@@ -119,7 +139,8 @@ const Hero = () => {
       setFormData({
         fullName: '',
         phoneNumber: '',
-        location: locations[0] || '',
+        location: locations[0]?.name || '',
+        postcode: locations[0]?.postcodes[0] || '',
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
         timingSlot: 'As Soon As Possible'
@@ -252,7 +273,25 @@ const Hero = () => {
                       onChange={handleInputChange}
                       className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 appearance-none text-gray-700 font-bold focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all outline-none">
                       {locations.map((loc, idx) => (
-                        <option key={idx} value={loc}>{loc}</option>
+                        <option key={idx} value={loc.name}>{loc.name}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+                    POSTCODE
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="postcode"
+                      value={formData.postcode}
+                      onChange={handleInputChange}
+                      className="w-full bg-[#EAEEF3]/50 border-2 border-transparent rounded-xl px-4 py-3.5 appearance-none text-gray-700 font-bold focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] focus:bg-white transition-all outline-none">
+                      {getPostcodesForLocation(formData.location).map((postcode, idx) => (
+                        <option key={idx} value={postcode}>{postcode}</option>
                       ))}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
