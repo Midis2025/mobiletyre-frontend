@@ -3,6 +3,12 @@ import { ChevronDown, ArrowRight, AlertCircle, CheckCircle, MapPin, Phone, User,
 import PostcodeAutocomplete from './PostcodeAutocomplete';
 import MapPicker from './MapPicker';
 import { servicesData } from '../data/servicesData';
+import {
+  submitAppointment,
+  validateUKPhoneNumber,
+  validateUKPostcode,
+  validateTyreSize
+} from '../api/appointmentService';
 
 /**
  * LocationBookingForm Component
@@ -12,11 +18,16 @@ import { servicesData } from '../data/servicesData';
  * - Postcode autocomplete input (free postcodes.io)
  * - Interactive map (free OpenStreetMap + Leaflet)
  * - Reverse geocoding for address (free Nominatim API)
- * - Full booking form with validation
- * - Strapi backend integration
+ * - Full booking form with validation using appointmentService
+ * - Strapi backend integration via appointmentService API
+ * - Environment-based API URL configuration
+ * - Comprehensive UK phone & postcode validation
  * - NO API KEYS NEEDED! Completely free!
+ * 
+ * @component
+ * @returns {JSX.Element} Booking form component
  */
-const LocationBookingForm = ({ googleMapsApiKey }) => {
+const LocationBookingForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
@@ -76,30 +87,69 @@ const LocationBookingForm = ({ googleMapsApiKey }) => {
 
   /**
    * Validate form before submission
+   * Uses validation helpers from appointmentService
+   * Returns descriptive error messages for each validation failure
    */
   const validateForm = () => {
+    // Validate full name
     if (!formData.fullName.trim()) {
       setError('Full name is required');
       return false;
     }
 
+    if (formData.fullName.trim().length < 2) {
+      setError('Full name must be at least 2 characters');
+      return false;
+    }
+
+    // Validate phone number using UK phone validation
     if (!formData.phoneNumber.trim()) {
       setError('Phone number is required');
       return false;
     }
 
-    if (!/^\+?[\d\s\-()]{10,}$/.test(formData.phoneNumber.replace(/\s/g, ''))) {
-      setError('Please enter a valid phone number');
+    if (!validateUKPhoneNumber(formData.phoneNumber)) {
+      setError('Please enter a valid UK phone number (e.g., +44 207 101 3856 or 02071013856)');
       return false;
     }
 
+    // Validate postcode using UK postcode validation
     if (!formData.postcode.trim()) {
-      setError('Please select a valid postcode');
+      setError('Please select a valid UK postcode');
       return false;
     }
 
+    if (!validateUKPostcode(formData.postcode)) {
+      setError('Invalid UK postcode format (e.g., GU11 3HY)');
+      return false;
+    }
+
+    // Validate tyre size
     if (!formData.tyreSize.trim()) {
       setError('Tyre size is required');
+      return false;
+    }
+
+    if (!validateTyreSize(formData.tyreSize)) {
+      setError('Invalid tyre size format (e.g., 225/45 R17)');
+      return false;
+    }
+
+    // Validate service type
+    if (!formData.serviceType.trim()) {
+      setError('Service type is required');
+      return false;
+    }
+
+    // Validate timing slot
+    if (!formData.timingSlot.trim()) {
+      setError('Preferred timing is required');
+      return false;
+    }
+
+    // Validate coordinates exist and are valid
+    if (typeof formData.latitude !== 'number' || typeof formData.longitude !== 'number') {
+      setError('Invalid location coordinates');
       return false;
     }
 
@@ -107,11 +157,13 @@ const LocationBookingForm = ({ googleMapsApiKey }) => {
   };
 
   /**
-   * Submit booking to Strapi backend
+   * Submit appointment to Strapi backend using appointmentService
+   * Handles all API communication, validation, error handling, and success states
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // Validate form data before submission
     if (!validateForm()) {
       return;
     }
@@ -121,39 +173,25 @@ const LocationBookingForm = ({ googleMapsApiKey }) => {
     setSuccess(false);
 
     try {
-      const payload = {
-        data: {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          postcode: formData.postcode,
-          address: formData.address,
-          latitude: formData.latitude,
-          longitude: formData.longitude,
-          serviceType: formData.serviceType,
-          tyreSize: formData.tyreSize,
-          timingSlot: formData.timingSlot,
-          bookingStatus: 'Pending'
-        }
+      // Prepare appointment data for submission
+      const appointmentData = {
+        fullName: formData.fullName,
+        phoneNumber: formData.phoneNumber,
+        postcode: formData.postcode,
+        address: formData.address,
+        latitude: formData.latitude,
+        longitude: formData.longitude,
+        serviceType: formData.serviceType,
+        tyreSize: formData.tyreSize,
+        timingSlot: formData.timingSlot
       };
 
-      const response = await fetch(
-        'https://enduring-morning-cf86e59201.strapiapp.com/api/bookings',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        }
-      );
+      // Submit to Strapi backend using API service
+      const result = await submitAppointment(appointmentData);
 
-      const responseData = await response.json();
-
-      if (!response.ok) {
-        throw new Error(responseData.error?.message || 'Failed to submit booking');
-      }
-
+      // Show success message
       setSuccess(true);
+      console.log('Appointment submitted successfully:', result.data);
       
       // Reset form after successful submission
       setFormData({
@@ -171,9 +209,16 @@ const LocationBookingForm = ({ googleMapsApiKey }) => {
 
       // Clear success message after 5 seconds
       setTimeout(() => setSuccess(false), 5000);
+
     } catch (err) {
-      console.error('Booking submission error:', err);
-      setError(err.message || 'Failed to submit booking. Please try again.');
+      // Log error for debugging
+      console.error('Appointment submission error:', err);
+      
+      // Display user-friendly error message
+      const errorMessage = err.message ||
+        'Failed to submit appointment. Please try again or contact us directly.';
+      setError(errorMessage);
+
     } finally {
       setLoading(false);
     }
