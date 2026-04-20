@@ -37,7 +37,8 @@ const LocationBookingForm = () => {
     longitude: -0.1278,
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
-    timingSlot: 'As Soon As Possible'
+    timingSlot: 'As Soon As Possible',
+    locationNotes: ''
   });
 
   const [loading, setLoading] = useState(false);
@@ -183,7 +184,8 @@ const LocationBookingForm = () => {
         longitude: formData.longitude,
         serviceType: formData.serviceType,
         tyreSize: formData.tyreSize,
-        timingSlot: formData.timingSlot
+        timingSlot: formData.timingSlot,
+        locationNotes: formData.locationNotes
       };
 
       // Submit to Strapi backend using API service
@@ -203,7 +205,8 @@ const LocationBookingForm = () => {
         longitude: -0.1278,
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
-        timingSlot: 'As Soon As Possible'
+        timingSlot: 'As Soon As Possible',
+        locationNotes: ''
       });
       setShowMap(false);
 
@@ -327,13 +330,35 @@ const LocationBookingForm = () => {
           {showMap && (
             <div className="space-y-3 p-4 bg-white border-2 border-gray-100 rounded-lg">
               <p className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-                Refine Your Location on Map (Free - OpenStreetMap)
+                📍 Pin Your Location on Map
               </p>
               <MapPicker
                 initialLat={formData.latitude}
                 initialLng={formData.longitude}
                 onLocationChange={handleLocationChange}
               />
+            </div>
+          )}
+
+          {/* Exact Location Details */}
+          {showMap && (
+            <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg space-y-3">
+              <div>
+                <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+                  📍 Exact Location Details (Optional)
+                </label>
+                <textarea
+                  name="locationNotes"
+                  value={formData.locationNotes}
+                  onChange={handleInputChange}
+                  placeholder="e.g., Behind the main gate, Near shopping mall, Driveway entrance, etc."
+                  rows="3"
+                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all font-semibold outline-none resize-none"
+                />
+                <p className="text-[10px] text-blue-600 mt-2 ml-1">
+                  💡 Help our team find your exact location by providing any additional details
+                </p>
+              </div>
             </div>
           )}
         </div>

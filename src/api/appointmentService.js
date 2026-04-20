@@ -106,6 +106,7 @@ export const validateCoordinates = (latitude, longitude) => {
  * @param {string} appointmentData.address - Full address from reverse geocoding
  * @param {number} appointmentData.latitude - Location latitude
  * @param {number} appointmentData.longitude - Location longitude
+ * @param {string} [appointmentData.locationNotes] - Optional exact location details/instructions
  * 
  * @returns {Promise<Object>} - Response data from Strapi
  * @throws {Error} - Throws error with detailed message if submission fails
@@ -120,7 +121,8 @@ export const validateCoordinates = (latitude, longitude) => {
  *   postcode: "GU11 3HY",
  *   address: "123 High Street, GU11 3HY",
  *   latitude: 51.1476,
- *   longitude: -0.7488
+ *   longitude: -0.7488,
+ *   locationNotes: "Behind the main gate"
  * });
  */
 export const submitAppointment = async (appointmentData) => {
@@ -182,7 +184,8 @@ export const submitAppointment = async (appointmentData) => {
       postcode: appointmentData.postcode.trim(),
       address: appointmentData.address.trim(),
       latitude: appointmentData.latitude,
-      longitude: appointmentData.longitude
+      longitude: appointmentData.longitude,
+      ...(appointmentData.locationNotes && { locationNotes: appointmentData.locationNotes.trim() })
     }
   };
 
