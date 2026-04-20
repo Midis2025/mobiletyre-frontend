@@ -86,7 +86,7 @@ const ServicesPage = () => {
                   : 'bg-white text-slate-600 border-slate-200 hover:border-orange-300 hover:text-[#FB7E10]'
               }`}
             >
-              {f === 'Emergency' ? '🚨 ' + f : f}
+              {f}
             </button>
           ))}
         </div>

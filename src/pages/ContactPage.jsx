@@ -28,7 +28,7 @@ const ContactPage = () => {
     }, [searchParams]);
 
     const serviceOptions = [
-        { value: '', label: 'Choose here' },
+        { value: '', label: 'Select Service Type' },
         { value: 'Immediate Emergency Fitting', label: 'Immediate Emergency Fitting' },
         { value: 'Premium Tyre Service', label: 'Premium Tyre Service' },
         { value: 'Puncture Repair', label: 'Puncture Repair' },
@@ -306,7 +306,7 @@ const ContactPage = () => {
                                         >
                                             {/* Spotlight effect */}
                                             <div className="absolute inset-0 bg-white/30 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 skew-x-[35deg] blur-md"></div>
-                                            <span className="relative z-10 drop-shadow-md">{isSubmitting ? 'Submitting...' : 'Schedule Deployment'}</span>
+                                            <span className="relative z-10 drop-shadow-md">{isSubmitting ? 'Submitting...' : 'Book Service Now'}</span>
                                         </button>
                                     </div>
                                 </form>
