@@ -9,7 +9,7 @@ const Services = ({ filterCategory = 'All' }) => {
     : servicesData.filter(s => s.category === filterCategory);
 
   return (
-    <div className="bg-white py-12 md:py-20 px-4 sm:px-10 lg:px-20">
+    <div className="bg-white py-12 md:py-15 px-4 sm:px-10 lg:px-20">
       {/* Heading */}
       <div className="mb-12 text-center md:text-left flex flex-col items-center md:items-start group">
         <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-black uppercase leading-[0.8]">

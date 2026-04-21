@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const HowToReadTyre = () => {
   return (
-    <div className="bg-white py-8 xs:py-10 sm:py-12 md:py-16 lg:py-24 relative overflow-hidden">
+    <div className="bg-white py-8 xs:py-10 sm:py-12 md:py-16 lg:py-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-4 xs:gap-6 sm:gap-8 md:gap-10 lg:gap-16 xl:gap-20">
 
