@@ -7,8 +7,9 @@ import { Search, Loader, AlertCircle, MapPin } from 'lucide-react';
  * 
  * Features:
  * - Debounced API calls (300ms)
- * - Real-time postcode suggestions
- * - Shows admin district for context
+ * - Real-time postcode suggestions with proper place names
+ * - Priority field mapping: post_town → parish → admin_ward
+ * - Shows postcode, town/city, and county
  * - Reverse geocoding data retrieval
  */
 const PostcodeAutocomplete = ({ 
@@ -25,6 +26,36 @@ const PostcodeAutocomplete = ({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const debounceTimer = useRef(null);
   const suggestionsRef = useRef(null);
+
+  /**
+   * Extract the correct town using priority field mapping
+   * Priority: post_town → parish → admin_ward
+   * This ensures we display the postal town (e.g., Aldershot), not administrative districts
+   *
+   * Returns only the first part if multiple values are comma-separated
+   */
+  const getTown = (result) => {
+    // Helper to clean and extract first part
+    const cleanValue = (val) => {
+      if (!val) return '';
+      return String(val).split(',')[0].trim();
+    };
+    // Priority: post_town -> bua (built-up area) -> parish -> parliamentary_constituency -> admin_ward
+    // `bua` and `parliamentary_constituency` often contain the expected postal town (e.g., Aldershot)
+    const postTown = cleanValue(result.post_town);
+    const bua = cleanValue(result.bua);
+    const parish = cleanValue(result.parish);
+    const parliamentary = cleanValue(result.parliamentary_constituency);
+    const adminWard = cleanValue(result.admin_ward);
+
+    if (postTown) return postTown;
+    if (bua) return bua;
+    if (parish) return parish;
+    if (parliamentary) return parliamentary;
+    if (adminWard) return adminWard;
+
+    return '';
+  };
 
   /**
    * Fetch postcode suggestions from postcodes.io
@@ -52,14 +83,43 @@ const PostcodeAutocomplete = ({
       const data = await response.json();
       
       if (data.status === 200 && data.result) {
-        // Map results to show postcode and district
-        const mappedResults = data.result.slice(0, 8).map(result => ({
-          postcode: result.postcode,
-          district: result.district || result.admin_district || 'UK',
-          latitude: result.latitude,
-          longitude: result.longitude,
-          region: result.region || ''
-        }));
+        // Map results with proper place name field mapping
+        const mappedResults = data.result.slice(0, 8).map(result => {
+          // Debug: Log the raw API response for first result (no admin_district usage)
+          if (data.result.indexOf(result) === 0) {
+            console.log('API Response for first postcode:', {
+              postcode: result.postcode,
+              parish: result.parish,
+              post_town: result.post_town,
+              admin_ward: result.admin_ward,
+              admin_county: result.admin_county
+            });
+          }
+
+          const town = getTown(result);
+          // Prefer explicit admin_county for county value (Postcodes.io authoritative)
+          const county = result.admin_county || result.region || '';
+          // Build a clean formatted address using postcode → town mapping (do NOT use reverse geocoding)
+          const formattedAddress = county
+            ? `${town}, ${county}, ${result.postcode}`
+            : `${town}, ${result.postcode}`;
+
+          return {
+            postcode: result.postcode,
+            town: town,
+            county: county,
+            address: formattedAddress,
+            latitude: result.latitude,
+            longitude: result.longitude,
+            // Store additional raw fields if needed (do not use admin_district)
+            parish: result.parish,
+            post_town: result.post_town,
+            admin_ward: result.admin_ward,
+            bua: result.bua,
+            parliamentary_constituency: result.parliamentary_constituency,
+            region: result.region || ''
+          };
+        });
         
         setSuggestions(mappedResults);
         setShowSuggestions(true);
@@ -99,24 +159,32 @@ const PostcodeAutocomplete = ({
 
   /**
    * Handle postcode selection from suggestions
+   * Returns structured data with correct place name and county
    */
   const handleSelectPostcode = (suggestion) => {
     setInputValue(suggestion.postcode);
     setShowSuggestions(false);
     setSuggestions([]);
 
-    // Pass data to parent component
+    // Pass structured data to parent component (town-first, no admin_district)
     onSelect({
       postcode: suggestion.postcode,
       latitude: suggestion.latitude,
       longitude: suggestion.longitude,
-      district: suggestion.district,
+      town: suggestion.town,
+      county: suggestion.county || '',
+      address: suggestion.address,
+      // Backward compatibility: provide `district` as the town
+      district: suggestion.town,
       region: suggestion.region
     });
 
     // Also update location if provided
     if (onLocationChange) {
-      onLocationChange(suggestion.district || suggestion.postcode);
+      const locationDisplay = suggestion.county
+        ? `${suggestion.town}, ${suggestion.county}`
+        : suggestion.town;
+      onLocationChange(locationDisplay);
     }
   };
 
@@ -233,19 +301,19 @@ const PostcodeAutocomplete = ({
                 key={`${suggestion.postcode}-${index}`}
                 data-index={index}
                 onClick={() => handleSelectPostcode(suggestion)}
-                className={`w-full px-4 py-3 flex items-center gap-3 text-left transition-all ${
+                className={`w-full px-4 py-3 flex items-start gap-3 text-left transition-all ${
                   index === selectedIndex
                     ? 'bg-[#FB7E10]/10 border-l-4 border-[#FB7E10]'
                     : 'hover:bg-gray-50 border-l-4 border-transparent'
                 }`}
               >
-                <MapPin size={16} className="text-[#FB7E10] flex-shrink-0" />
+                <MapPin size={16} className="text-[#FB7E10] flex-shrink-0 mt-0.5" />
                 <div className="flex-1 min-w-0">
                   <div className="font-bold text-gray-900">
                     {suggestion.postcode}
                   </div>
-                  <div className="text-xs text-gray-500">
-                    {suggestion.district} {suggestion.region && `• ${suggestion.region}`}
+                  <div className="text-sm text-gray-700 font-semibold">
+                    {suggestion.town}{suggestion.county ? `, ${suggestion.county}` : ''}
                   </div>
                 </div>
               </button>

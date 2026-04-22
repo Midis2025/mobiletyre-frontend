@@ -155,21 +155,26 @@ const MapPicker = ({
 
   /**
    * Update location with coordinates
+   * IMPORTANT: Only updates coordinates, NOT address
+   * Address is preserved from postcode selection
+   * Reverse geocoding is only for display in map, not for form address
    */
   const updateLocation = async (lat, lng) => {
     setLatitude(lat);
     setLongitude(lng);
 
-    // Get address from reverse geocoding
-    const fullAddress = await reverseGeocode(lat, lng);
-    setAddress(fullAddress);
+    // Get address from reverse geocoding for UI display only
+    const geocodedAddress = await reverseGeocode(lat, lng);
+    setAddress(geocodedAddress);
 
     // Notify parent component
+    // CRITICAL: Only pass coordinates, NOT the reverse-geocoded address
+    // The form address should come from postcode selection only
     if (onLocationChange) {
       onLocationChange({
         latitude: lat,
-        longitude: lng,
-        address: fullAddress
+        longitude: lng
+        // address is NOT included - parent keeps its existing address from postcode
       });
     }
 

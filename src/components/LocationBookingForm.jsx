@@ -48,14 +48,55 @@ const LocationBookingForm = () => {
 
   /**
    * Handle postcode selection from autocomplete
+   * CRITICAL: Sets address based on postcode data only
+   * Format: town, county, postcode
+   * This address will NOT be overwritten by map changes
    */
   const handlePostcodeSelect = (postcodeData) => {
+    // IMPORTANT: `town` should already be the correct postal town from PostcodeAutocomplete
+    // We add extra cleanup here as a safety measure
+    
+    // Debug: Log what we're receiving
+    console.log('Postcode Data Received:', {
+      postcode: postcodeData.postcode,
+      town: postcodeData.town,
+      county: postcodeData.county,
+      latitude: postcodeData.latitude,
+      longitude: postcodeData.longitude
+    });
+    
+    // Build clean address: town, county, postcode
+    // Extract first part before any comma (safety for multi-part names)
+    const extractFirstPart = (str) => {
+      if (!str) return '';
+      return String(str).split(',')[0].trim();
+    };
+    
+    const town = extractFirstPart(postcodeData.town || '');
+    const county = extractFirstPart(postcodeData.county || '');
+
+    if (!town) {
+      setError('Could not determine location. Please try again.');
+      return;
+    }
+
+    const addressParts = [town];
+    if (county) {
+      addressParts.push(county);
+    }
+    addressParts.push(postcodeData.postcode);
+    
+    const cleanAddress = addressParts.join(', ');
+    // Example: "Aldershot, Hampshire, GU11 3HY"
+    
+    console.log('Built Clean Address:', cleanAddress);
+    
     setFormData(prev => ({
       ...prev,
       postcode: postcodeData.postcode,
       latitude: postcodeData.latitude,
       longitude: postcodeData.longitude,
-      address: `${postcodeData.postcode}, ${postcodeData.district}`
+      address: cleanAddress  // Clean, consistent address from postcode data
     }));
     setShowMap(true);
     setError('');
@@ -63,13 +104,17 @@ const LocationBookingForm = () => {
 
   /**
    * Handle location change from map
+   * CRITICAL: Only updates coordinates, NEVER overwrites address
+   * Address must come from postcode selection and remain clean and consistent
    */
   const handleLocationChange = (locationData) => {
     setFormData(prev => ({
       ...prev,
       latitude: locationData.latitude,
-      longitude: locationData.longitude,
-      address: locationData.address
+      longitude: locationData.longitude
+      // NOTE: address is NOT updated here
+      // The address is only set during postcode selection
+      // This ensures consistency: address always matches the postcode
     }));
     setError('');
   };
