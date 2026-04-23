@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, ArrowRight, Shield, Clock, Star, Users, Wrench, MapPin, CheckCircle, Zap, Award, HeartHandshake } from 'lucide-react';
+import { Phone, ArrowRight, Shield, Clock, Users, Wrench, MapPin, CheckCircle, Zap, Award, HeartHandshake } from 'lucide-react';
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 
@@ -57,26 +57,7 @@ const services = [
   'Locking Wheel Nut Removal',
 ];
 
-const testimonials = [
-  {
-    quote: "The best service I've ever experienced on the road. Called them after a blowout on the A3 and they were with me in 30 minutes. They even checked my spare tyre before leaving. Absolutely outstanding when driving my Porsche.",
-    name: 'James T.',
-    role: 'Porsche 911 Owner',
-    seed: 'crew1',
-  },
-  {
-    quote: "Stuck on the M25 at midnight — they arrived in 35 minutes. Absolute lifesavers. Five stars, every time.",
-    name: 'Sarah M.',
-    role: 'Range Rover Sport Owner',
-    seed: 'crew2',
-  },
-  {
-    quote: "Professional, fast, and a fair price. Never going to a garage again when Mobile Tyre Champions exists.",
-    name: 'Daniel R.',
-    role: 'BMW M4 Owner',
-    seed: 'crew3',
-  },
-];
+
 
 /* ─── Animated counter hook ─────────────────────────────────────────────── */
 
@@ -237,57 +218,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
-      <section className="bg-white py-6 md:py-8 px-4 sm:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-black">
-              Be Part of Our Ever-Growing<br />
-              <span className="text-[#FB7E10]">Family of Satisfied Clients</span>
-            </h2>
-            <p className="text-gray-500 font-medium mt-4 text-base md:text-lg">Rated 4.9 ★ on Google Reviews</p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className={`rounded-2xl md:rounded-3xl p-6 md:p-8 flex flex-col gap-6 transition-all duration-500 group cursor-default ${
-                  i === 1 
-                  ? 'bg-[#FB7E10] text-white shadow-2xl scale-105 z-10' 
-                  : 'bg-[#F1F3F6] text-slate-700 hover:bg-[#0B1528] hover:text-white hover:shadow-2xl hover:-translate-y-2' 
-                }`}
-              >
-                {/* stars */}
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, si) => (
-                    <Star 
-                      key={si} 
-                      size={16} 
-                      fill={i === 1 ? 'white' : '#FB7E10'} 
-                      className={`transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-[#FB7E10] group-hover:text-white group-hover:fill-white'}`} 
-                    />
-                  ))}
-                </div>
-                <p className={`font-bold leading-relaxed text-base flex-1 transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-gray-800 group-hover:text-white'}`}>
-                  "{t.quote}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <img
-                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${t.seed}`}
-                    alt={t.name}
-                    className={`w-10 h-10 rounded-full border-2 transition-all duration-500 ${i === 1 ? 'border-white/40' : 'border-[#FB7E10]/30 group-hover:border-white/40'} bg-gray-300`}
-                  />
-                  <div>
-                    <div className={`font-black text-sm transition-colors duration-500 ${i === 1 ? 'text-white' : 'text-black group-hover:text-white'}`}>{t.name}</div>
-                    <div className={`text-xs font-medium transition-colors duration-500 ${i === 1 ? 'text-white/70' : 'text-gray-500 group-hover:text-white/70'}`}>{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── CONTACT INFO STRIP ────────────────────────────────────────────── */}
       <section className="bg-[#0B1528] py-8 md:py-10 px-4 sm:px-10 lg:px-20">
