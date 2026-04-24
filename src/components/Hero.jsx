@@ -25,10 +25,8 @@ const Hero = () => {
         <img
           src="/images/Untitled design (2).jpg.jpeg"
           alt="Tire background"
-          className="w-full h-full object-cover opacity-60 md:scale-110"
+          className="w-full h-full object-cover opacity-50 md:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 md:via-black/20 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-12 md:py-20 lg:py-28">
