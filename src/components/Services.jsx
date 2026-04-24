@@ -49,14 +49,7 @@ const Services = ({ filterCategory = 'All' }) => {
               {/* Content Side */}
               <div className="flex-1 p-6 md:p-12 flex flex-col justify-center bg-white relative">
                 {/* Trust Signal: Rating */}
-                <div className="flex items-center gap-1 mb-4">
-                  <div className="flex text-orange-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} fill={i < Math.floor(service.rating) ? "currentColor" : "none"} />
-                    ))}
-                  </div>
-                  <span className="text-xs font-bold text-slate-400 ml-2">{service.rating} ({service.reviews}+ reviews)</span>
-                </div>
+              
 
                 <h3 className="text-2xl md:text-5xl font-black text-black leading-none uppercase tracking-tighter mb-4 transition-colors group-hover:text-[#FB7E10]">
                   {service.title}
