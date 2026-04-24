@@ -1,127 +1,215 @@
 import React, { useState } from 'react';
-import { ChevronDown, ArrowRight, AlertCircle, CheckCircle, MapPin, Phone, User, Clock } from 'lucide-react';
-import PostcodeAutocomplete from './PostcodeAutocomplete';
-import MapPicker from './MapPicker';
+import { ChevronDown, ArrowRight, AlertCircle, CheckCircle, Phone, User, Clock } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
 import {
   submitAppointment,
   validateUKPhoneNumber,
-  validateUKPostcode,
   validateTyreSize
 } from '../api/appointmentService';
 
-/**
- * LocationBookingForm Component
- * Complete booking form with location picker + map integration
- * 
- * Features:
- * - Postcode autocomplete input (free postcodes.io)
- * - Interactive map (free OpenStreetMap + Leaflet)
- * - Reverse geocoding for address (free Nominatim API)
- * - Full booking form with validation using appointmentService
- * - Strapi backend integration via appointmentService API
- * - Environment-based API URL configuration
- * - Comprehensive UK phone & postcode validation
- * - NO API KEYS NEEDED! Completely free!
- * 
- * @component
- * @returns {JSX.Element} Booking form component
- */
 const LocationBookingForm = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     phoneNumber: '',
     postcode: '',
     address: '',
-    latitude: 51.5074,
-    longitude: -0.1278,
+    latitude: null,
+    longitude: null,
+    location: '', // town — used only for UI display, not sent to Strapi
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
     timingSlot: 'As Soon As Possible',
-    locationNotes: ''
+    locationNotes: '',
   });
+
+  const [searchPostcode, setSearchPostcode] = useState('');
+  const [fetchingAddresses, setFetchingAddresses] = useState(false);
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState('');
+  const [addressError, setAddressError] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-  const [showMap, setShowMap] = useState(false);
 
-  /**
-   * Handle postcode selection from autocomplete
-   * CRITICAL: Sets address based on postcode data only
-   * Format: town, county, postcode
-   * This address will NOT be overwritten by map changes
-   */
-  const handlePostcodeSelect = (postcodeData) => {
-    // IMPORTANT: `town` should already be the correct postal town from PostcodeAutocomplete
-    // We add extra cleanup here as a safety measure
-    
-    // Debug: Log what we're receiving
-    console.log('Postcode Data Received:', {
-      postcode: postcodeData.postcode,
-      town: postcodeData.town,
-      county: postcodeData.county,
-      latitude: postcodeData.latitude,
-      longitude: postcodeData.longitude
-    });
-    
-    // Build clean address: town, county, postcode
-    // Extract first part before any comma (safety for multi-part names)
-    const extractFirstPart = (str) => {
-      if (!str) return '';
-      return String(str).split(',')[0].trim();
-    };
-    
-    const town = extractFirstPart(postcodeData.town || '');
-    const county = extractFirstPart(postcodeData.county || '');
-
-    if (!town) {
-      setError('Could not determine location. Please try again.');
+  const handleGetAddress = async () => {
+    if (!searchPostcode.trim()) {
+      setAddressError('Please enter a valid postcode');
       return;
     }
 
-    const addressParts = [town];
-    if (county) {
-      addressParts.push(county);
+    setFetchingAddresses(true);
+    setAddressError('');
+    setAddresses([]);
+    setSelectedAddress('');
+
+    const cleanPostcode = searchPostcode.trim().toUpperCase();
+    setFormData(prev => ({
+      ...prev,
+      address: '',
+      postcode: cleanPostcode,
+      latitude: null,
+      longitude: null,
+      location: '',
+    }));
+
+    try {
+      // ── Priority 1: Backend API ──────────────────────────────────────
+      const response = await fetch(`/api/postcode?postcode=${encodeURIComponent(cleanPostcode)}`);
+      if (!response.ok) throw new Error('Backend unavailable');
+      const data = await response.json();
+
+      if (data?.addresses?.length > 0) {
+        setAddresses(data.addresses);
+        setFormData(prev => ({
+          ...prev,
+          location: data.postcodeData?.town || '',
+          latitude: data.postcodeData?.latitude ?? null,
+          longitude: data.postcodeData?.longitude ?? null,
+        }));
+        setFetchingAddresses(false);
+        return;
+      }
+      throw new Error('No addresses in backend response');
+
+    } catch (_backendErr) {
+      // ── Priority 2: Free public APIs (postcodes.io + Overpass) ───────
+      try {
+        // Step A — Get lat/lon and town from postcodes.io
+        const pcRes = await fetch(
+          `https://api.postcodes.io/postcodes/${encodeURIComponent(cleanPostcode)}`
+        );
+        if (!pcRes.ok) throw new Error('Invalid postcode');
+        const pcData = await pcRes.json();
+
+        if (pcData.status !== 200 || !pcData.result) {
+          setAddressError('Invalid or unknown UK postcode. Please check and try again.');
+          setFetchingAddresses(false);
+          return;
+        }
+
+        const { latitude, longitude, admin_district, admin_ward } = pcData.result;
+        const town = admin_district || admin_ward || cleanPostcode;
+
+        // Step B — Query Overpass API for buildings with house numbers near the postcode
+        // This is the key: we get real property-level addresses (house number + street name)
+        const radius = 300; // metres around the postcode centroid
+        const overpassQuery = `
+          [out:json][timeout:15];
+          (
+            node["addr:housenumber"](around:${radius},${latitude},${longitude});
+            way["addr:housenumber"](around:${radius},${latitude},${longitude});
+          );
+          out body;
+        `;
+
+        const overpassRes = await fetch('https://overpass-api.de/api/interpreter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `data=${encodeURIComponent(overpassQuery)}`
+        });
+        const overpassData = await overpassRes.json();
+
+        // Step C — Format addresses from OSM tags
+        const seen = new Set();
+        const rawList = [];
+
+        for (const el of overpassData.elements || []) {
+          const tags = el.tags || {};
+          const houseNum = tags['addr:housenumber'];
+          const street = tags['addr:street'];
+          const flatUnit = tags['addr:unit'] || tags['addr:flats'];
+
+          if (!houseNum || !street) continue;
+
+          // Expand flat ranges like "1-6" → Flat 1, Flat 2 … Flat 6
+          if (flatUnit && /^\d+-\d+$/.test(flatUnit)) {
+            const [from, to] = flatUnit.split('-').map(Number);
+            for (let f = from; f <= to && f - from < 30; f++) {
+              const addr = `Flat ${f}, ${houseNum} ${street}`;
+              if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
+            }
+          } else if (flatUnit) {
+            const addr = `Flat ${flatUnit}, ${houseNum} ${street}`;
+            if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
+          } else {
+            const addr = `${houseNum} ${street}`;
+            if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
+          }
+        }
+
+        // Sort numerically by the first number in the address
+        rawList.sort((a, b) => {
+          const na = parseInt(a.match(/\d+/)?.[0] || '0', 10);
+          const nb = parseInt(b.match(/\d+/)?.[0] || '0', 10);
+          return na - nb;
+        });
+
+        if (rawList.length > 0) {
+          setAddresses(rawList);
+          setFormData(prev => ({ ...prev, location: town, latitude, longitude }));
+          setFetchingAddresses(false);
+          return;
+        }
+
+        // Step D — Overpass returned nothing; widen radius to 600 m
+        const widerQuery = `
+          [out:json][timeout:15];
+          (
+            node["addr:housenumber"](around:600,${latitude},${longitude});
+            way["addr:housenumber"](around:600,${latitude},${longitude});
+          );
+          out body;
+        `;
+        const widerRes = await fetch('https://overpass-api.de/api/interpreter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: `data=${encodeURIComponent(widerQuery)}`
+        });
+        const widerData = await widerRes.json();
+        const widerList = [];
+
+        for (const el of widerData.elements || []) {
+          const tags = el.tags || {};
+          const houseNum = tags['addr:housenumber'];
+          const street = tags['addr:street'];
+          if (!houseNum || !street) continue;
+          const addr = `${houseNum} ${street}`;
+          if (!seen.has(addr)) { seen.add(addr); widerList.push(addr); }
+        }
+
+        widerList.sort((a, b) => {
+          const na = parseInt(a.match(/\d+/)?.[0] || '0', 10);
+          const nb = parseInt(b.match(/\d+/)?.[0] || '0', 10);
+          return na - nb;
+        });
+
+        if (widerList.length > 0) {
+          setAddresses(widerList);
+          setFormData(prev => ({ ...prev, location: town, latitude, longitude }));
+        } else {
+          setAddressError(
+            'No house addresses found near this postcode. Please enter your address manually or try a nearby postcode.'
+          );
+        }
+
+      } catch (fallbackErr) {
+        console.error('Address lookup error:', fallbackErr);
+        setAddressError('Could not fetch addresses. Please check the postcode and try again.');
+      }
     }
-    addressParts.push(postcodeData.postcode);
-    
-    const cleanAddress = addressParts.join(', ');
-    // Example: "Aldershot, Hampshire, GU11 3HY"
-    
-    console.log('Built Clean Address:', cleanAddress);
-    
-    setFormData(prev => ({
-      ...prev,
-      postcode: postcodeData.postcode,
-      latitude: postcodeData.latitude,
-      longitude: postcodeData.longitude,
-      address: cleanAddress  // Clean, consistent address from postcode data
-    }));
-    setShowMap(true);
+
+    setFetchingAddresses(false);
+  };
+
+
+  const handleAddressSelect = (e) => {
+    const val = e.target.value;
+    setSelectedAddress(val);
+    setFormData(prev => ({ ...prev, address: val }));
     setError('');
   };
 
-  /**
-   * Handle location change from map
-   * CRITICAL: Only updates coordinates, NEVER overwrites address
-   * Address must come from postcode selection and remain clean and consistent
-   */
-  const handleLocationChange = (locationData) => {
-    setFormData(prev => ({
-      ...prev,
-      latitude: locationData.latitude,
-      longitude: locationData.longitude
-      // NOTE: address is NOT updated here
-      // The address is only set during postcode selection
-      // This ensures consistency: address always matches the postcode
-    }));
-    setError('');
-  };
-
-  /**
-   * Handle form input changes
-   */
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -131,13 +219,7 @@ const LocationBookingForm = () => {
     setError('');
   };
 
-  /**
-   * Validate form before submission
-   * Uses validation helpers from appointmentService
-   * Returns descriptive error messages for each validation failure
-   */
   const validateForm = () => {
-    // Validate full name
     if (!formData.fullName.trim()) {
       setError('Full name is required');
       return false;
@@ -148,7 +230,6 @@ const LocationBookingForm = () => {
       return false;
     }
 
-    // Validate phone number using UK phone validation
     if (!formData.phoneNumber.trim()) {
       setError('Phone number is required');
       return false;
@@ -159,18 +240,11 @@ const LocationBookingForm = () => {
       return false;
     }
 
-    // Validate postcode using UK postcode validation
-    if (!formData.postcode.trim()) {
-      setError('Please select a valid UK postcode');
+    if (!formData.address) {
+      setError('Please select an address');
       return false;
     }
 
-    if (!validateUKPostcode(formData.postcode)) {
-      setError('Invalid UK postcode format (e.g., GU11 3HY)');
-      return false;
-    }
-
-    // Validate tyre size
     if (!formData.tyreSize.trim()) {
       setError('Tyre size is required');
       return false;
@@ -181,35 +255,22 @@ const LocationBookingForm = () => {
       return false;
     }
 
-    // Validate service type
     if (!formData.serviceType.trim()) {
       setError('Service type is required');
       return false;
     }
 
-    // Validate timing slot
     if (!formData.timingSlot.trim()) {
       setError('Preferred timing is required');
-      return false;
-    }
-
-    // Validate coordinates exist and are valid
-    if (typeof formData.latitude !== 'number' || typeof formData.longitude !== 'number') {
-      setError('Invalid location coordinates');
       return false;
     }
 
     return true;
   };
 
-  /**
-   * Submit appointment to Strapi backend using appointmentService
-   * Handles all API communication, validation, error handling, and success states
-   */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate form data before submission
+
     if (!validateForm()) {
       return;
     }
@@ -219,54 +280,48 @@ const LocationBookingForm = () => {
     setSuccess(false);
 
     try {
-      // Prepare appointment data for submission
       const appointmentData = {
-        fullName: formData.fullName,
-        phoneNumber: formData.phoneNumber,
-        postcode: formData.postcode,
-        address: formData.address,
-        latitude: formData.latitude,
-        longitude: formData.longitude,
-        serviceType: formData.serviceType,
-        tyreSize: formData.tyreSize,
-        timingSlot: formData.timingSlot,
-        locationNotes: formData.locationNotes
+        fullName:      formData.fullName,
+        phoneNumber:   formData.phoneNumber,
+        postcode:      formData.postcode,
+        address:       formData.address,
+        latitude:      formData.latitude,
+        longitude:     formData.longitude,
+        serviceType:   formData.serviceType,
+        tyreSize:      formData.tyreSize,
+        timingSlot:    formData.timingSlot,
+        bookingStatus: 'Pending',
+        locationNotes: formData.locationNotes || ''
       };
 
-      // Submit to Strapi backend using API service
       const result = await submitAppointment(appointmentData);
 
-      // Show success message
       setSuccess(true);
       console.log('Appointment submitted successfully:', result.data);
-      
-      // Reset form after successful submission
+
       setFormData({
         fullName: '',
         phoneNumber: '',
         postcode: '',
         address: '',
-        latitude: 51.5074,
-        longitude: -0.1278,
+        latitude: null,
+        longitude: null,
+        location: '',
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
         timingSlot: 'As Soon As Possible',
-        locationNotes: ''
+        locationNotes: '',
       });
-      setShowMap(false);
+      setSearchPostcode('');
+      setAddresses([]);
+      setSelectedAddress('');
 
-      // Clear success message after 5 seconds
       setTimeout(() => setSuccess(false), 5000);
 
     } catch (err) {
-      // Log error for debugging
       console.error('Appointment submission error:', err);
-      
-      // Display user-friendly error message
-      const errorMessage = err.message ||
-        'Failed to submit appointment. Please try again or contact us directly.';
+      const errorMessage = err.message || 'Failed to submit appointment. Please try again or contact us directly.';
       setError(errorMessage);
-
     } finally {
       setLoading(false);
     }
@@ -349,63 +404,79 @@ const LocationBookingForm = () => {
             📍 Location Selection
           </h3>
 
-          {/* Postcode Autocomplete */}
-          <div>
+          <div className="space-y-3">
             <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
               UK Postcode
             </label>
-            <PostcodeAutocomplete
-              onSelect={handlePostcodeSelect}
-              selectedPostcode={formData.postcode}
-              placeholder="Type postcode (e.g., GU11 3HY)"
-            />
+            <div className="flex flex-col gap-2">
+              <input
+                type="text"
+                value={searchPostcode}
+                onChange={(e) => setSearchPostcode(e.target.value)}
+                placeholder="Enter postcode (e.g. SL5 0AB)"
+                className="w-full bg-[#EAF2FC] border border-gray-200 rounded-lg px-4 py-3 focus:border-[#FB7E10] transition-all outline-none text-gray-800"
+                onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleGetAddress())}
+              />
+              <button
+                type="button"
+                onClick={handleGetAddress}
+                disabled={fetchingAddresses || !searchPostcode}
+                className="w-full bg-[#5D644F] text-white py-3 rounded-md font-semibold uppercase tracking-wider hover:bg-[#4A513E] transition-colors disabled:opacity-70 flex justify-center items-center h-12 shadow-sm"
+              >
+                {fetchingAddresses ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                ) : 'GET ADDRESS'}
+              </button>
+            </div>
           </div>
 
-          {/* Current Address Display */}
-          {formData.address && (
+          {addressError && (
+            <p className="text-sm text-red-500 font-medium ml-1">{addressError}</p>
+          )}
+
+          <div className="pt-1">
+            <div className="relative">
+              <select
+                value={selectedAddress}
+                onChange={handleAddressSelect}
+                disabled={addresses.length === 0}
+                className={`w-full bg-white border border-gray-200 rounded-md px-4 py-3 appearance-none text-gray-700 focus:border-[#FB7E10] transition-all outline-none ${addresses.length === 0 ? 'opacity-50 cursor-not-allowed bg-gray-50' : 'cursor-pointer shadow-sm'}`}
+              >
+                <option value="">Please select your address...</option>
+                {addresses.map((addr, idx) => (
+                  <option key={idx} value={addr}>{addr}</option>
+                ))}
+              </select>
+              <ChevronDown className={`absolute right-4 top-1/2 -translate-y-1/2 ${addresses.length === 0 ? 'text-gray-300' : 'text-gray-600'} pointer-events-none`} size={18} />
+            </div>
+          </div>
+
+          {/* Location field mapped from postcodeData.town */}
+          {formData.location && formData.address && (
             <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
-                Selected Address
+                Selected Location
               </p>
               <p className="text-sm font-semibold text-gray-900">{formData.address}</p>
+              <p className="text-xs font-medium text-gray-600 mt-1">{formData.location}</p>
             </div>
           )}
 
-          {/* Map Picker */}
-          {showMap && (
-            <div className="space-y-3 p-4 bg-white border-2 border-gray-100 rounded-lg">
-              <p className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-                📍 Pin Your Location on Map
-              </p>
-              <MapPicker
-                initialLat={formData.latitude}
-                initialLng={formData.longitude}
-                onLocationChange={handleLocationChange}
-              />
-            </div>
-          )}
-
-          {/* Exact Location Details */}
-          {showMap && (
-            <div className="p-4 bg-blue-50 border-2 border-blue-200 rounded-lg space-y-3">
-              <div>
-                <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-                  📍 Exact Location Details (Optional)
-                </label>
-                <textarea
-                  name="locationNotes"
-                  value={formData.locationNotes}
-                  onChange={handleInputChange}
-                  placeholder="e.g., Behind the main gate, Near shopping mall, Driveway entrance, etc."
-                  rows="3"
-                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition-all font-semibold outline-none resize-none"
-                />
-                <p className="text-[10px] text-blue-600 mt-2 ml-1">
-                  💡 Help our team find your exact location by providing any additional details
-                </p>
-              </div>
-            </div>
-          )}
+          {/* Location Notes */}
+          <div>
+            <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+              Location Notes <span className="font-normal normal-case text-gray-400"></span>
+            </label>
+            <textarea
+              name="locationNotes"
+              value={formData.locationNotes}
+              onChange={handleInputChange}
+              placeholder="e.g. Behind the main gate, opposite the red door, park on the driveway..."
+              rows={3}
+              className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none resize-none text-sm"
+            />
+            <p className="text-[10px] text-gray-400 mt-1 ml-1">Help our fitter find you quickly by adding any extra directions.</p>
+          </div>
         </div>
 
         {/* Service Details Section */}
