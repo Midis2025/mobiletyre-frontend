@@ -23,7 +23,7 @@ const Hero = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/dgoi36teejsuguvwboh4.avif"
+          src="/images/Untitled design (2).jpg.jpeg"
           alt="Tire background"
           className="w-full h-full object-cover opacity-60 md:scale-110"
         />
