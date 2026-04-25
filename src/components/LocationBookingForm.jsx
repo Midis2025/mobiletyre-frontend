@@ -12,10 +12,9 @@ const LocationBookingForm = () => {
     fullName: '',
     phoneNumber: '',
     postcode: '',
-    address: '',
+    town: '',
     latitude: null,
     longitude: null,
-    location: '', // town — used only for UI display, not sent to Strapi
     serviceType: servicesData[0]?.title || '',
     tyreSize: '',
     timingSlot: 'As Soon As Possible',
@@ -23,10 +22,9 @@ const LocationBookingForm = () => {
   });
 
   const [searchPostcode, setSearchPostcode] = useState('');
-  const [fetchingAddresses, setFetchingAddresses] = useState(false);
-  const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState('');
-  const [addressError, setAddressError] = useState('');
+  const [fetchingPostcode, setFetchingPostcode] = useState(false);
+  const [hasDetected, setHasDetected] = useState(false);
+  const [postcodeError, setPostcodeError] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -34,181 +32,100 @@ const LocationBookingForm = () => {
 
   const handleGetAddress = async () => {
     if (!searchPostcode.trim()) {
-      setAddressError('Please enter a valid postcode');
+      setPostcodeError('Please enter a valid postcode');
       return;
     }
 
-    setFetchingAddresses(true);
-    setAddressError('');
-    setAddresses([]);
-    setSelectedAddress('');
+    setFetchingPostcode(true);
+    setPostcodeError('');
+    setHasDetected(false);
 
     const cleanPostcode = searchPostcode.trim().toUpperCase();
-    setFormData(prev => ({
-      ...prev,
-      address: '',
-      postcode: cleanPostcode,
-      latitude: null,
-      longitude: null,
-      location: '',
-    }));
+    setSearchPostcode(cleanPostcode);
 
     try {
-      // ── Priority 1: Backend API ──────────────────────────────────────
-      const response = await fetch(`/api/postcode?postcode=${encodeURIComponent(cleanPostcode)}`);
-      if (!response.ok) throw new Error('Backend unavailable');
-      const data = await response.json();
-
-      if (data?.addresses?.length > 0) {
-        setAddresses(data.addresses);
-        setFormData(prev => ({
-          ...prev,
-          location: data.postcodeData?.town || '',
-          latitude: data.postcodeData?.latitude ?? null,
-          longitude: data.postcodeData?.longitude ?? null,
-        }));
-        setFetchingAddresses(false);
+      const pcRes = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleanPostcode)}`);
+      if (!pcRes.ok) {
+        setPostcodeError('Invalid postcode');
+        setFetchingPostcode(false);
         return;
       }
-      throw new Error('No addresses in backend response');
-
-    } catch (_backendErr) {
-      // ── Priority 2: Free public APIs (postcodes.io + Overpass) ───────
-      try {
-        // Step A — Get lat/lon and town from postcodes.io
-        const pcRes = await fetch(
-          `https://api.postcodes.io/postcodes/${encodeURIComponent(cleanPostcode)}`
-        );
-        if (!pcRes.ok) throw new Error('Invalid postcode');
-        const pcData = await pcRes.json();
-
-        if (pcData.status !== 200 || !pcData.result) {
-          setAddressError('Invalid or unknown UK postcode. Please check and try again.');
-          setFetchingAddresses(false);
-          return;
-        }
-
-        const { latitude, longitude, admin_district, admin_ward } = pcData.result;
-        const town = admin_district || admin_ward || cleanPostcode;
-
-        // Step B — Query Overpass API for buildings with house numbers near the postcode
-        // This is the key: we get real property-level addresses (house number + street name)
-        const radius = 300; // metres around the postcode centroid
-        const overpassQuery = `
-          [out:json][timeout:15];
-          (
-            node["addr:housenumber"](around:${radius},${latitude},${longitude});
-            way["addr:housenumber"](around:${radius},${latitude},${longitude});
-          );
-          out body;
-        `;
-
-        const overpassRes = await fetch('https://overpass-api.de/api/interpreter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: `data=${encodeURIComponent(overpassQuery)}`
-        });
-        const overpassData = await overpassRes.json();
-
-        // Step C — Format addresses from OSM tags
-        const seen = new Set();
-        const rawList = [];
-
-        for (const el of overpassData.elements || []) {
-          const tags = el.tags || {};
-          const houseNum = tags['addr:housenumber'];
-          const street = tags['addr:street'];
-          const flatUnit = tags['addr:unit'] || tags['addr:flats'];
-
-          if (!houseNum || !street) continue;
-
-          // Expand flat ranges like "1-6" → Flat 1, Flat 2 … Flat 6
-          if (flatUnit && /^\d+-\d+$/.test(flatUnit)) {
-            const [from, to] = flatUnit.split('-').map(Number);
-            for (let f = from; f <= to && f - from < 30; f++) {
-              const addr = `Flat ${f}, ${houseNum} ${street}`;
-              if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
+      
+      const pcData = await pcRes.json();
+      const res = pcData.result;
+      const outcode = res?.outcode;
+      
+      // 1. Get Primary Town (Checking both post_town and postal_town)
+      let postTown = res?.post_town || res?.postal_town || '';
+      
+      if (!postTown && outcode) {
+        try {
+          const outRes = await fetch(`https://api.postcodes.io/outcodes/${encodeURIComponent(outcode)}`);
+          if (outRes.ok) {
+            const outData = await outRes.json();
+            // outcodes endpoint returns post_town as an array
+            const outTowns = outData.result?.post_town;
+            if (Array.isArray(outTowns) && outTowns.length > 0) {
+              postTown = outTowns[0];
             }
-          } else if (flatUnit) {
-            const addr = `Flat ${flatUnit}, ${houseNum} ${street}`;
-            if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
-          } else {
-            const addr = `${houseNum} ${street}`;
-            if (!seen.has(addr)) { seen.add(addr); rawList.push(addr); }
           }
-        }
-
-        // Sort numerically by the first number in the address
-        rawList.sort((a, b) => {
-          const na = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-          const nb = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-          return na - nb;
-        });
-
-        if (rawList.length > 0) {
-          setAddresses(rawList);
-          setFormData(prev => ({ ...prev, location: town, latitude, longitude }));
-          setFetchingAddresses(false);
-          return;
-        }
-
-        // Step D — Overpass returned nothing; widen radius to 600 m
-        const widerQuery = `
-          [out:json][timeout:15];
-          (
-            node["addr:housenumber"](around:600,${latitude},${longitude});
-            way["addr:housenumber"](around:600,${latitude},${longitude});
-          );
-          out body;
-        `;
-        const widerRes = await fetch('https://overpass-api.de/api/interpreter', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: `data=${encodeURIComponent(widerQuery)}`
-        });
-        const widerData = await widerRes.json();
-        const widerList = [];
-
-        for (const el of widerData.elements || []) {
-          const tags = el.tags || {};
-          const houseNum = tags['addr:housenumber'];
-          const street = tags['addr:street'];
-          if (!houseNum || !street) continue;
-          const addr = `${houseNum} ${street}`;
-          if (!seen.has(addr)) { seen.add(addr); widerList.push(addr); }
-        }
-
-        widerList.sort((a, b) => {
-          const na = parseInt(a.match(/\d+/)?.[0] || '0', 10);
-          const nb = parseInt(b.match(/\d+/)?.[0] || '0', 10);
-          return na - nb;
-        });
-
-        if (widerList.length > 0) {
-          setAddresses(widerList);
-          setFormData(prev => ({ ...prev, location: town, latitude, longitude }));
-        } else {
-          setAddressError(
-            'No house addresses found near this postcode. Please enter your address manually or try a nearby postcode.'
-          );
-        }
-
-      } catch (fallbackErr) {
-        console.error('Address lookup error:', fallbackErr);
-        setAddressError('Could not fetch addresses. Please check the postcode and try again.');
+        } catch (e) { console.warn('Outcode lookup failed'); }
       }
+
+      // 2. Get Specific Area (Ward or Parish)
+      // We strictly avoid "admin_district" to prevent the "Rushmoor" issue
+      let area = res?.admin_ward || res?.parish || '';
+      
+      // If area is the same as the administrative district (e.g. Rushmoor), we ignore it
+      if (area.toLowerCase() === res?.admin_district?.toLowerCase()) {
+        area = '';
+      }
+
+      // 3. Fallback to Nominatim if both are still missing
+      if (!postTown && !area) {
+        try {
+          const nomSearchRes = await fetch(
+            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanPostcode)}&addressdetails=1&limit=1`,
+            { headers: { 'User-Agent': 'TyreServiceBookingApp/1.0' } }
+          );
+          if (nomSearchRes.ok) {
+            const nomData = await nomSearchRes.json();
+            if (nomData.length > 0) {
+              const addr = nomData[0].address;
+              area = addr.suburb || addr.neighbourhood || '';
+              postTown = addr.city || addr.town || addr.village || '';
+            }
+          }
+        } catch (e) { console.warn('Nominatim search failed'); }
+      }
+
+      // 4. Final Display Logic - Strictly show Town Name only (e.g., "Aldershot")
+      let displayLocation = postTown || area || 'Manual Entry Required';
+      
+      setFormData(prev => ({
+        ...prev,
+        postcode: cleanPostcode,
+        town: displayLocation,
+        latitude: res?.latitude || null,
+        longitude: res?.longitude || null
+      }));
+      setHasDetected(true);
+
+    } catch (err) {
+      console.error('Postcode lookup error:', err);
+      // Even on error, we want to show the postcode the user entered
+      setFormData(prev => ({
+        ...prev,
+        postcode: cleanPostcode,
+        town: 'Manual Entry'
+      }));
+      setHasDetected(true); 
+    } finally {
+      setFetchingPostcode(false);
     }
-
-    setFetchingAddresses(false);
   };
 
 
-  const handleAddressSelect = (e) => {
-    const val = e.target.value;
-    setSelectedAddress(val);
-    setFormData(prev => ({ ...prev, address: val }));
-    setError('');
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -240,8 +157,13 @@ const LocationBookingForm = () => {
       return false;
     }
 
-    if (!formData.address) {
-      setError('Please select an address');
+    if (!formData.postcode) {
+      setError('Please enter and detect your postcode first');
+      return false;
+    }
+
+    if (!formData.locationNotes) {
+      setError('Please enter your full address (House No. & Street)');
       return false;
     }
 
@@ -283,38 +205,34 @@ const LocationBookingForm = () => {
       const appointmentData = {
         fullName:      formData.fullName,
         phoneNumber:   formData.phoneNumber,
-        postcode:      formData.postcode,
-        address:       formData.address,
-        latitude:      formData.latitude,
-        longitude:     formData.longitude,
         serviceType:   formData.serviceType,
         tyreSize:      formData.tyreSize,
         timingSlot:    formData.timingSlot,
-        bookingStatus: 'Pending',
-        locationNotes: formData.locationNotes || ''
+        postcode:      formData.postcode,
+        town:          formData.town,
+        latitude:      formData.latitude,
+        longitude:     formData.longitude,
+        locationNotes: formData.locationNotes
       };
 
       const result = await submitAppointment(appointmentData);
 
       setSuccess(true);
-      console.log('Appointment submitted successfully:', result.data);
-
+      
       setFormData({
         fullName: '',
         phoneNumber: '',
         postcode: '',
-        address: '',
+        town: '',
         latitude: null,
         longitude: null,
-        location: '',
         serviceType: servicesData[0]?.title || '',
         tyreSize: '',
         timingSlot: 'As Soon As Possible',
         locationNotes: '',
       });
       setSearchPostcode('');
-      setAddresses([]);
-      setSelectedAddress('');
+      setHasDetected(false);
 
       setTimeout(() => setSuccess(false), 5000);
 
@@ -400,83 +318,84 @@ const LocationBookingForm = () => {
 
         {/* Location Section */}
         <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-          <h3 className="text-xs font-black text-gray-700 uppercase tracking-[0.2em]">
-            📍 Location Selection
-          </h3>
-
-          <div className="space-y-3">
-            <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-              UK Postcode
-            </label>
-            <div className="flex flex-col gap-2">
-              <input
-                type="text"
-                value={searchPostcode}
-                onChange={(e) => setSearchPostcode(e.target.value)}
-                placeholder="Enter postcode (e.g. SL5 0AB)"
-                className="w-full bg-[#EAF2FC] border border-gray-200 rounded-lg px-4 py-3 focus:border-[#FB7E10] transition-all outline-none text-gray-800"
-                onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleGetAddress())}
-              />
-              <button
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-xs font-black text-gray-700 uppercase tracking-[0.2em]">
+              📍 Location Selection
+            </h3>
+            {hasDetected && (
+              <button 
                 type="button"
-                onClick={handleGetAddress}
-                disabled={fetchingAddresses || !searchPostcode}
-                className="w-full bg-[#5D644F] text-white py-3 rounded-md font-semibold uppercase tracking-wider hover:bg-[#4A513E] transition-colors disabled:opacity-70 flex justify-center items-center h-12 shadow-sm"
+                onClick={() => { setHasDetected(false); setSearchPostcode(''); setFormData(prev => ({ ...prev, postcode: '', town: '', locationNotes: '' })); }}
+                className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-wider hover:underline"
               >
-                {fetchingAddresses ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                ) : 'GET ADDRESS'}
+                Change Postcode
               </button>
-            </div>
+            )}
           </div>
 
-          {addressError && (
-            <p className="text-sm text-red-500 font-medium ml-1">{addressError}</p>
+          {/* Postcode Input */}
+          {!hasDetected ? (
+            <div className="space-y-3">
+              <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
+                UK Postcode
+              </label>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  value={searchPostcode}
+                  onChange={(e) => setSearchPostcode(e.target.value.toUpperCase())}
+                  placeholder="Enter postcode (e.g. SL5 0AB)"
+                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none"
+                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleGetAddress())}
+                />
+                <button
+                  type="button"
+                  onClick={handleGetAddress}
+                  disabled={fetchingPostcode || !searchPostcode}
+                  className="w-full bg-[#FB7E10] text-white py-3.5 rounded-xl font-black uppercase tracking-[0.15em] hover:bg-orange-600 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-md flex justify-center items-center h-12"
+                >
+                  {fetchingPostcode ? (
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  ) : 'GET ADDRESS'}
+                </button>
+              </div>
+              {postcodeError && (
+                <p className="text-[10px] text-red-500 font-bold uppercase tracking-wider ml-1 mt-1">{postcodeError}</p>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+              {/* Detected Area */}
+              <div className="p-3 bg-white border-2 border-orange-100 rounded-xl flex items-center gap-3">
+                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <span role="img" aria-label="area" className="text-white text-xs font-bold">📍</span>
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-orange-600 uppercase tracking-wider leading-none mb-1">
+                    Detected Area
+                  </p>
+                  <p className="text-sm font-bold text-gray-800 leading-tight">
+                    {formData.town}, {formData.postcode}
+                  </p>
+                </div>
+              </div>
+
+              {/* Manual Address Input */}
+              <div className="space-y-2">
+                <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] ml-1">
+                  Enter Full Address (House No. & Street)
+                </label>
+                <textarea
+                  name="locationNotes"
+                  value={formData.locationNotes}
+                  onChange={handleInputChange}
+                  placeholder="e.g. 10 High Street, Flat 5..."
+                  rows={3}
+                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none resize-none text-sm"
+                />
+              </div>
+            </div>
           )}
-
-          <div className="pt-1">
-            <div className="relative">
-              <select
-                value={selectedAddress}
-                onChange={handleAddressSelect}
-                disabled={addresses.length === 0}
-                className={`w-full bg-white border border-gray-200 rounded-md px-4 py-3 appearance-none text-gray-700 focus:border-[#FB7E10] transition-all outline-none ${addresses.length === 0 ? 'opacity-50 cursor-not-allowed bg-gray-50' : 'cursor-pointer shadow-sm'}`}
-              >
-                <option value="">Please select your address...</option>
-                {addresses.map((addr, idx) => (
-                  <option key={idx} value={addr}>{addr}</option>
-                ))}
-              </select>
-              <ChevronDown className={`absolute right-4 top-1/2 -translate-y-1/2 ${addresses.length === 0 ? 'text-gray-300' : 'text-gray-600'} pointer-events-none`} size={18} />
-            </div>
-          </div>
-
-          {/* Location field mapped from postcodeData.town */}
-          {formData.location && formData.address && (
-            <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
-                Selected Location
-              </p>
-              <p className="text-sm font-semibold text-gray-900">{formData.address}</p>
-              <p className="text-xs font-medium text-gray-600 mt-1">{formData.location}</p>
-            </div>
-          )}
-
-          {/* Location Notes */}
-          <div>
-            <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-              Location Notes <span className="font-normal normal-case text-gray-400"></span>
-            </label>
-            <textarea
-              name="locationNotes"
-              value={formData.locationNotes}
-              onChange={handleInputChange}
-              placeholder="e.g. Behind the main gate, opposite the red door, park on the driveway..."
-              rows={3}
-              className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none resize-none text-sm"
-            />
-            <p className="text-[10px] text-gray-400 mt-1 ml-1">Help our fitter find you quickly by adding any extra directions.</p>
-          </div>
         </div>
 
         {/* Service Details Section */}

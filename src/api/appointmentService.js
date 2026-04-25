@@ -129,7 +129,7 @@ export const submitAppointment = async (appointmentData) => {
   // Validate all required fields exist
   const requiredFields = [
     'fullName', 'phoneNumber', 'serviceType', 'tyreSize',
-    'timingSlot', 'postcode', 'address', 'latitude', 'longitude'
+    'timingSlot', 'postcode', 'town', 'locationNotes'
   ];
 
   for (const field of requiredFields) {
@@ -158,11 +158,6 @@ export const submitAppointment = async (appointmentData) => {
     throw new Error('Invalid tyre size format (e.g., 225/45 R17)');
   }
 
-  // Validate coordinates
-  if (!validateCoordinates(appointmentData.latitude, appointmentData.longitude)) {
-    throw new Error('Invalid location coordinates');
-  }
-
   // Validate service type is not empty
   if (appointmentData.serviceType.trim().length === 0) {
     throw new Error('Service type is required');
@@ -182,10 +177,10 @@ export const submitAppointment = async (appointmentData) => {
       tyreSize: appointmentData.tyreSize.trim(),
       timingSlot: appointmentData.timingSlot.trim(),
       postcode: appointmentData.postcode.trim(),
-      address: appointmentData.address.trim(),
+      address: appointmentData.town.trim(), // Mapping town to the existing 'address' field in Strapi
       latitude: appointmentData.latitude,
       longitude: appointmentData.longitude,
-      ...(appointmentData.locationNotes && { locationNotes: appointmentData.locationNotes.trim() })
+      locationNotes: appointmentData.locationNotes.trim()
     }
   };
 
