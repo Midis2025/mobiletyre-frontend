@@ -25,6 +25,8 @@ const LocationBookingForm = () => {
   const [fetchingPostcode, setFetchingPostcode] = useState(false);
   const [hasDetected, setHasDetected] = useState(false);
   const [postcodeError, setPostcodeError] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [fetchingSuggestions, setFetchingSuggestions] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -110,6 +112,55 @@ const LocationBookingForm = () => {
         longitude: res?.longitude || null
       }));
       setHasDetected(true);
+
+      // Step 5: Fetch real house numbers using Overpass API (The most accurate free source for UK house numbers)
+      setFetchingSuggestions(true);
+      setSuggestions([]); 
+      try {
+        const overpassQuery = `[out:json];(node["addr:postcode"="${cleanPostcode}"];way["addr:postcode"="${cleanPostcode}"];);out body;`;
+        const overpassRes = await fetch(
+          `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`
+        );
+        
+        if (overpassRes.ok) {
+          const overpassData = await overpassRes.json();
+          const houseSuggestions = overpassData.elements
+            .map(el => {
+              const tags = el.tags;
+              if (!tags) return null;
+              const house = tags["addr:housenumber"] || tags["addr:housename"] || tags.name || '';
+              const road = tags["addr:street"] || '';
+              if (!house && !road) return null;
+              return house ? `${house}${road ? ' ' + road : ''}` : road;
+            })
+            .filter(Boolean);
+          
+          let unique = [...new Set(houseSuggestions)];
+
+          // Fallback: If Overpass returns nothing, try Nominatim as a backup
+          if (unique.length === 0) {
+            const nomRes = await fetch(
+              `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanPostcode)}&countrycodes=gb&addressdetails=1&limit=20`,
+              { headers: { 'User-Agent': 'TyreServiceBookingApp/1.0' } }
+            );
+            if (nomRes.ok) {
+              const nomData = await nomRes.json();
+              unique = [...new Set(nomData.map(item => {
+                const a = item.address;
+                const h = a.house_number || a.house_name || '';
+                const r = a.road || '';
+                return h ? `${h} ${r}` : r;
+              }))].filter(s => s.length > 3);
+            }
+          }
+
+          setSuggestions(unique);
+        }
+      } catch (e) {
+        console.warn('Advanced suggestions lookup failed');
+      } finally {
+        setFetchingSuggestions(false);
+      }
 
     } catch (err) {
       console.error('Postcode lookup error:', err);
@@ -233,6 +284,7 @@ const LocationBookingForm = () => {
       });
       setSearchPostcode('');
       setHasDetected(false);
+      setSuggestions([]);
 
       setTimeout(() => setSuccess(false), 5000);
 
@@ -379,6 +431,43 @@ const LocationBookingForm = () => {
                   </p>
                 </div>
               </div>
+
+              {/* Nearby Suggestions Dropdown */}
+              {fetchingSuggestions ? (
+                <div className="flex items-center gap-2 py-2 ml-1">
+                  <div className="w-3 h-3 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">Searching for nearby addresses...</p>
+                </div>
+              ) : suggestions.length > 0 ? (
+                <div className="space-y-2 animate-in fade-in duration-500">
+                  <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] ml-1">
+                    Select Address (Nearby Houses/Flats)
+                  </label>
+                  <div className="relative group">
+                    <select
+                      onChange={(e) => setFormData(prev => ({ ...prev, locationNotes: e.target.value }))}
+                      value={suggestions.includes(formData.locationNotes) ? formData.locationNotes : ''}
+                      className="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-700 outline-none appearance-none focus:border-[#FB7E10] focus:ring-4 focus:ring-orange-500/10 transition-all cursor-pointer shadow-sm pr-10"
+                    >
+                      <option value="" disabled>Select your address...</option>
+                      {suggestions.map((sugg, idx) => (
+                        <option key={idx} value={sugg}>
+                          {sugg}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-hover:text-[#FB7E10] transition-colors">
+                      <ChevronDown size={18} />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="py-1 px-1">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider italic">
+                    No specific addresses found for this postcode. Please enter below.
+                  </p>
+                </div>
+              )}
 
               {/* Manual Address Input */}
               <div className="space-y-2">
