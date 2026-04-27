@@ -1,7 +1,7 @@
 /**
  * Appointment Service
  * Handles all API communication with Strapi backend for appointment/booking submissions
- * Uses free APIs for location data - no paid services required
+ * Uses Google Places API for premium address lookup
  */
 
 // Get Strapi API URL from environment variable
@@ -126,16 +126,20 @@ export const validateCoordinates = (latitude, longitude) => {
  * });
  */
 export const submitAppointment = async (appointmentData) => {
-  // Validate all required fields exist
-  const requiredFields = [
-    'fullName', 'phoneNumber', 'serviceType', 'tyreSize',
-    'timingSlot', 'postcode', 'town', 'locationNotes'
+  // Validate basic required fields
+  const basicRequiredFields = [
+    'fullName', 'phoneNumber', 'serviceType', 'tyreSize', 'timingSlot'
   ];
 
-  for (const field of requiredFields) {
+  for (const field of basicRequiredFields) {
     if (!appointmentData[field]) {
       throw new Error(`Missing required field: ${field}`);
     }
+  }
+
+  // Location validation: either structured address OR manual notes must exist
+  if (!appointmentData.address && !appointmentData.locationNotes) {
+    throw new Error('Please provide a location (either via search or manual entry)');
   }
 
   // Validate full name
@@ -146,11 +150,6 @@ export const submitAppointment = async (appointmentData) => {
   // Validate phone number
   if (!validateUKPhoneNumber(appointmentData.phoneNumber)) {
     throw new Error('Invalid UK phone number format');
-  }
-
-  // Validate postcode
-  if (!validateUKPostcode(appointmentData.postcode)) {
-    throw new Error('Invalid UK postcode format');
   }
 
   // Validate tyre size
@@ -168,7 +167,7 @@ export const submitAppointment = async (appointmentData) => {
     throw new Error('Timing slot is required');
   }
 
-  // Build Strapi payload
+  // Build Strapi payload using the keys known to work with the backend
   const payload = {
     data: {
       fullName: appointmentData.fullName.trim(),
@@ -176,11 +175,21 @@ export const submitAppointment = async (appointmentData) => {
       serviceType: appointmentData.serviceType.trim(),
       tyreSize: appointmentData.tyreSize.trim(),
       timingSlot: appointmentData.timingSlot.trim(),
-      postcode: appointmentData.postcode.trim(),
-      address: appointmentData.town.trim(), // Mapping town to the existing 'address' field in Strapi
-      latitude: appointmentData.latitude,
-      longitude: appointmentData.longitude,
-      locationNotes: appointmentData.locationNotes.trim()
+      postcode: (appointmentData.postcode || 'MANUAL').trim(),
+
+      // IMPORTANT: Mapping 'town' to the Strapi 'address' field 
+      // as the backend doesn't have a 'city' or 'town' key.
+      address: (appointmentData.town || 'Manual').trim(),
+
+      // Use separate latitude/longitude fields
+      latitude: appointmentData.latitude || 0,
+      longitude: appointmentData.longitude || 0,
+
+      // Combine the full street address and any manual notes into locationNotes
+      locationNotes: [
+        appointmentData.address,
+        appointmentData.locationNotes
+      ].filter(Boolean).join(' - ').trim()
     }
   };
 

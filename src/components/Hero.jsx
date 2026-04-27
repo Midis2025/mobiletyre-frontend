@@ -9,12 +9,9 @@ import LocationBookingForm from './LocationBookingForm';
  * - Eye-catching headline and value proposition
  * - Call-to-action buttons (phone, WhatsApp)
  * - Integrated LocationBookingForm with:
- *   - Postcode autocomplete (postcodes.io - FREE)
- *   - Interactive map (OpenStreetMap + Leaflet - FREE)
- *   - Reverse geocoding (Nominatim API - FREE)
+ *   - Google Places Autocomplete (Premium Address Selection)
+ *   - Real-time UK address suggestions
  *   - Strapi backend integration
- * 
- * NO API KEYS NEEDED! Completely free to use!
  */
 const Hero = () => {
 

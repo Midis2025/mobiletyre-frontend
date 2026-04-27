@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ArrowRight, AlertCircle, CheckCircle, Phone, User, Clock } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
+import AddressField from './AddressField';
 import {
   submitAppointment,
   validateUKPhoneNumber,
@@ -12,6 +13,7 @@ const LocationBookingForm = () => {
     fullName: '',
     phoneNumber: '',
     postcode: '',
+    address: '',
     town: '',
     latitude: null,
     longitude: null,
@@ -21,162 +23,22 @@ const LocationBookingForm = () => {
     locationNotes: '',
   });
 
-  const [searchPostcode, setSearchPostcode] = useState('');
-  const [fetchingPostcode, setFetchingPostcode] = useState(false);
-  const [hasDetected, setHasDetected] = useState(false);
-  const [postcodeError, setPostcodeError] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [fetchingSuggestions, setFetchingSuggestions] = useState(false);
-
+  const [addressError, setAddressError] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const handleGetAddress = async () => {
-    if (!searchPostcode.trim()) {
-      setPostcodeError('Please enter a valid postcode');
-      return;
-    }
-
-    setFetchingPostcode(true);
-    setPostcodeError('');
-    setHasDetected(false);
-
-    const cleanPostcode = searchPostcode.trim().toUpperCase();
-    setSearchPostcode(cleanPostcode);
-
-    try {
-      const pcRes = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(cleanPostcode)}`);
-      if (!pcRes.ok) {
-        setPostcodeError('Invalid postcode');
-        setFetchingPostcode(false);
-        return;
-      }
-      
-      const pcData = await pcRes.json();
-      const res = pcData.result;
-      const outcode = res?.outcode;
-      
-      // 1. Get Primary Town (Checking both post_town and postal_town)
-      let postTown = res?.post_town || res?.postal_town || '';
-      
-      if (!postTown && outcode) {
-        try {
-          const outRes = await fetch(`https://api.postcodes.io/outcodes/${encodeURIComponent(outcode)}`);
-          if (outRes.ok) {
-            const outData = await outRes.json();
-            // outcodes endpoint returns post_town as an array
-            const outTowns = outData.result?.post_town;
-            if (Array.isArray(outTowns) && outTowns.length > 0) {
-              postTown = outTowns[0];
-            }
-          }
-        } catch (e) { console.warn('Outcode lookup failed'); }
-      }
-
-      // 2. Get Specific Area (Ward or Parish)
-      // We strictly avoid "admin_district" to prevent the "Rushmoor" issue
-      let area = res?.admin_ward || res?.parish || '';
-      
-      // If area is the same as the administrative district (e.g. Rushmoor), we ignore it
-      if (area.toLowerCase() === res?.admin_district?.toLowerCase()) {
-        area = '';
-      }
-
-      // 3. Fallback to Nominatim if both are still missing
-      if (!postTown && !area) {
-        try {
-          const nomSearchRes = await fetch(
-            `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanPostcode)}&addressdetails=1&limit=1`,
-            { headers: { 'User-Agent': 'TyreServiceBookingApp/1.0' } }
-          );
-          if (nomSearchRes.ok) {
-            const nomData = await nomSearchRes.json();
-            if (nomData.length > 0) {
-              const addr = nomData[0].address;
-              area = addr.suburb || addr.neighbourhood || '';
-              postTown = addr.city || addr.town || addr.village || '';
-            }
-          }
-        } catch (e) { console.warn('Nominatim search failed'); }
-      }
-
-      // 4. Final Display Logic - Strictly show Town Name only (e.g., "Aldershot")
-      let displayLocation = postTown || area || 'Manual Entry Required';
-      
-      setFormData(prev => ({
-        ...prev,
-        postcode: cleanPostcode,
-        town: displayLocation,
-        latitude: res?.latitude || null,
-        longitude: res?.longitude || null
-      }));
-      setHasDetected(true);
-
-      // Step 5: Fetch real house numbers using Overpass API (The most accurate free source for UK house numbers)
-      setFetchingSuggestions(true);
-      setSuggestions([]); 
-      try {
-        const overpassQuery = `[out:json];(node["addr:postcode"="${cleanPostcode}"];way["addr:postcode"="${cleanPostcode}"];);out body;`;
-        const overpassRes = await fetch(
-          `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(overpassQuery)}`
-        );
-        
-        if (overpassRes.ok) {
-          const overpassData = await overpassRes.json();
-          const houseSuggestions = overpassData.elements
-            .map(el => {
-              const tags = el.tags;
-              if (!tags) return null;
-              const house = tags["addr:housenumber"] || tags["addr:housename"] || tags.name || '';
-              const road = tags["addr:street"] || '';
-              if (!house && !road) return null;
-              return house ? `${house}${road ? ' ' + road : ''}` : road;
-            })
-            .filter(Boolean);
-          
-          let unique = [...new Set(houseSuggestions)];
-
-          // Fallback: If Overpass returns nothing, try Nominatim as a backup
-          if (unique.length === 0) {
-            const nomRes = await fetch(
-              `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(cleanPostcode)}&countrycodes=gb&addressdetails=1&limit=20`,
-              { headers: { 'User-Agent': 'TyreServiceBookingApp/1.0' } }
-            );
-            if (nomRes.ok) {
-              const nomData = await nomRes.json();
-              unique = [...new Set(nomData.map(item => {
-                const a = item.address;
-                const h = a.house_number || a.house_name || '';
-                const r = a.road || '';
-                return h ? `${h} ${r}` : r;
-              }))].filter(s => s.length > 3);
-            }
-          }
-
-          setSuggestions(unique);
-        }
-      } catch (e) {
-        console.warn('Advanced suggestions lookup failed');
-      } finally {
-        setFetchingSuggestions(false);
-      }
-
-    } catch (err) {
-      console.error('Postcode lookup error:', err);
-      // Even on error, we want to show the postcode the user entered
-      setFormData(prev => ({
-        ...prev,
-        postcode: cleanPostcode,
-        town: 'Manual Entry'
-      }));
-      setHasDetected(true); 
-    } finally {
-      setFetchingPostcode(false);
-    }
+  const handleAddressSelect = (data) => {
+    setFormData(prev => ({
+      ...prev,
+      postcode: data.postcode,
+      address: data.fullAddress,
+      town: data.city,
+      latitude: data.latitude,
+      longitude: data.longitude
+    }));
+    setAddressError('');
   };
-
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -208,13 +70,8 @@ const LocationBookingForm = () => {
       return false;
     }
 
-    if (!formData.postcode) {
-      setError('Please enter and detect your postcode first');
-      return false;
-    }
-
-    if (!formData.locationNotes) {
-      setError('Please enter your full address (House No. & Street)');
+    if (!formData.address && !formData.locationNotes.trim()) {
+      setAddressError('Please search for an address or enter it manually below');
       return false;
     }
 
@@ -253,20 +110,7 @@ const LocationBookingForm = () => {
     setSuccess(false);
 
     try {
-      const appointmentData = {
-        fullName:      formData.fullName,
-        phoneNumber:   formData.phoneNumber,
-        serviceType:   formData.serviceType,
-        tyreSize:      formData.tyreSize,
-        timingSlot:    formData.timingSlot,
-        postcode:      formData.postcode,
-        town:          formData.town,
-        latitude:      formData.latitude,
-        longitude:     formData.longitude,
-        locationNotes: formData.locationNotes
-      };
-
-      const result = await submitAppointment(appointmentData);
+      await submitAppointment(formData);
 
       setSuccess(true);
       
@@ -274,6 +118,7 @@ const LocationBookingForm = () => {
         fullName: '',
         phoneNumber: '',
         postcode: '',
+        address: '',
         town: '',
         latitude: null,
         longitude: null,
@@ -282,9 +127,7 @@ const LocationBookingForm = () => {
         timingSlot: 'As Soon As Possible',
         locationNotes: '',
       });
-      setSearchPostcode('');
-      setHasDetected(false);
-      setSuggestions([]);
+      setAddressError('');
 
       setTimeout(() => setSuccess(false), 5000);
 
@@ -370,121 +213,31 @@ const LocationBookingForm = () => {
 
         {/* Location Section */}
         <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs font-black text-gray-700 uppercase tracking-[0.2em]">
-              📍 Location Selection
-            </h3>
-            {hasDetected && (
-              <button 
-                type="button"
-                onClick={() => { setHasDetected(false); setSearchPostcode(''); setFormData(prev => ({ ...prev, postcode: '', town: '', locationNotes: '' })); }}
-                className="text-[10px] font-bold text-[#FB7E10] uppercase tracking-wider hover:underline"
-              >
-                Change Postcode
-              </button>
-            )}
+          <h3 className="text-xs font-black text-gray-700 uppercase tracking-[0.2em] mb-2">
+            📍 Location Selection
+          </h3>
+
+          <AddressField 
+            onAddressSelect={handleAddressSelect} 
+            error={addressError}
+          />
+
+          <div className="space-y-2 pt-2">
+            <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] ml-1">
+              House No. & Street (or Full Address)
+            </label>
+            <textarea
+              name="locationNotes"
+              value={formData.locationNotes}
+              onChange={handleInputChange}
+              placeholder="e.g. 10 High Street, Flat 5..."
+              rows={3}
+              className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none resize-none text-sm"
+            />
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider ml-1 italic">
+              * Required if not selected from search above
+            </p>
           </div>
-
-          {/* Postcode Input */}
-          {!hasDetected ? (
-            <div className="space-y-3">
-              <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] mb-2 ml-1">
-                UK Postcode
-              </label>
-              <div className="flex flex-col gap-2">
-                <input
-                  type="text"
-                  value={searchPostcode}
-                  onChange={(e) => setSearchPostcode(e.target.value.toUpperCase())}
-                  placeholder="Enter postcode (e.g. SL5 0AB)"
-                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none"
-                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), handleGetAddress())}
-                />
-                <button
-                  type="button"
-                  onClick={handleGetAddress}
-                  disabled={fetchingPostcode || !searchPostcode}
-                  className="w-full bg-[#FB7E10] text-white py-3.5 rounded-xl font-black uppercase tracking-[0.15em] hover:bg-orange-600 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-md flex justify-center items-center h-12"
-                >
-                  {fetchingPostcode ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                  ) : 'GET ADDRESS'}
-                </button>
-              </div>
-              {postcodeError && (
-                <p className="text-[10px] text-red-500 font-bold uppercase tracking-wider ml-1 mt-1">{postcodeError}</p>
-              )}
-            </div>
-          ) : (
-            <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
-              {/* Detected Area */}
-              <div className="p-3 bg-white border-2 border-orange-100 rounded-xl flex items-center gap-3">
-                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm">
-                  <span role="img" aria-label="area" className="text-white text-xs font-bold">📍</span>
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-orange-600 uppercase tracking-wider leading-none mb-1">
-                    Detected Area
-                  </p>
-                  <p className="text-sm font-bold text-gray-800 leading-tight">
-                    {formData.town}, {formData.postcode}
-                  </p>
-                </div>
-              </div>
-
-              {/* Nearby Suggestions Dropdown */}
-              {fetchingSuggestions ? (
-                <div className="flex items-center gap-2 py-2 ml-1">
-                  <div className="w-3 h-3 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">Searching for nearby addresses...</p>
-                </div>
-              ) : suggestions.length > 0 ? (
-                <div className="space-y-2 animate-in fade-in duration-500">
-                  <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] ml-1">
-                    Select Address (Nearby Houses/Flats)
-                  </label>
-                  <div className="relative group">
-                    <select
-                      onChange={(e) => setFormData(prev => ({ ...prev, locationNotes: e.target.value }))}
-                      value={suggestions.includes(formData.locationNotes) ? formData.locationNotes : ''}
-                      className="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-700 outline-none appearance-none focus:border-[#FB7E10] focus:ring-4 focus:ring-orange-500/10 transition-all cursor-pointer shadow-sm pr-10"
-                    >
-                      <option value="" disabled>Select your address...</option>
-                      {suggestions.map((sugg, idx) => (
-                        <option key={idx} value={sugg}>
-                          {sugg}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-hover:text-[#FB7E10] transition-colors">
-                      <ChevronDown size={18} />
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-1 px-1">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider italic">
-                    No specific addresses found for this postcode. Please enter below.
-                  </p>
-                </div>
-              )}
-
-              {/* Manual Address Input */}
-              <div className="space-y-2">
-                <label className="block text-[11px] font-black text-[#8A95AF] uppercase tracking-[0.2em] ml-1">
-                  Enter Full Address (House No. & Street)
-                </label>
-                <textarea
-                  name="locationNotes"
-                  value={formData.locationNotes}
-                  onChange={handleInputChange}
-                  placeholder="e.g. 10 High Street, Flat 5..."
-                  rows={3}
-                  className="w-full bg-white border-2 border-transparent rounded-xl px-4 py-3 placeholder-gray-400 focus:ring-4 focus:ring-orange-500/10 focus:border-[#FB7E10] transition-all font-semibold outline-none resize-none text-sm"
-                />
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Service Details Section */}
