@@ -64,7 +64,7 @@ const Navbar = () => {
         <div className="flex lg:hidden justify-center items-center scale-90 sm:scale-100">
           <a
             href="tel:02071013856"
-            className="flex items-center gap-2 bg-white text-[#FB7E10] px-4 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+            className="flex items-center gap-2 bg-black text-white px-4 py-2.5 rounded-full font-black text-[11px] tracking-widest shadow-lg hover:scale-105 transition-all whitespace-nowrap"
           >
             <Phone size={14} fill="currentColor" />
             <span>0207 101 3856</span>
