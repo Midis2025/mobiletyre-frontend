@@ -16,20 +16,27 @@ import LocationBookingForm from './LocationBookingForm';
 const Hero = () => {
 
   return (
-    <div className="relative min-h-[600px] flex items-center bg-gray-900 overflow-hidden">
+    <div className="relative min-h-[600px] flex items-center bg-gray-900 md:overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-[#1a1a1a]">
+        <div className="sticky top-0 w-full h-[100dvh] flex justify-center items-center md:hidden">
+          <img
+            src="/images/mtc-social-media-15.avif"
+            alt="Tire background mobile"
+            className="w-full h-full object-cover object-center opacity-100"
+          />
+        </div>
         <img
           src="/images/Untitled design (2).jpg.jpeg"
           alt="Tire background"
-          className="w-full h-full object-cover opacity-50 md:scale-110"
+          className="hidden md:block w-full h-full object-cover opacity-50 md:scale-110"
         />
       </div>
 
       <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-12 md:py-20 lg:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
           {/* Left Column - Hero Text & CTAs */}
-          <div className="text-white space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
+          <div className="text-white space-y-6 text-center md:text-left flex flex-col items-center md:items-start bg-black/20 backdrop-blur-md p-6 sm:p-8 rounded-3xl md:bg-transparent md:backdrop-blur-none md:p-0 md:rounded-none border border-white/10 md:border-none shadow-2xl md:shadow-none mt-8 md:mt-0">
             <div className="inline-flex items-center gap-2 bg-[#33251a] border border-[#fb7e10]/30 px-3 md:px-4 py-1.5 rounded-full">
               <span className="text-orange-500">⚡</span>
               <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-orange-400">
