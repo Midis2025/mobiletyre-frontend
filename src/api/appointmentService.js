@@ -71,7 +71,7 @@ export const validateTyreSize = (tyreSize) => {
     return false;
   }
 
-  const tyreSizeRegex = /^\d{3}\/\d{2}\s?[RZ]\d{2,3}$/i;
+  const tyreSizeRegex = /^\d{3}\/\d{2}\s?[RZ]\d{2,3}(\s?[A-Z])?$/i;
   return tyreSizeRegex.test(tyreSize.trim());
 };
 
@@ -177,19 +177,14 @@ export const submitAppointment = async (appointmentData) => {
       timingSlot: appointmentData.timingSlot.trim(),
       postcode: (appointmentData.postcode || 'MANUAL').trim(),
 
-      // IMPORTANT: Mapping 'town' to the Strapi 'address' field 
-      // as the backend doesn't have a 'city' or 'town' key.
-      address: (appointmentData.town || 'Manual').trim(),
+      // Mapping address/town
+      address: (appointmentData.address || appointmentData.town || 'Manual').trim(),
 
-      // Use separate latitude/longitude fields
-      latitude: appointmentData.latitude || 0,
-      longitude: appointmentData.longitude || 0,
+      // Vehicle Registration
+      vehicleReg: (appointmentData.vehicleReg || '').trim(),
 
-      // Combine the full street address and any manual notes into locationNotes
-      locationNotes: [
-        appointmentData.address,
-        appointmentData.locationNotes
-      ].filter(Boolean).join(' - ').trim()
+      // Location Notes
+      locationNotes: (appointmentData.locationNotes || '').trim()
     }
   };
 

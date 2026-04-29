@@ -1,5 +1,5 @@
 import React from 'react';
-import LocationBookingForm from './LocationBookingForm';
+import QuickAvailabilityForm from './QuickAvailabilityForm';
 
 /**
  * Hero Component
@@ -73,14 +73,14 @@ const Hero = () => {
 
           {/* Right Column - Booking Form */}
           <div className="flex justify-center md:justify-end">
-            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] w-full max-w-md relative overflow-hidden border border-white/20 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] w-full max-w-md relative border border-white/20">
               {/* Decorative Elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/40 rounded-full -mr-16 -mt-16 blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100/20 rounded-full -ml-12 -mb-12 blur-3xl"></div>
 
-              {/* LocationBookingForm Component */}
+              {/* QuickAvailabilityForm Component */}
               <div className="relative z-10">
-                <LocationBookingForm />
+                <QuickAvailabilityForm />
               </div>
             </div>
           </div>
