@@ -144,6 +144,12 @@ const LocationsPage = () => {
                      >
                         <Navigation size={14} className={activeRegion === 'Berkshire' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Berkshire
                      </button>
+                     <button
+                        onClick={() => document.getElementById('highways-section').scrollIntoView({ behavior: 'smooth' })}
+                        className="flex items-center gap-1.5 transition-colors hover:text-[#FB7E10]"
+                     >
+                        <Navigation size={14} className="text-slate-300" /> Highways
+                     </button>
                   </div>
                </div>
 
@@ -226,7 +232,7 @@ const LocationsPage = () => {
          </section>
 
          {/* ── HIGHWAYS COVERAGE ── */}
-         <section className="py-20 px-6 bg-white border-t border-gray-100">
+         <section id="highways-section" className="py-20 px-6 bg-white border-t border-gray-100">
             <div className="max-w-7xl mx-auto">
                <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
                   <div className="space-y-4">

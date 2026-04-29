@@ -29,7 +29,6 @@ const QuickAvailabilityForm = () => {
       {/* Step Indicators */}
       <div className="absolute top-0 left-0 right-0 flex justify-between items-center -mt-8 md:-mt-6 px-4">
         <div className="flex-1 border-t-2 border-dashed border-gray-200 mx-2"></div>
-        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-gray-300 font-bold text-[10px] md:text-xs shadow-sm z-20">2</div>
       </div>
 
       <div className="text-center mb-4 md:mb-8">
