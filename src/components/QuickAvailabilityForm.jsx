@@ -25,16 +25,17 @@ const QuickAvailabilityForm = () => {
   };
 
   return (
-    <div className="relative pt-4">
+    <div className="relative pt-2 md:pt-4">
       {/* Step Indicators */}
-      <div className="absolute top-0 left-0 right-0 flex justify-between items-center -mt-6">
-        <div className="w-8 h-8 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center text-yellow-500 font-bold text-xs shadow-sm z-20">1</div>
-        <div className="w-8 h-8 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-gray-300 font-bold text-xs shadow-sm z-20">2</div>
+      <div className="absolute top-0 left-0 right-0 flex justify-between items-center -mt-8 md:-mt-6 px-4">
+        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-[#FB7E10] bg-white flex items-center justify-center text-[#FB7E10] font-bold text-[10px] md:text-xs shadow-sm z-20">1</div>
+        <div className="flex-1 border-t-2 border-dashed border-gray-200 mx-2"></div>
+        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-gray-300 font-bold text-[10px] md:text-xs shadow-sm z-20">2</div>
       </div>
 
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">
-          Find Our Closest Mobile Tyre Fitter Near You
+      <div className="text-center mb-6 md:mb-8">
+        <h2 className="text-xl md:text-3xl font-black text-gray-900 mb-2 leading-tight">
+          Find Our Closest Mobile <br className="md:hidden" /> Tyre Fitter Near You
         </h2>
       </div>
 

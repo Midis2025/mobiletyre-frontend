@@ -121,21 +121,21 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-20 pb-12 font-['Outfit']">
+    <div className="bg-white min-h-screen pt-16 md:pt-20 pb-12 font-['Outfit']">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight uppercase">
-            Good News! We Have A Mobile Tyre Fitter Available Near You!
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-2xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight uppercase leading-[1.1]">
+            Good News! We Have A Mobile <br className="md:hidden" /> Tyre Fitter Available Near You!
           </h1>
-          <p className="text-gray-500 font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-            <MapPin size={18} className="text-[#FB7E10]" />
+          <p className="text-xs md:text-base text-gray-500 font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+            <MapPin size={16} className="text-[#FB7E10]" />
             Location found for: <span className="text-black">{formData.postcode || 'Unknown'}</span>
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start">
           {/* Left: Leaflet Map */}
-          <div className="bg-gray-100 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white h-[400px] lg:h-[650px] sticky top-24 z-10">
+          <div className="bg-gray-100 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-xl md:shadow-2xl border-4 border-white h-[300px] md:h-[500px] lg:h-[650px] lg:sticky lg:top-24 z-10">
             <MapContainer 
               center={mapCenter} 
               zoom={14} 
@@ -162,14 +162,14 @@ const BookingPage = () => {
           </div>
 
           {/* Right: Form */}
-          <div className="bg-slate-50 p-6 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
+          <div className="bg-slate-50 p-5 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-sm border border-gray-100 mb-8">
             {success ? (
-              <div className="text-center py-12 space-y-6">
-                <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle size={48} />
+              <div className="text-center py-8 md:py-12 space-y-6">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle size={40} md:size={48} />
                 </div>
-                <h2 className="text-3xl font-black text-gray-900 uppercase">Booking Confirmed!</h2>
-                <p className="text-gray-600 font-medium text-lg">
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900 uppercase">Booking Confirmed!</h2>
+                <p className="text-gray-600 font-medium text-base md:text-lg">
                   Thank you, {formData.fullName}. Our team will call you at {formData.phoneNumber} shortly to confirm your service.
                 </p>
                 <button
@@ -344,16 +344,16 @@ const BookingPage = () => {
                 <div className="space-y-4 pt-4">
                   <a
                     href="tel:02071013856"
-                    className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 md:py-5 rounded-2xl font-black uppercase tracking-tight shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-lg"
+                    className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 md:py-5 rounded-2xl font-black uppercase tracking-tight shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-lg text-center"
                   >
-                    <Phone size={22} fill="currentColor" />
-                    Call Us Now for Express Service
+                    <Phone size={20} md:size={22} fill="currentColor" />
+                    Call Now for Express Service
                   </a>
                   
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 md:py-5 rounded-2xl font-black uppercase tracking-tight shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-lg"
+                    className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 md:py-5 rounded-2xl font-black uppercase tracking-tight shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-lg"
                   >
                     {loading ? (
                       <Loader className="animate-spin" size={24} />
