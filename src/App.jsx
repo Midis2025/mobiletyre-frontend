@@ -15,6 +15,7 @@ import ServicesPage from './pages/ServicesPage';
 import LocationsPage from './pages/LocationsPage';
 import ServiceDetail from './pages/ServiceDetail';
 import WhatsAppButton from './components/WhatsAppButton';
+import FloatingCallButton from './components/FloatingCallButton';
 import LockingWheelNutRemoval from './pages/LockingWheelNutRemoval';
 import TrailerTyreFitting from './pages/TrailerTyreFitting';
 import TyrePartners from './components/TyrePartners';
@@ -64,6 +65,7 @@ function App() {
         </Routes>
         <Footer />
         <WhatsAppButton />
+        <FloatingCallButton />
       </div>
     </BrowserRouter>
   );

@@ -34,7 +34,7 @@ const TyreFinder = () => {
     // Available options for dropdowns
     const widthOptions = ['135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285'];
     const heightOptions = ['30', '35', '40', '45', '50', '55', '60', '65'];
-    const diameterOptions = [ 'R15', 'R16', 'R17', 'R18', 'R19', 'R20', 'R21', 'R22', 'R23', 'R24'];
+    const diameterOptions = ['15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
     const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
     const seasonOptions = ['Summer', 'Winter', 'All Season'];
 
@@ -261,7 +261,7 @@ const TyreFinder = () => {
                                         Search for <span className="text-[#FB7E10]">Tyres by Size</span>
                                     </h3>
                                     <p className="text-gray-500 text-sm font-medium leading-relaxed max-w-xl">
-                                        Enter your tyre measurements (e.g., <span className="text-black font-black">205/55 R16</span>). You can find these on your tyre's sidewall.
+                                        Enter your tyre measurements (e.g., <span className="text-black font-black">205/55 16</span>). You can find these on your tyre's sidewall.
                                     </p>
                                 </div>
 
@@ -547,8 +547,8 @@ const TyreFinder = () => {
                                                     {tyre.title || 'Tyre'}
                                                 </h3>
                                                 <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest whitespace-nowrap ml-2 ${tyre.inStock
-                                                        ? 'bg-green-100 text-green-700'
-                                                        : 'bg-red-100 text-red-700'
+                                                    ? 'bg-green-100 text-green-700'
+                                                    : 'bg-red-100 text-red-700'
                                                     }`}>
                                                     {tyre.inStock ? 'In Stock' : 'Out of Stock'}
                                                 </span>
@@ -605,9 +605,9 @@ const TyreFinder = () => {
                                 <p className="text-gray-500 max-w-md mx-auto mb-8 font-medium">
                                     Leave your details below and <span className="text-black font-black">our experts will call you back</span> to arrange your fitting, confirm availability and price.
                                 </p>
-                                
+
                                 <div className="max-w-md mx-auto bg-slate-50 border border-slate-100 p-6 sm:p-8 rounded-[2rem] text-left">
-                                     <form className="space-y-5" onSubmit={handleArrangeSubmit}>
+                                    <form className="space-y-5" onSubmit={handleArrangeSubmit}>
                                         <div className="space-y-1.5">
                                             <label className="text-[10px] font-black uppercase text-gray-400 tracking-widest pl-1">Mobile Number</label>
                                             <input
@@ -655,7 +655,7 @@ const TyreFinder = () => {
                                                 {arrangeSubmitting ? 'Requesting...' : 'Request A Call Back'}
                                             </button>
                                         </div>
-                                     </form>
+                                    </form>
                                 </div>
 
                                 <button
