@@ -69,7 +69,7 @@ const LocationsPage = () => {
          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[150px] -ml-64 -mb-64"></div>
 
          {/* ── HERO ── */}
-         <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 px-4 border-b border-gray-200 z-10 overflow-hidden shadow-sm">
+         <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 border-b border-gray-200 z-10 overflow-hidden shadow-sm">
             <div className="absolute inset-0 z-0">
                <img
                   src="https://images.unsplash.com/photo-1544436074-c603a16fc0c1?q=80&w=2070&auto=format&fit=crop"
@@ -82,7 +82,7 @@ const LocationsPage = () => {
             <div className="max-w-7xl mx-auto text-center space-y-8 relative z-10">
                <div className="inline-flex items-center gap-2.5 bg-orange-50 border border-orange-100 px-4 py-2 rounded-xl shadow-sm">
                   <span className="text-[#FB7E10] font-black uppercase text-[10px] tracking-widest animate-pulse">Nationwide Coverage</span>
-               </div>
+               </div> <br></br>
                <h1 className="text-5xl md:text-9xl font-black uppercase tracking-tighter leading-[0.8] text-black">
                   AREAS WE <br /> <span className="text-[#FB7E10]">COVER </span>
                </h1>
@@ -91,7 +91,7 @@ const LocationsPage = () => {
                </p>
 
                {/* Search BAR (Interactive) */}
-               <div className="max-w-xl mx-auto bg-white border border-gray-200 p-2 rounded-3xl sm:rounded-full shadow-2xl flex flex-col sm:flex-row items-center mt-12 group focus-within:ring-4 focus-within:ring-orange-100 transition-all">
+               <div className="max-w-xl mx-auto bg-white border border-gray-200 p-2 rounded-3xl sm:rounded-full shadow-2xl flex flex-col sm:flex-row items-center mt-16 md:mt-20 group focus-within:ring-4 focus-within:ring-orange-100 transition-all">
                   <div className="flex items-center flex-1 w-full px-6 py-2">
                      <Search size={20} className="text-gray-400 mr-3 group-focus-within:text-[#FB7E10] transition-colors" />
                      <input
@@ -113,13 +113,13 @@ const LocationsPage = () => {
          <section className="py-16 md:py-24 px-6 relative z-10 bg-[#F8FAFC]">
             <div className="max-w-7xl mx-auto">
 
-               {/* Results Count */}
-               <div className="mb-12 flex items-center justify-between">
+               {/* Results Count & Filters */}
+               <div className="mb-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
                   <div className="space-y-1">
                      <h2 className="text-2xl font-black uppercase tracking-tight text-black">Serviceable Zones</h2>
-                     <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Showing {filteredLocations.length} locations matching your search</p>
+                     <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Showing {filteredLocations.length} locations matching your search</p>
                   </div>
-                  <div className="hidden md:flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-4 text-xs md:text-sm font-black uppercase tracking-widest text-slate-400">
                      <button
                         onClick={() => setActiveRegion('All')}
                         className={`transition-colors hover:text-[#FB7E10] ${activeRegion === 'All' ? 'text-[#FB7E10]' : ''}`}
@@ -128,27 +128,27 @@ const LocationsPage = () => {
                      </button>
                      <button
                         onClick={() => setActiveRegion('Hampshire')}
-                        className={`flex items-center gap-1.5 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Hampshire' ? 'text-[#FB7E10]' : ''}`}
+                        className={`flex items-center gap-2 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Hampshire' ? 'text-[#FB7E10]' : ''}`}
                      >
-                        <Navigation size={14} className={activeRegion === 'Hampshire' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Hampshire
+                        <Navigation size={18} className={activeRegion === 'Hampshire' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Hampshire
                      </button>
                      <button
                         onClick={() => setActiveRegion('Surrey')}
-                        className={`flex items-center gap-1.5 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Surrey' ? 'text-[#FB7E10]' : ''}`}
+                        className={`flex items-center gap-2 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Surrey' ? 'text-[#FB7E10]' : ''}`}
                      >
-                        <Navigation size={14} className={activeRegion === 'Surrey' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Surrey
+                        <Navigation size={18} className={activeRegion === 'Surrey' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Surrey
                      </button>
                      <button
                         onClick={() => setActiveRegion('Berkshire')}
-                        className={`flex items-center gap-1.5 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Berkshire' ? 'text-[#FB7E10]' : ''}`}
+                        className={`flex items-center gap-2 transition-colors hover:text-[#FB7E10] ${activeRegion === 'Berkshire' ? 'text-[#FB7E10]' : ''}`}
                      >
-                        <Navigation size={14} className={activeRegion === 'Berkshire' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Berkshire
+                        <Navigation size={18} className={activeRegion === 'Berkshire' ? 'text-[#FB7E10]' : 'text-slate-300'} /> Berkshire
                      </button>
                      <button
                         onClick={() => document.getElementById('highways-section').scrollIntoView({ behavior: 'smooth' })}
-                        className="flex items-center gap-1.5 transition-colors hover:text-[#FB7E10]"
+                        className="flex items-center gap-2 transition-colors hover:text-[#FB7E10]"
                      >
-                        <Navigation size={14} className="text-slate-300" /> Highways
+                        <Navigation size={18} className="text-slate-300" /> Highways
                      </button>
                   </div>
                </div>
