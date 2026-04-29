@@ -128,33 +128,6 @@ const TyreFinderPage = () => {
                 </div>
             </section>
 
-            {/* ── SECTION 4 — TESTIMONIAL — SINGLE FEATURED CARD ────────────────── */}
-            <section className="bg-[#F1F3F6] py-16 sm:py-24 flex items-center justify-center px-4 overflow-hidden">
-                <div className="max-w-4xl w-full bg-white rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-16 shadow-xl border border-gray-100 text-center space-y-8 relative overflow-hidden">
-                    <div className="space-y-4">
-                        <div className="flex gap-1 justify-center">
-                            {[1, 2, 3, 4, 5].map((s) => (
-                                <Star key={s} size={24} fill="#FB7E10" className="text-[#FB7E10]" />
-                            ))}
-                        </div>
-                        <span className="block text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-gray-400">5-Star Rating</span>
-                    </div>
-
-                    <div className="space-y-6">
-                        <span className="block text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-[#FB7E10]">Featured Quote</span>
-                        <p className="text-xl sm:text-3xl md:text-4xl font-black text-black tracking-tight leading-tight italic">
-                            "Easiest way to find my Mercedes CLA tyres. Took exactly 3 seconds to get the right size and book a mobile fitting."
-                        </p>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-2 pt-4">
-                        <span className="text-black font-black uppercase text-sm sm:text-base tracking-widest">Mark S.</span>
-                        <div className="bg-slate-100 px-4 py-1.5 rounded-full">
-                            <span className="text-gray-500 font-bold text-[9px] sm:text-[10px] uppercase tracking-[0.2em]">Verified Customer from London</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* ── SECTION 5 — CLOSING CTA BANNER ─────────────────────────────── */}
             <section className="bg-[#0B1528] py-24 px-4 text-center relative overflow-hidden">

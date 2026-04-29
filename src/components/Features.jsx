@@ -158,24 +158,6 @@ const Features = () => {
             You'll speak to a real person who gives you a straight answer — no jargon, no upselling, just honest advice about what your tyres need and what it'll cost.  </p>
         </div>
 
-        {/* Card 4: Quote (Span 2) */}
-        <div className="lg:col-span-2 bg-[#1c3b7f] rounded-2xl md:rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg hover:shadow-xl transition-all">
-          <div className="p-6 md:p-10 flex-1 flex flex-col justify-center text-center md:text-left">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-4 md:mb-6 leading-tight uppercase">
-              "The best service I've ever experienced on the road."
-            </h3>
-            <p className="text-white/80 font-bold uppercase tracking-wider text-sm">
-              — James T., Porsche 911 Owner
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 bg-black relative h-48 md:h-auto">
-            <img
-              src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bHV4dXJ5JTIwY2FyfGVufDB8fDB8fHww"
-              alt="Testimonial Car"
-              className="w-full h-full object-cover grayscale brightness-125 transition-all hover:grayscale-0 duration-700"
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

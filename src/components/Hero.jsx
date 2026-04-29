@@ -50,7 +50,7 @@ const Hero = () => {
             </h1>
 
             <p className="max-w-md text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
-              Stuck with a flat? Got a puncture on your way to work? We come straight to you, any time of the day or night, anywhere across Surrey and Hampshire.
+              Stuck with a flat? Got a puncture on your way to work? We come straight to you 24/7 across <span className="text-white font-bold">Surrey, Hampshire</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full max-w-sm md:max-w-none">

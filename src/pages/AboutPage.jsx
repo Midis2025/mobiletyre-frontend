@@ -4,12 +4,6 @@ import { Phone, ArrowRight, Shield, Clock, Users, Wrench, MapPin, CheckCircle, Z
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 
-const stats = [
-  { value: '4.9★', label: 'Google Rating', sub: '500+ Verified Reviews' },
-  { value: '24/7', label: 'Available', sub: 'Every Day of the Year' },
-  { value: '10k+', label: 'Jobs Done', sub: 'Across Surrey & Hampshire' },
-  { value: '30min', label: 'Avg Response', sub: 'Guaranteed' },
-];
 
 const values = [
   {
@@ -117,20 +111,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ── STATS BAR ─────────────────────────────────────────────────────── */}
-      <section className="bg-[#0B1528] py-8 md:py-10 px-4 sm:px-10 lg:px-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((s, i) => (
-            <div key={i} className="text-center group">
-              <div className="text-3xl md:text-5xl font-black text-[#FB7E10] group-hover:scale-110 transition-transform duration-300">
-                {s.value}
-              </div>
-              <div className="text-white font-bold text-sm md:text-base mt-1">{s.label}</div>
-              <div className="text-gray-500 text-xs mt-0.5">{s.sub}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── OUR STORY ─────────────────────────────────────────────────────── */}
       <section className="bg-white py-6 md:py-8 px-4 sm:px-10 lg:px-20">

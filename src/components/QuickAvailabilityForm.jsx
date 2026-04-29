@@ -50,14 +50,14 @@ const QuickAvailabilityForm = () => {
               setPostcode(e.target.value);
               setError('');
             }}
-            placeholder="Enter your postcode"
+            placeholder="Enter postcode (e.g. GU11 or KT1)"
             className={`w-full pl-12 pr-4 py-4 bg-white border-2 ${error ? 'border-red-500' : 'border-gray-200'} rounded-2xl focus:border-yellow-400 focus:ring-0 transition-all font-semibold text-lg placeholder:text-gray-400 shadow-sm`}
           />
         </div>
 
         {error && (
           <p className="text-red-500 text-sm font-bold ml-2 animate-pulse">
-            {error}
+            Please enter a valid postcode (e.g. GU11 or KT1 2AA)
           </p>
         )}
 

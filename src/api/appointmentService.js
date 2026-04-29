@@ -55,8 +55,8 @@ export const validateUKPostcode = (postcode) => {
     return false;
   }
 
-  // UK postcode regex pattern
-  const postcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
+  // UK postcode regex pattern - allows both full (GU11 3HY) and partial (GU11, KT1)
+  const postcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?(\s?\d[A-Z]{2})?$/i;
   return postcodeRegex.test(postcode.trim());
 };
 

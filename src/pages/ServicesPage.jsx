@@ -3,14 +3,6 @@ import { Link } from 'react-router-dom';
 import Services from '../components/Services';
 import { Phone, Star, ShieldCheck, Wrench, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 
-/* ── Trust signals data ── */
-const trustSignals = [
-  { icon: Star, value: "4.9★", label: "Average Rating" },
-  { icon: ShieldCheck, value: "5,000+", label: "Jobs Completed" },
-  { icon: Clock, value: "24/7", label: "Always Available" },
-  { icon: Wrench, value: "7+", label: "Services Offered" },
-  { icon: CheckCircle, value: "100%", label: "Satisfaction Rate" },
-];
 
 const ServicesPage = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -59,18 +51,6 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* ── TRUST SIGNALS STRIP ── */}
-      <section className="bg-[#0B1528] py-8 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
-          {trustSignals.map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-2">
-              <item.icon size={22} className="text-[#FB7E10]" />
-              <span className="text-white font-black text-xl md:text-2xl">{item.value}</span>
-              <span className="text-slate-400 font-bold uppercase text-[10px] tracking-widest">{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ── CATEGORY QUICK-FILTER ── */}
       <section className="bg-white border-b border-gray-100 py-5 px-4 sticky top-[48px] z-40 shadow-sm">
