@@ -16,7 +16,7 @@ import QuickAvailabilityForm from './QuickAvailabilityForm';
 const Hero = () => {
 
   return (
-    <div className="relative min-h-[600px] flex items-center bg-gray-900 md:overflow-hidden">
+    <div className="relative min-h-[600px] flex items-center bg-gray-900 overflow-x-hidden md:overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 bg-[#1a1a1a]">
         <div className="sticky top-0 w-full h-[100dvh] flex justify-center items-center md:hidden">
@@ -33,10 +33,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-12 md:py-20 lg:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-10 md:py-20 lg:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
           {/* Left Column - Hero Text & CTAs */}
-          <div className="text-white space-y-6 text-center md:text-left flex flex-col items-center md:items-start bg-black/20 backdrop-blur-md p-6 sm:p-8 rounded-3xl md:bg-transparent md:backdrop-blur-none md:p-0 md:rounded-none border border-white/10 md:border-none shadow-2xl md:shadow-none mt-8 md:mt-0">
+          <div className="text-white space-y-4 md:space-y-6 text-center md:text-left flex flex-col items-center md:items-start bg-black/40 backdrop-blur-md p-5 sm:p-8 rounded-[2rem] md:bg-transparent md:backdrop-blur-none md:p-0 md:rounded-none border border-white/10 md:border-none shadow-2xl md:shadow-none mt-4 md:mt-0">
             <div className="inline-flex items-center gap-2 bg-[#33251a] border border-[#fb7e10]/30 px-3 md:px-4 py-1.5 rounded-full">
               <span className="text-orange-500">⚡</span>
               <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-orange-400">
@@ -73,7 +73,7 @@ const Hero = () => {
 
           {/* Right Column - Booking Form */}
           <div className="flex justify-center md:justify-end">
-            <div className="bg-white/95 backdrop-blur-md rounded-[2.5rem] p-6 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] w-full max-w-md relative border border-white/20">
+            <div className="bg-white/95 backdrop-blur-md rounded-[2rem] md:rounded-[2.5rem] p-5 sm:p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] w-full max-w-md relative border border-white/20">
               {/* Decorative Elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/40 rounded-full -mr-16 -mt-16 blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-100/20 rounded-full -ml-12 -mb-12 blur-3xl"></div>
