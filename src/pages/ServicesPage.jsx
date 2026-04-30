@@ -174,6 +174,44 @@ const ServicesPage = () => {
         </div>
 
       </section>
+
+      {/* ── TYRE RECYCLING & SCRAP HANDLING ── */}
+      <section className="bg-white py-16 md:py-24 px-6 border-t border-gray-100">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight">Tyre Recycling & Scrap Handling</h2>
+            <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
+              We responsibly collect and dispose of your old tyres. Our process meets industry and environmental standards, diverting scrap tyres from landfill and returning materials to the recycling stream.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 items-start">
+            <div className="space-y-4">
+              <h3 className="font-black text-lg">How it works</h3>
+              <ul className="text-gray-600 list-inside list-disc space-y-2">
+                <li>Collected on-site when we fit your new tyres or by appointment.</li>
+                <li>Inspected and separated — tyres suitable for re-use are set aside.</li>
+                <li>Non-reusable scrap tyres are routed to licensed recycling partners.</li>
+                <li>We provide a disposal receipt for commercial customers on request.</li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-black text-lg">Environmental standards</h3>
+              <p className="text-gray-600">We work with certified facilities that comply with UK waste regulations. Recovered rubber is repurposed for civil engineering, playground surfacing, and energy recovery where appropriate.</p>
+              <p className="text-gray-600 font-bold">No illegal dumping — ever.</p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-black text-lg">Pricing & notes</h3>
+              <p className="text-gray-600">Small fees may apply for disposal depending on tyre size and quantity. For fleet and commercial collections we offer contract rates and documentation for audit purposes.</p>
+              <a href="/contact" className="inline-flex items-center gap-3 bg-[#FB7E10] text-white px-6 py-3 rounded-2xl font-black uppercase tracking-widest hover:bg-orange-600 transition-all shadow-lg">
+                Enquire About Recycling
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

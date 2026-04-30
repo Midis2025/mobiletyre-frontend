@@ -121,4 +121,22 @@ export const servicesData = [
     rating: 4.8,
     reviews: 180
   }
+  ,
+  {
+    id: 'tyre-recycling',
+    title: "Tyre Recycling & Scrap Handling",
+    image: "/images/tyre recycling.avif",
+    category: "Standard",
+    description: "Responsible on-site collection and certified recycling of scrap tyres. We separate reusable tyres, recycle end-of-life rubber, and provide commercial disposal receipts.",
+    cta: "Enquire",
+    secondaryCta: "Learn More",
+    features: [
+      "Certified disposal partners",
+      "On-site collection",
+      "Fleet & commercial rates",
+      "Traceable receipts"
+    ],
+    rating: 4.7,
+    reviews: 95
+  }
 ];
