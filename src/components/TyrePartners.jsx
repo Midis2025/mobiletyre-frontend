@@ -2,21 +2,17 @@ import React from 'react';
 
 const TyrePartners = () => {
   const brands = [
-    { name: 'Bridgestone', logo: 'https://www.carlogos.org/tire-logos/bridgestone-logo.png' },
-    { name: 'Continental', logo: 'https://www.carlogos.org/tire-logos/continental-logo.png' },
-    { name: 'Pirelli', logo: 'https://www.carlogos.org/tire-logos/pirelli-logo.png' },
-    { name: 'Goodyear', logo: 'https://www.carlogos.org/tire-logos/goodyear-logo.png' },
-    { name: 'Dunlop', logo: 'https://www.carlogos.org/tire-logos/dunlop-logo.png' },
-    { name: 'Hankook', logo: 'https://www.carlogos.org/tire-logos/hankook-logo.png' },
-    { name: 'Yokohama', logo: 'https://www.carlogos.org/tire-logos/yokohama-logo.png' },
-    { name: 'Kumho', logo: 'https://www.carlogos.org/tire-logos/kumho-logo.png' },
-    { name: 'Toyo', logo: 'https://www.carlogos.org/tire-logos/toyo-logo.png' },
-    { name: 'Apollo', logo: 'https://www.carlogos.org/tire-logos/apollo-logo.png' },
-    { name: 'CEAT', logo: 'https://www.carlogos.org/tire-logos/ceat-logo.png' },
-    { name: 'MRF', logo: 'https://www.carlogos.org/tire-logos/mrf-logo.png' },
-    { name: 'Vogue', logo: 'https://www.carlogos.org/tire-logos/vogue-logo.png' },
-    { name: 'Atturo', logo: 'https://www.carlogos.org/tire-logos/atturo-logo.png' },
-    { name: 'Starfire', logo: 'https://www.carlogos.org/tire-logos/starfire-logo.png' },
+    { name: 'Apollo', logo: '/logo/maxxis.png' },
+    { name: 'CEAT', logo: '/logo/bridgestone.png' },
+    { name: 'Bf Good Rich', logo: '/logo/Bf Good Rich.png' },
+    { name: 'Bridgestone', logo: '/logo/bridgestone.png' },
+    { name: 'Continental', logo: '/logo/continental.png' },
+    { name: 'Dunlop', logo: '/logo/dumlop.png' },
+    { name: 'Dvanti', logo: '/logo/dvanti tires.webp' },
+    { name: 'Kumho', logo: '/logo/kumho tires.png' },
+    { name: 'Michelin', logo: '/logo/michelin.png' },
+    { name: 'Yokohama', logo: '/logo/yokohama.png' },
+    { name: 'MTC', logo: '/logo/logo.png' },
   ];
 
   return (
@@ -25,15 +21,15 @@ const TyrePartners = () => {
 
 
         <div className="flex-1 overflow-hidden relative group">
-          <div className="flex w-max animate-marquee items-center gap-12 md:gap-24">
+          <div className="flex w-max animate-marquee items-center gap-0">
             {[...brands, ...brands].map((brand, i) => (
-              <div key={i} className="flex-shrink-0 transition-all duration-500 hover:scale-110 group/card">
-                <div className="bg-white flex items-center justify-center p-3 w-24 h-16 md:w-32 md:h-20 transition-all duration-500">
+              <div key={i} className="flex-shrink-0 mr-8 md:mr-12 transition-all duration-500 hover:scale-105 group/card">
+                <div className="bg-white flex items-center justify-center w-24 h-16 md:w-32 md:h-20 p-0 transition-all duration-500">
                   <img
-                    src={brand.logo}
+                    src={encodeURI(brand.logo)}
                     alt={brand.name}
-                    className="h-8 md:h-12 w-auto object-contain transition-all cursor-pointer"
-                    onError={(e) => { e.currentTarget.closest('.group\\/card').style.display = 'none'; }}
+                    className="w-full h-full object-contain transition-all duration-500"
+                    onError={(e) => { const el = e.currentTarget.closest('.group\/card'); if (el) el.style.display = 'none'; }}
                   />
                 </div>
               </div>
