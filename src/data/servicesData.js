@@ -2,7 +2,7 @@
   {
     id: 'premium-tyre-service',
     title: "Premium Tyre Service",
-    image: "/images/premier.avif",
+    image: "/images/Premium Tyre Service.gif",
     category: "Standard",
     description: "We find the right tyre for your vehicle and budget, then fit and balance it at your location. Bridgestone, Continental, Goodyear — all available.",
     cta: "Book a Service",
@@ -124,7 +124,7 @@
   ,
   {
     id: 'tyre-recycling',
-    title: "Tyre Recycling & Scrap Handling",
+    title: "Tyre Recycling",
     image: "/images/tyre recycling.avif",
     category: "Standard",
     description: "Responsible on-site collection and certified recycling of scrap tyres. We separate reusable tyres, recycle end-of-life rubber, and provide commercial disposal receipts.",

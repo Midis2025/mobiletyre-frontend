@@ -106,9 +106,9 @@ const Features = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         {/* Card 1: Ultra-Rapid Deployment (Span 2) */}
-        <div className="lg:col-span-2 bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 relative overflow-hidden group hover:shadow-lg transition-all">
+          <div className="bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-6 relative overflow-hidden group hover:shadow-lg transition-all h-full">
           <div className="absolute right-0 bottom-0 pointer-events-none opacity-5 translate-x-1/4 translate-y-1/4 group-hover:scale-110 transition-transform duration-700">
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-96 h-96 text-white">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -130,7 +130,7 @@ const Features = () => {
         </div>
 
         {/* Card 2: Expertise Guaranteed */}
-        <div className="bg-[#0B1528] rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 text-white hover:shadow-xl transition-all">
+          <div className="bg-[#0B1528] rounded-2xl md:rounded-3xl p-6 text-white hover:shadow-xl transition-all h-full">
           <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 md:mb-8">
             <svg className="w-6 h-6 text-[#1c3b7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 15L15 21L21 21L18 15" />
@@ -146,7 +146,7 @@ const Features = () => {
         </div>
 
         {/* Card 3: 24/7 Kinetic Support */}
-        <div className="bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 hover:shadow-lg transition-all">
+          <div className="bg-[#1c3b7f] rounded-2xl md:rounded-3xl p-6 hover:shadow-lg transition-all h-full">
           <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 md:mb-8 border border-blue-400">
             <svg className="w-6 h-6 text-[#1c3b7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <circle cx="12" cy="12" r="10" />

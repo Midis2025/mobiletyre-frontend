@@ -45,12 +45,12 @@ const Hero = () => {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              The Help You Need, Exactly <br className="hidden lg:block" />
-              <span className="text-[#FB7E10]"> Where You Are.</span>
+              24/7 Tyre Help Across London <br className="hidden lg:block" />
+              <span className="text-[#FB7E10]">We Reach You in 30–40 Minutes.</span>
             </h1>
 
             <p className="max-w-md text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
-              Stuck with a flat? Got a puncture on your way to work? We come straight to you 24/7 across <span className="text-white font-bold">Surrey, Hampshire</span>
+              Real roadside emergencies don’t wait, and neither do we. With 24/7 emergency roadside help, our experts come to your location fast, wherever you are.<span className="text-white font-bold"></span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4 w-full max-w-sm md:max-w-none justify-center mx-auto">

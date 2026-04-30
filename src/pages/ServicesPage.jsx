@@ -175,11 +175,11 @@ const ServicesPage = () => {
 
       </section>
 
-      {/* ── TYRE RECYCLING & SCRAP HANDLING ── */}
+      {/* ── TYRE RECYCLING ── */}
       <section className="bg-white py-16 md:py-24 px-6 border-t border-gray-100">
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight">Tyre Recycling & Scrap Handling</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-black tracking-tight">Tyre Recycling</h2>
             <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
               We responsibly collect and dispose of your old tyres. Our process meets industry and environmental standards, diverting scrap tyres from landfill and returning materials to the recycling stream.
             </p>
