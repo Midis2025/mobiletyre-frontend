@@ -24,15 +24,15 @@ const ServiceDetail = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
             {/* ── HERO SECTION ───────────────────────── */}
-            <section className="relative h-[80vh] min-h-[600px] flex flex-col justify-end items-center overflow-hidden border-b-[10px] border-[#FB7E10]">
+            <section className="relative h-[65vh] min-h-[360px] flex flex-col justify-end items-center overflow-hidden border-b-[10px] border-[#FB7E10]">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
                         src={service.image}
                         alt={service.title}
-                        className={`w-full h-full ${service.fit === 'contain' ? 'object-contain bg-white' : 'object-cover'} scale-105`}
+                        className={`w-full h-full ${service.fit === 'contain' ? 'object-contain bg-white' : 'object-cover object-right-top md:object-cover md:object-center'}`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/80 to-black/30" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1528] via-[#0B1528]/60 to-black/20" />
                 </div>
 
                 {/* Hero Content */}

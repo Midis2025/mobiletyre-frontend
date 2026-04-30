@@ -1,4 +1,4 @@
-export const servicesData = [
+ export const servicesData = [
   {
     id: 'premium-tyre-service',
     title: "Premium Tyre Service",
@@ -138,5 +138,22 @@ export const servicesData = [
     ],
     rating: 4.7,
     reviews: 95
+  },
+  {
+    id: 'van-tyres',
+    title: "Van Tyres & Light Commercial",
+    image: "/images/mobile-tyre-champions-van1.jpeg",
+    category: "Specialist",
+    description: "On-site van tyre fitting and repair for light commercial vehicles. Our vans carry a wide stock of commercial tyre sizes and load-rated options to keep your business moving.",
+    cta: "Book Van Service",
+    secondaryCta: "Learn More",
+    features: [
+      "Load-rated tyre options",
+      "On-site balancing for vans",
+      "Fleet servicing available",
+      "Commercial documentation"
+    ],
+    rating: 4.8,
+    reviews: 320
   }
 ];

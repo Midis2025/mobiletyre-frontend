@@ -21,15 +21,15 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 bg-[#1a1a1a]">
         <div className="sticky top-0 w-full h-[100dvh] flex justify-center items-center md:hidden">
           <img
-            src="/images/mtc-social-media-15.avif"
-            alt="Tire background mobile"
-            className="w-full h-full object-cover object-center opacity-100"
+            src="/images/mobile-tyre-champions-van1.jpeg"
+            alt="Mobile Tyre Champions van mobile"
+            className="w-full h-full object-cover object-center"
           />
         </div>
         <img
-          src="/images/Untitled design (2).jpg.jpeg"
-          alt="Tire background"
-          className="hidden md:block w-full h-full object-cover opacity-50 md:scale-110"
+          src="/images/mobile-tyre-champions-van1.jpeg"
+          alt="Mobile Tyre Champions van"
+          className="hidden md:block w-full h-full object-cover md:object-center"
         />
       </div>
 

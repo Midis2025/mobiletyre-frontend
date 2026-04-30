@@ -30,6 +30,7 @@ const Navbar = () => {
       dropdown: [
         { label: 'Locking Wheel Nut Removal', to: '/services/locking-wheel-nut-removal' },
         { label: 'Mobile Trailer Tyre Fitting', to: '/services/trailer-tyre-fitting' },
+        { label: 'Van Tyres', to: '/services/van-tyres' },
       ]
     },
     { label: 'Services', to: '/services', icon: <Settings size={20} /> },
@@ -40,10 +41,10 @@ const Navbar = () => {
   const isActive = (to) => location.pathname === to;
 
   return (
-    <div className="sticky top-0 left-0 w-full z-[100] bg-[#FB7E10] shadow-xl">
+    <div className="sticky top-0 left-0 w-full z-[100]">
       <nav
-        className={`w-full grid grid-cols-3 lg:flex items-center justify-between px-4 md:px-10 h-20 md:h-24 transition-all duration-500 ${scrolled
-          ? 'bg-[#FB7E10]/95 backdrop-blur-2xl'
+        className={`w-full grid grid-cols-3 lg:flex items-center justify-between px-4 md:px-10 h-20 md:h-24 transition-all duration-500 shadow-xl ${scrolled
+          ? 'bg-[#FB7E10]/20 backdrop-blur-lg border-b border-white/10 lg:bg-[#FB7E10]/95 lg:backdrop-blur-none'
           : 'bg-[#FB7E10]'
           }`}
       >
