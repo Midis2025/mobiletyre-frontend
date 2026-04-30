@@ -36,7 +36,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-10 lg:px-20 relative z-10 py-10 md:py-20 lg:py-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
           {/* Left Column - Hero Text & CTAs */}
-          <div className="text-white space-y-4 md:space-y-6 text-center md:text-left flex flex-col items-center md:items-start bg-black/40 backdrop-blur-md p-5 sm:p-8 rounded-[2rem] md:bg-transparent md:backdrop-blur-none md:p-0 md:rounded-none border border-white/10 md:border-none shadow-2xl md:shadow-none mt-4 md:mt-0">
+          <div className="text-white space-y-4 md:space-y-6 text-center md:text-left flex flex-col items-center md:items-start bg-black/30 md:bg-black/10 backdrop-blur-sm md:backdrop-blur-sm p-5 sm:p-8 rounded-[2rem] md:rounded-[2rem] md:p-6 border border-white/10 md:border-white/20 shadow-2xl md:shadow-2xl mt-4 md:mt-0">
             <div className="inline-flex items-center gap-2 bg-[#33251a] border border-[#fb7e10]/30 px-3 md:px-4 py-1.5 rounded-full">
               <span className="text-orange-500">⚡</span>
               <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-orange-400">
