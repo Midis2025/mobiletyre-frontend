@@ -53,10 +53,10 @@ const Features = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
             </span>
-            <span className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">Official Partners</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Official Partners</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 leading-[0.9] mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-slate-900 leading-[0.9] mb-4">
             Trusted by the <span className="text-[#FB7E10]">Best in Motion</span>
           </h2>
          
@@ -97,7 +97,7 @@ const Features = () => {
 
       {/* Heading */}
       <div className="mb-10 md:mb-16 text-center md:text-left flex flex-col items-center md:items-start group">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-black max-w-xl uppercase">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-black max-w-xl">
           Precision Engineering.<br className="hidden sm:block" />Roadside Reality.
         </h2>
         <p className="mt-4 text-slate-500 text-sm md:text-lg font-bold max-w-2xl leading-relaxed">
@@ -123,7 +123,7 @@ const Features = () => {
                 <path d="M12 7V12" />
               </svg>
             </div>
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-white">Ultra-Rapid Deployment</h3>
+            <h3 className="text-2xl font-bold tracking-tight mb-4 text-white">Ultra-Rapid Deployment</h3>
             <p className="text-white/90 font-medium leading-relaxed max-w-md">
              When you're stuck, every minute counts. We keep technicians spread across Surrey and Hampshire so we reach you fast — and we give you a realistic arrival time and stick to it.   </p>
           </div>
@@ -139,7 +139,7 @@ const Features = () => {
               <path d="M12 6L12 12" />
             </svg>
           </div>
-          <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Expertise Guaranteed</h3>
+          <h3 className="text-2xl font-bold tracking-tight mb-4">Expertise Guaranteed</h3>
           <p className="text-gray-400 font-medium leading-relaxed mb-10">
             Cars, SUVs, vans, 4x4s — our trained technicians handle them all. You get main-dealer quality without ever having to leave your home or the roadside.  </p>
           

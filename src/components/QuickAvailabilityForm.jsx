@@ -32,7 +32,7 @@ const QuickAvailabilityForm = () => {
       </div>
 
       <div className="text-center mb-4 md:mb-8">
-        <h2 className="text-lg md:text-3xl font-black text-gray-900 mb-1 leading-tight uppercase tracking-tight">
+        <h2 className="text-lg md:text-3xl font-bold text-gray-900 mb-1 leading-tight tracking-tight">
           Find A Mobile <br className="md:hidden" /> Tyre Fitter Near You
         </h2>
       </div>
@@ -62,7 +62,7 @@ const QuickAvailabilityForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 rounded-full font-black text-base md:text-lg uppercase tracking-tight shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+          className="w-full bg-[#FB7E10] hover:bg-orange-600 text-white py-4 rounded-full font-bold text-base md:text-lg tracking-tight shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-3"
         >
           Check Availability Near You
         </button>

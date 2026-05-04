@@ -32,9 +32,9 @@ const TyreFinder = () => {
     const [arrangeMatched, setArrangeMatched] = useState(null); // existing callbacks for reg
 
     // Available options for dropdowns
-    const widthOptions = ['135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285'];
-    const heightOptions = ['30', '35', '40', '45', '50', '55', '60', '65'];
-    const diameterOptions = ['15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+    const widthOptions = ['125', '135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285', '295', '305', '315', '325', '335', '345', '355'];
+    const heightOptions = ['25', '30', '35', '40', '45', '50', '55', '60', '65', '70', '75', '80', '85'];
+    const diameterOptions = ['12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
     const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
     const seasonOptions = ['Summer', 'Winter', 'All Season'];
 
@@ -218,7 +218,7 @@ const TyreFinder = () => {
                 <div className="flex border-b border-gray-100 flex-wrap sm:flex-nowrap">
                     <button
                         onClick={() => setActiveTab('size')}
-                        className={`w-full sm:flex-1 py-4 sm:py-6 px-4 flex items-center justify-center gap-2 sm:gap-3 transition-all font-black text-xs sm:text-sm md:text-lg uppercase tracking-tight ${activeTab === 'size' ? 'bg-white text-black shadow-[inset_0_-4px_0_#FB7E10]' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}
+                        className={`w-full sm:flex-1 py-4 sm:py-6 px-4 flex items-center justify-center gap-2 sm:gap-3 transition-all font-bold text-xs sm:text-sm md:text-lg tracking-tight ${activeTab === 'size' ? 'bg-white text-black shadow-[inset_0_-4px_0_#FB7E10]' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}
                     >
                         <div className={`p-1.5 sm:p-2 rounded-lg ${activeTab === 'size' ? 'bg-[#FB7E10]/10 text-[#FB7E10]' : 'bg-gray-200 text-gray-400'}`}>
                             <Ruler size={16} className="sm:w-5 sm:h-5" />
@@ -227,7 +227,7 @@ const TyreFinder = () => {
                     </button>
                     <button
                         onClick={() => setActiveTab('reg')}
-                        className={`w-full sm:flex-1 py-4 sm:py-6 px-4 flex items-center justify-center gap-2 sm:gap-3 transition-all font-black text-xs sm:text-sm md:text-lg uppercase tracking-tight ${activeTab === 'reg' ? 'bg-white text-black shadow-[inset_0_-4px_0_#FB7E10]' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}
+                        className={`w-full sm:flex-1 py-4 sm:py-6 px-4 flex items-center justify-center gap-2 sm:gap-3 transition-all font-bold text-xs sm:text-sm md:text-lg tracking-tight ${activeTab === 'reg' ? 'bg-white text-black shadow-[inset_0_-4px_0_#FB7E10]' : 'bg-gray-50 text-gray-400 hover:bg-gray-100'}`}
                     >
                         <div className={`p-1.5 sm:p-2 rounded-lg ${activeTab === 'reg' ? 'bg-[#FB7E10]/10 text-[#FB7E10]' : 'bg-gray-200 text-gray-400'}`}>
                             <Car size={16} className="sm:w-5 sm:h-5" />
@@ -257,7 +257,7 @@ const TyreFinder = () => {
                         {activeTab === 'size' ? (
                             <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
                                 <div className="space-y-4">
-                                    <h3 className="text-3xl font-black text-black tracking-tight uppercase">
+                                    <h3 className="text-3xl font-bold text-black tracking-tight">
                                         Search for <span className="text-[#FB7E10]">Tyres by Size</span>
                                     </h3>
                                     <p className="text-gray-500 text-sm font-medium leading-relaxed max-w-xl">
@@ -369,7 +369,7 @@ const TyreFinder = () => {
 
                                         <button
                                             type="submit"
-                                            className="w-full sm:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-8 sm:px-12 py-5 sm:py-6 rounded-xl sm:rounded-2xl font-black uppercase tracking-widest text-base sm:text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3 group"
+                                            className="w-full sm:w-auto bg-[#FB7E10] hover:bg-orange-600 text-white px-8 sm:px-12 py-5 sm:py-6 rounded-xl sm:rounded-2xl font-bold tracking-widest text-base sm:text-lg shadow-xl shadow-orange-900/10 transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3 group"
                                             disabled={loading}
                                         >
                                             {loading ? (

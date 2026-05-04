@@ -24,14 +24,16 @@ const HowToReadTyre = () => {
 
               <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-sm text-left">
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
-                  <span>🛞</span> Quick visual guide (205/55 R16)
+                  <span>🛞</span> Quick visual guide (185/75 R17 82S)
                 </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    { val: '205', title: 'Tyre width', desc: 'Measured in millimetres (how much tyre touches the road)' },
-                    { val: '55', title: 'Aspect ratio', desc: 'Sidewall height as a % of width (comfort vs sport feel)' },
-                    { val: 'R', title: 'Construction type', desc: 'Radial build (standard for modern tyres)' },
-                    { val: '16', title: 'Wheel size', desc: 'Diameter of the rim in inches' },
+                    { val: '185', title: 'Tyre width', desc: 'Width in millimetres (185mm)' },
+                    { val: '75', title: 'Aspect ratio', desc: 'Sidewall height as a % of width (75% of 185mm)' },
+                    { val: 'R', title: 'Radial', desc: 'Standard radial construction for modern cars' },
+                    { val: '17', title: 'Wheel size', desc: 'The rim diameter in inches - must match your wheel size' },
+                    { val: '82', title: 'Load index', desc: 'Max weight capacity per tyre (82 = 475kg)' },
+                    { val: 'S', title: 'Speed rating', desc: 'Max speed capability (S = 112mph / 180km/h)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-[#FB7E10]"></div>
@@ -46,13 +48,12 @@ const HowToReadTyre = () => {
 
               <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-sm mt-3 text-left">
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-start sm:items-center gap-2 mb-3">
-                  <span className="mt-1 sm:mt-0">🔍</span> What about the extra numbers? <br className="hidden sm:hidden" /> (P 185 / 75 R 17 82 S)
+                  <span className="mt-1 sm:mt-0">🔍</span> Tyre Class & Service Type
                 </h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    { val: 'P', title: 'Tyre class', desc: 'Passenger vehicle tyre' },
-                    { val: '82', title: 'Load index', desc: 'Maximum weight capacity' },
-                    { val: 'S', title: 'Speed rating', desc: 'Maximum safe speed' },
+                    { val: 'P', title: 'Tyre class', desc: 'P stands for Passenger vehicle (Standard car tyres)' },
+                    { val: 'LT', title: 'Light Truck', desc: 'LT stands for Light Truck (Vans and pickups)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-[#FB7E10]"></div>

@@ -28,7 +28,7 @@ const Process = () => {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                  <p className="text-green-700 text-[10px] font-black uppercase tracking-widest leading-none">Technician Deployed</p>
+                  <p className="text-green-700 text-[10px] font-bold tracking-widest leading-none">Technician Deployed</p>
                 </div>
                 <p className="text-black font-black uppercase text-xl leading-tight tracking-tight">MISSION STATUS: <span className="text-green-600">IN-FLIGHT</span></p>
               </div>
@@ -42,8 +42,8 @@ const Process = () => {
             <div className="inline-flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-xl">
               <span className="text-[#FB7E10] font-black uppercase text-[10px] tracking-widest tracking-tighter">Operational Protocol</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter leading-tight md:leading-[0.85] text-black uppercase">
-              FLAT TYRE? <br /> <span className="text-[#FB7E10]">REACH US INSTANTLY</span>
+            <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight md:leading-[0.85] text-black">
+              Flat Tyre? <br /> <span className="text-[#FB7E10]">Reach us instantly</span>
             </h2>
             <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto md:mx-0">A flat tyre is stressful enough without the wait. Our 24/7 emergency callout covers all of Surrey and Hampshire — call us and we'll be on our way.</p>
           </div>
@@ -88,7 +88,7 @@ const Process = () => {
           </div>
 
           <div className="pt-4 md:pt-8 flex justify-center">
-            <a href="tel:02071013856" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95">
+            <a href="tel:02071013856" className="inline-flex items-center justify-center gap-4 bg-[#FB7E10] text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-bold tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/10 active:scale-95">
               GET TYRES NOW <ArrowRight size={18} />
             </a>
           </div>

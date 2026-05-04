@@ -39,10 +39,10 @@ const TyreFinderPage = () => {
                     </div>
 
                     <div className="space-y-4 max-w-4xl mx-auto">
-                        <h1 className="text-3xl sm:text-5xl md:text-8xl font-black uppercase tracking-tight leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-                            REGISTRATION <br />
+                        <h1 className="text-3xl sm:text-5xl md:text-8xl font-bold tracking-tight leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                            Registration <br />
                             <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #FB7E10 0%, #ffb347 100%)' }}>
-                                LOOKUP TOOL
+                                Lookup Tool
                             </span>
                         </h1>
                         <div className="w-16 sm:w-24 h-1.5 sm:h-2 bg-[#FB7E10] mx-auto rounded-full"></div>
@@ -77,8 +77,8 @@ const TyreFinderPage = () => {
 
                     {/* Section Header */}
                     <div className="max-w-3xl space-y-4">
-                        <h2 className="text-4xl md:text-6xl font-black text-black tracking-tighter uppercase">
-                            WHY ACCURACY <br /> <span className="text-[#FB7E10]">MATTERS</span>
+                        <h2 className="text-4xl md:text-6xl font-bold text-black tracking-tighter">
+                            Why accuracy <br /> <span className="text-[#FB7E10]">matters</span>
                         </h2>
                         <p className="text-gray-500 font-medium text-lg md:text-xl">Every car is unique. Our lookup tool ensures you get the exact performance your car was engineered for.</p>
                     </div>
@@ -136,14 +136,14 @@ const TyreFinderPage = () => {
                 <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#FB7E10]/10 rounded-full blur-3xl -mb-32"></div>
 
                 <div className="max-w-4xl mx-auto space-y-12 relative z-10">
-                    <h2 className="text-4xl md:text-7xl font-black text-white uppercase tracking-tighter leading-none">
-                        READY TO GET <br /> <span className="text-[#FB7E10]">MOVING?</span>
+                    <h2 className="text-4xl md:text-7xl font-bold text-white uppercase tracking-tighter leading-none">
+                        Ready to get <br /> <span className="text-[#FB7E10]">moving?</span>
                     </h2>
                     
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                         <Link 
                             to="/about" 
-                            className="w-full sm:w-auto px-12 py-5 bg-[#FB7E10] text-white rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/20 active:scale-95 text-center"
+                            className="w-full sm:w-auto px-12 py-5 bg-[#FB7E10] text-white rounded-2xl font-bold tracking-widest text-sm hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/20 active:scale-95 text-center"
                         >
                             Learn About Us
                         </Link>

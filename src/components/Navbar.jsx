@@ -22,7 +22,7 @@ const Navbar = () => {
   const links = [
     { label: 'Home', to: '/', icon: <Home size={20} /> },
     { label: 'About', to: '/about', icon: <Info size={20} /> },
-    { label: 'Find Tyres', to: '/find-tyres', isNew: true, icon: <Search size={20} /> },
+    { label: 'Find Tyres', to: '/find-tyres', icon: <Search size={20} /> },
     {
       label: 'Commercial Tyres',
       to: '#',
@@ -73,7 +73,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Links (Center on Desktop) */}
-        <div className="hidden lg:flex flex-[3] items-center justify-center gap-4 xl:gap-8 text-[12px] xl:text-[13px] font-bold text-white uppercase tracking-wider">
+        <div className="hidden lg:flex flex-[3] items-center justify-center gap-4 xl:gap-8 text-[12px] xl:text-[13px] font-bold text-white tracking-widest px-2">
           {links.map(({ label, to, isNew, dropdown }) => (
             <div key={label} className="relative group">
               <Link
@@ -92,7 +92,7 @@ const Navbar = () => {
               {dropdown && (
                 <div className="absolute top-full left-[-20px] mt-4 w-72 bg-white backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-[#0B1528]/5 rounded-2xl py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 translate-y-4 group-hover:translate-y-0 z-50">
                   {dropdown.map((subItem) => (
-                    <Link key={subItem.to} to={subItem.to} className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-slate-50 transition-all font-semibold uppercase whitespace-nowrap">{subItem.label}</Link>
+                    <Link key={subItem.to} to={subItem.to} className="block px-6 py-3 text-[13px] text-slate-600 hover:text-[#FB7E10] hover:bg-slate-50 transition-all font-semibold whitespace-nowrap">{subItem.label}</Link>
                   ))}
                 </div>
               )}
@@ -159,7 +159,7 @@ const Navbar = () => {
                       {icon}
                     </div>
                     <div className="flex flex-col items-start">
-                      <span className="font-black text-sm uppercase tracking-tight">{label}</span>
+                      <span className="font-bold text-sm tracking-tight">{label}</span>
                       {isNew && <span className="text-[9px] font-black tracking-widest text-[#FB7E10]">JUST ADDED</span>}
                     </div>
                   </div>

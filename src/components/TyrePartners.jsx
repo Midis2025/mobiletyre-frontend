@@ -8,7 +8,6 @@ const TyrePartners = () => {
     { name: 'Bridgestone', logo: '/logo/bridgestone.png' },
     { name: 'Continental', logo: '/logo/continental.png' },
     { name: 'Dunlop', logo: '/logo/dumlop.png' },
-    { name: 'Dvanti', logo: '/logo/dvanti tires.webp' },
     { name: 'Kumho', logo: '/logo/kumho tires.png' },
     { name: 'Michelin', logo: '/logo/michelin.png' },
     { name: 'Yokohama', logo: '/logo/yokohama.png' },

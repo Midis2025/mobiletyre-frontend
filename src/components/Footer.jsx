@@ -55,7 +55,7 @@ const Footer = () => {
 
                     {/* Column 2: Our Services */}
                     <div className="space-y-6 flex flex-col items-center">
-                        <h4 className="text-white font-bold text-lg uppercase tracking-wider">Our Services</h4>
+                        <h4 className="text-white font-bold text-lg">Our Services</h4>
                         <div className="flex flex-col space-y-3.5">
                             {[
                                 { name: 'Emergency Tyre Fitting', path: '/services/emergency-tyre-fitting' },
@@ -76,7 +76,7 @@ const Footer = () => {
 
                     {/* Column 3: Quick Links */}
                     <div className="space-y-6 flex flex-col items-center">
-                        <h4 className="text-white font-bold text-lg uppercase tracking-wider">Quick Links</h4>
+                        <h4 className="text-white font-bold text-lg">Quick Links</h4>
                         <div className="flex flex-col space-y-3.5 text-gray-400 text-sm font-medium">
                             {[
                                 { name: 'Home', path: '/' },
@@ -123,6 +123,31 @@ const Footer = () => {
                                 </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* Popular Tyre Sizes Section */}
+                <div className="mt-20 pt-12 border-t border-white/5">
+                    <h4 className="text-white font-bold text-lg mb-8">Popular Tyre Sizes</h4>
+                    <div className="flex flex-wrap justify-center gap-2 max-w-6xl mx-auto">
+                        {[
+                            '205/55 R16', '225/45 R17', '195/65 R15', '225/40 R18', '185/65 R15', 
+                            '215/55 R17', '225/50 R17', '235/45 R18', '175/65 R14', '205/45 R17', 
+                            '245/40 R18', '255/35 R19', '195/55 R16', '215/60 R16', '235/40 R18',
+                            '185/60 R15', '215/50 R17', '225/55 R17', '205/60 R16', '225/45 R18',
+                            '255/40 R19', '275/35 R19', '235/35 R19', '255/35 R18', '245/45 R18',
+                            '215/45 R17', '205/50 R17', '195/60 R15', '175/70 R14', '185/55 R15',
+                            '255/30 R20', '285/30 R20', '275/40 R20', '315/35 R20', '295/35 R21',
+                            '235/55 R17', '235/60 R18', '225/65 R17', '215/65 R16', '235/50 R18'
+                        ].map((size) => (
+                            <Link 
+                                key={size}
+                                to={`/find-tyres?size=${size.replace(/\s+/g, '')}`}
+                                className="text-[10px] font-bold text-gray-500 hover:text-[#FB7E10] hover:bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-md transition-all duration-200 uppercase tracking-tighter"
+                            >
+                                {size}
+                            </Link>
+                        ))}
                     </div>
                 </div>
 
