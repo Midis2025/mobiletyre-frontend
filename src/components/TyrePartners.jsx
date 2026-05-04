@@ -42,3 +42,10 @@ const TyrePartners = () => {
 };
 
 export default TyrePartners;
+
+
+
+
+
+
+
