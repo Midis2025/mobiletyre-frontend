@@ -46,8 +46,8 @@ const Features = () => {
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 
       {/* Premium Brands Trust Section */}
-      <div className="relative z-10 w-full mb-8 md:mb-12">
-        <div className="flex flex-col items-center justify-center mb-16 text-center">
+      <div className="relative z-10 w-full mb-4 md:mb-6">
+        <div className="flex flex-col items-center justify-center mb-8 text-center">
           <div className="inline-flex items-center gap-2.5 bg-white border border-slate-200/60 px-4 py-1.5 rounded-full mb-6 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)]">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -75,7 +75,7 @@ const Features = () => {
           <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-gradient-to-l from-[#FB7E10] via-[#FB7E10]/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Single Row: Forward Motion */}
-          <div className="flex w-max animate-marquee-slow items-center py-10 relative z-10">
+          <div className="flex w-max animate-marquee-slow items-center py-6 relative z-10">
             {[...brandLogos, ...brandLogos].map((logo, i) => (
               <div
                 key={`r1-${i}`}

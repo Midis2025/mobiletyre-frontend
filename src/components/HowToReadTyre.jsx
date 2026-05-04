@@ -10,41 +10,60 @@ const HowToReadTyre = () => {
 
           {/* Content Area */}
           <div className="lg:w-1/2 space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 z-10 w-full text-center lg:text-left">
-            <div className="space-y-2 xs:space-y-3">
+            <div className="space-y-2 xs:space-y-3 text-center lg:text-left">
               <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight leading-tight">
                 How to Read <span className="text-[#FB7E10] block xs:inline">A Tyre Size</span>
               </h2>
               <div className="w-10 xs:w-12 sm:w-16 md:w-20 h-0.5 xs:h-1 sm:h-1.5 md:h-2 bg-[#FB7E10] transform -skew-x-12 mx-auto lg:mx-0"></div>
             </div>
 
-            <div className="space-y-3 xs:space-y-4">
-              <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed font-medium px-1 xs:px-0">
-                See a number like 205/55 R16 on your tyre and have no idea what it means? You're not alone — most drivers don't. <span className="text-[#FB7E10] font-black">Here's the short version:</span>
+            <div className="space-y-4 pt-2">
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-medium px-1 xs:px-0 text-center lg:text-left">
+                Looks confusing at first glance — but it’s simpler than it looks.
               </p>
 
-              <ul className="space-y-2 xs:space-y-2.5 sm:space-y-3 pt-1 xs:pt-2 text-center lg:text-left">
-                {[
-                  { val: '205', desc: 'tyre width in millimetres' },
-                  { val: '55', desc: 'sidewall height as a percentage of the width' },
-                  { val: 'R', desc: 'radial construction (standard for UK roads)' },
-                  { val: '16', desc: 'wheel rim diameter in inches' },
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 xs:gap-3 group px-1 xs:px-0">
-                    <div className="mt-0.5 xs:mt-1 flex-shrink-0 w-4 xs:w-5 h-4 xs:h-5 rounded-full bg-orange-50 flex items-center justify-center group-hover:bg-[#FB7E10] transition-colors">
-                      <div className="w-1 xs:w-1.5 h-1 xs:h-1.5 rounded-full bg-[#FB7E10] group-hover:bg-white transition-colors"></div>
-                    </div>
-                    <span className="text-xs xs:text-sm sm:text-base md:text-base lg:text-lg text-slate-700 font-bold leading-snug">
-                      <span className="text-[#FB7E10]">{item.val}</span> — {item.desc}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-sm text-left">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2 mb-3">
+                  <span>🛞</span> Quick visual guide (205/55 R16)
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { val: '205', title: 'Tyre width', desc: 'Measured in millimetres (how much tyre touches the road)' },
+                    { val: '55', title: 'Aspect ratio', desc: 'Sidewall height as a % of width (comfort vs sport feel)' },
+                    { val: 'R', title: 'Construction type', desc: 'Radial build (standard for modern tyres)' },
+                    { val: '16', title: 'Wheel size', desc: 'Diameter of the rim in inches' },
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-[#FB7E10]"></div>
+                      <div className="text-sm sm:text-base text-slate-700">
+                        <span className="font-bold text-slate-900"><span className="text-[#FB7E10]">{item.val}</span> &rarr; {item.title}</span><br/>
+                        <span className="text-slate-500 text-xs sm:text-sm">{item.desc}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <div className="pt-2 xs:pt-3 sm:pt-4 border-t border-slate-100">
-              <p className="text-xs xs:text-sm sm:text-base md:text-base lg:text-lg text-slate-500 leading-relaxed font-semibold px-1 xs:px-0">
-                Not sure about yours? Just give us your number plate — we'll look up the exact size your vehicle needs in about 30 seconds.
-              </p>
+              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-sm mt-3 text-left">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-start sm:items-center gap-2 mb-3">
+                  <span className="mt-1 sm:mt-0">🔍</span> What about the extra numbers? <br className="hidden sm:hidden" /> (P 185 / 75 R 17 82 S)
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { val: 'P', title: 'Tyre class', desc: 'Passenger vehicle tyre' },
+                    { val: '82', title: 'Load index', desc: 'Maximum weight capacity' },
+                    { val: 'S', title: 'Speed rating', desc: 'Maximum safe speed' },
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-[#FB7E10]"></div>
+                      <div className="text-sm sm:text-base text-slate-700">
+                        <span className="font-bold text-slate-900"><span className="text-[#FB7E10]">{item.val}</span> &rarr; {item.title}</span><br/>
+                        <span className="text-slate-500 text-xs sm:text-sm">{item.desc}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <div className="pt-3 xs:pt-4 sm:pt-5 md:pt-6">

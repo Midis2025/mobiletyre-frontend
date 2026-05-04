@@ -8,6 +8,7 @@ import Services from './components/Services';
 import HowToReadTyre from './components/HowToReadTyre';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import HowItWorks from './components/HowItWorks';
 import AboutPage from './pages/AboutPage';
 import TyreFinderPage from './pages/TyreFinderPage';
 import ContactPage from './pages/ContactPage';
@@ -39,6 +40,7 @@ const HomePage = () => (
     <Process />
     <HowToReadTyre />
     <Services />
+    <HowItWorks />
     <CTA />
   </>
 );

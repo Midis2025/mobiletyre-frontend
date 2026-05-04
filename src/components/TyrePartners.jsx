@@ -12,7 +12,6 @@ const TyrePartners = () => {
     { name: 'Kumho', logo: '/logo/kumho tires.png' },
     { name: 'Michelin', logo: '/logo/michelin.png' },
     { name: 'Yokohama', logo: '/logo/yokohama.png' },
-    { name: 'MTC', logo: '/logo/logo.png' },
   ];
 
   return (
@@ -29,7 +28,7 @@ const TyrePartners = () => {
                     src={encodeURI(brand.logo)}
                     alt={brand.name}
                     className="w-full h-full object-contain transition-all duration-500"
-                    onError={(e) => { const el = e.currentTarget.closest('.group\/card'); if (el) el.style.display = 'none'; }}
+                    onError={(e) => { const el = e.currentTarget.closest('.group\\\\/card'); if (el) el.style.display = 'none'; }}
                   />
                 </div>
               </div>

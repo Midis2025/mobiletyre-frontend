@@ -25,20 +25,7 @@ const TrailerTyreFitting = () => {
                         Mobile Trailer <br className="hidden md:block"/> <span className="text-[#FB7E10]">Tyre Fitting</span>
                     </h1>
                     
-                    <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
-                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
-                            <ShieldCheck size={20} className="text-[#FB7E10]" />
-                            <span>10/10 Safety Rated</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
-                            <Zap size={20} className="text-[#FB7E10]" />
-                            <span>Rapid 60m Arrival</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-slate-300 font-bold text-sm md:text-base">
-                            <Star size={20} className="text-[#FB7E10]" />
-                            <span>4.9/5 Star Reviews</span>
-                        </div>
-                    </div>
+
 
                     <p className="text-slate-300 max-w-2xl mx-auto font-medium text-base md:text-xl mb-10 leading-relaxed px-4 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
                         Don’t drive on dangerous tyres. Our specialist mobile units come to your trailer, RV, or campervan 24/7/365.

@@ -24,7 +24,7 @@ const ServiceDetail = () => {
     return (
         <div className="bg-slate-50 min-h-screen">
             {/* ── HERO SECTION ───────────────────────── */}
-            <section className="relative h-[65vh] min-h-[360px] flex flex-col justify-end items-center overflow-hidden border-b-[10px] border-[#FB7E10]">
+            <section className="relative min-h-[60vh] md:min-h-[70vh] flex flex-col justify-end items-center overflow-hidden border-b-[10px] border-[#FB7E10] pt-28">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -45,7 +45,7 @@ const ServiceDetail = () => {
                         </div>
                     )}
                     
-                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-6 drop-shadow-2xl">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-[1] mb-6 drop-shadow-2xl">
                         {service.title}
                     </h1>
                     
@@ -90,21 +90,23 @@ const ServiceDetail = () => {
             </section>
 
             {/* ── TRUST SIGNALS BAR (Desktop mainly) ───────────────────────────── */}
-            <section className="hidden md:block bg-[#0B1528]">
-                <div className="max-w-7xl mx-auto flex justify-around py-6 px-10">
-                    {[
-                        { icon: Clock, title: isEmergency ? "Rapid 30-60 Min Response" : "Same Day Availability" },
-                        { icon: Star, title: `${service.rating || '4.9'} Average Rating (${service.reviews || '500+'} reviews)` },
-                        { icon: ShieldCheck, title: "Over 5,000 Jobs Completed" },
-                        { icon: Wrench, title: "Fully Equipped Mobile Units" }
-                    ].map((trust, idx) => (
-                        <div key={idx} className="flex items-center gap-3 text-white">
-                            <trust.icon size={24} className="text-[#FB7E10]" />
-                            <span className="font-bold text-sm tracking-wide">{trust.title}</span>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            {service.id !== 'van-tyres' && (
+                <section className="hidden md:block bg-[#0B1528]">
+                    <div className="max-w-7xl mx-auto flex justify-around py-6 px-10">
+                        {[
+                            { icon: Clock, title: isEmergency ? "Rapid 30-60 Min Response" : "Same Day Availability" },
+                            { icon: Star, title: `${service.rating || '4.9'} Average Rating (${service.reviews || '500+'} reviews)` },
+                            { icon: ShieldCheck, title: "Over 5,000 Jobs Completed" },
+                            { icon: Wrench, title: "Fully Equipped Mobile Units" }
+                        ].map((trust, idx) => (
+                            <div key={idx} className="flex items-center gap-3 text-white">
+                                <trust.icon size={24} className="text-[#FB7E10]" />
+                                <span className="font-bold text-sm tracking-wide">{trust.title}</span>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {/* ── SERVICE DETAILS & PROCESS ────────────────────────────────────── */}
             <section className="py-16 md:py-24 px-4 sm:px-10 lg:px-20 bg-white">

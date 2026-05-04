@@ -53,7 +53,7 @@
   {
     id: '24-7-tyre-service',
     title: "24/7 Tyre Service",
-    image: "/images/24 7 tyre.avif",
+    image: "/images/uuwfxmut2k4atratyvcx.avif",
     priority: true,
     category: "Emergency",
     description: "Bank holidays, 2am, rush hour — it doesn't matter. If you've got a tyre problem, we're available and we'll come to you, no questions asked.",
@@ -142,7 +142,7 @@
   {
     id: 'van-tyres',
     title: "Van Tyres & Light Commercial",
-    image: "/images/mobile-tyre-champions-van1.jpeg",
+    image: "/images/tmf2ku38t4uvma6ayydt.avif",
     category: "Specialist",
     description: "On-site van tyre fitting and repair for light commercial vehicles. Our vans carry a wide stock of commercial tyre sizes and load-rated options to keep your business moving.",
     cta: "Book Van Service",
