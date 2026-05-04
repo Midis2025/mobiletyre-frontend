@@ -42,8 +42,8 @@ const ServicesPage = () => {
           <div className="inline-flex items-center gap-2.5 bg-orange-50 border border-orange-100 px-4 py-2 rounded-xl shadow-sm">
             <span className="text-[#FB7E10] font-black uppercase text-[10px] tracking-widest animate-pulse">Professional Mobile Units</span>
           </div>
-          <h1 className="text-5xl md:text-9xl font-black uppercase tracking-tighter leading-[0.85] text-black">
-            OUR <span className="text-[#FB7E10]">SERVICES</span>
+          <h1 className="text-5xl md:text-9xl font-black tracking-tighter leading-[0.85] text-black">
+            Our <span className="text-[#FB7E10]">Services</span>
           </h1>
           <p className="text-gray-500 text-base md:text-2xl font-medium max-w-3xl mx-auto leading-relaxed">
             High-precision mobile tyre solutions delivered at your request. Fast, reliable execution available 24 hours a day.

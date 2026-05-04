@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Car, Ruler, ChevronDown, AlertCircle } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const TyreFinder = () => {
     const [activeTab, setActiveTab] = useState('size');
@@ -9,6 +10,7 @@ const TyreFinder = () => {
     const [error, setError] = useState('');
     const [sortBy, setSortBy] = useState('relevance');
     const tyreResultsRef = useRef(null);
+    const location = useLocation();
 
     // Form States
     const [width, setWidth] = useState('');
@@ -32,7 +34,7 @@ const TyreFinder = () => {
     const [arrangeMatched, setArrangeMatched] = useState(null); // existing callbacks for reg
 
     // Available options for dropdowns
-    const widthOptions = ['125', '135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285', '295', '305', '315', '325', '335', '345', '355'];
+    const widthOptions = ['125', '135', '145', '155', '165', '175', '185', '195', '205', '215', '225', '235', '245', '255', '265', '275', '285', '295', '305', '315'];
     const heightOptions = ['25', '30', '35', '40', '45', '50', '55', '60', '65', '70', '75', '80', '85'];
     const diameterOptions = ['12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
     const brandOptions = ['', 'Pirelli', 'Continental', 'Goodyear', 'Bridgestone', 'Dunlop'];
@@ -68,6 +70,33 @@ const TyreFinder = () => {
     useEffect(() => {
         if (regNumber && !arrangeReg) setArrangeReg(regNumber);
     }, [regNumber]);
+
+
+    // Parse URL parameters for pre-selecting tyre size
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const sizeParam = params.get('size');
+        
+        if (sizeParam) {
+            // Expected format: "205/55 R16" or "205/55R16"
+            const match = sizeParam.match(/(\d{3})\/(\d{2})\s?R(\d{2})/i);
+            if (match) {
+                const [_, w, h, d] = match;
+                
+                // Only set if they are in the available options
+                if (widthOptions.includes(w)) setWidth(w);
+                if (heightOptions.includes(h)) setHeight(h);
+                if (diameterOptions.includes(d)) setDiameter(d);
+                
+                setActiveTab('size');
+                
+                // Optional: Automatically trigger search if all fields are filled
+                if (widthOptions.includes(w) && heightOptions.includes(h) && diameterOptions.includes(d)) {
+                    setHasSearched(true);
+                }
+            }
+        }
+    }, [location.search]);
 
     const handleRegSearch = async (e) => {
         e.preventDefault();

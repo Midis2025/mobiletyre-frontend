@@ -11,8 +11,8 @@ const HowToReadTyre = () => {
           {/* Content Area */}
           <div className="lg:w-1/2 space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 z-10 w-full text-center lg:text-left">
             <div className="space-y-2 xs:space-y-3 text-center lg:text-left">
-              <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 uppercase tracking-tight leading-tight">
-                How to Read <span className="text-[#FB7E10] block xs:inline">A Tyre Size</span>
+              <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+                How to Read <span className="text-[#FB7E10] block xs:inline">a Tyre Size</span>
               </h2>
               <div className="w-10 xs:w-12 sm:w-16 md:w-20 h-0.5 xs:h-1 sm:h-1.5 md:h-2 bg-[#FB7E10] transform -skew-x-12 mx-auto lg:mx-0"></div>
             </div>

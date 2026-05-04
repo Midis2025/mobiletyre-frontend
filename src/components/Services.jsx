@@ -12,8 +12,8 @@ const Services = ({ filterCategory = 'All' }) => {
     <div className="bg-white py-12 md:py-15 px-4 sm:px-10 lg:px-20">
       {/* Heading */}
       <div className="mb-12 text-center md:text-left flex flex-col items-center md:items-start group">
-        <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-black uppercase leading-[0.8]">
-          OUR <span className="text-[#FB7E10]">SERVICES</span>
+        <h2 className="text-4xl md:text-7xl font-black tracking-tighter text-black leading-[0.8]">
+          Our <span className="text-[#FB7E10]">Services</span>
         </h2>
         <p className="mt-6 text-slate-500 text-sm md:text-xl font-medium max-w-2xl leading-relaxed">
           Professional mobile tyre solutions delivered at your request. Fast, reliable execution available 24 hours a day across Surrey and Hampshire.

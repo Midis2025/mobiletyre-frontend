@@ -56,19 +56,19 @@ const Process = () => {
               {
                 idx: "01",
                 icon: <Phone size={28} />,
-                title: "COMMUNICATION",
+                title: "Communication",
                 desc: "The moment you call, we'll tell you exactly when to expect us. No vague estimates, no being left in the dark."
               },
               {
                 idx: "02",
                 icon: <Quote size={28} />,
-                title: "UPFRONT QUOTE",
+                title: "Upfront Quote",
                 desc: "Not in a rush? Book a slot that fits your day. We work around you, not the other way around."
               },
               {
                 idx: "03",
                 icon: <CreditCard size={28} />,
-                title: "RAPID EXECUTION",
+                title: "Rapid Execution",
                 desc: "Our vans carry a broad range of tyre sizes — so we're ready to fit the moment we arrive. No second trips, no delays."
               }
             ].map((step, i) => (
