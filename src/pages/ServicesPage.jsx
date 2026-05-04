@@ -84,8 +84,8 @@ const ServicesPage = () => {
             <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
             <span className="text-white font-black uppercase text-[10px] tracking-widest">Live Dispatch Active</span>
           </div>
-          <h2 className="text-white text-4xl md:text-8xl font-black uppercase tracking-tighter leading-[0.8]">
-            NEED AN <br /><span className="text-[#0B1528]">EMERGENCY</span> QUOTE?
+          <h2 className="text-white text-4xl md:text-8xl font-black tracking-tighter leading-[0.8]">
+            Need an <br /><span className="text-[#0B1528]">emergency</span> quote?
           </h2>
           <p className="text-white/80 text-base md:text-xl font-medium max-w-xl mx-auto">
             A technician will be dispatched to you immediately. No wait times, no booking portals.
@@ -111,8 +111,8 @@ const ServicesPage = () => {
       <section className="bg-white py-16 md:py-24 px-6">
         <div className="max-w-6xl mx-auto space-y-12 text-center">
           <div className="space-y-3">
-            <h2 className="text-black text-4xl md:text-7xl font-black uppercase tracking-tighter leading-none">
-              THE <span className="text-[#FB7E10]">MOBILE</span> ADVANTAGE
+            <h2 className="text-black text-4xl md:text-7xl font-black tracking-tighter leading-none">
+              The <span className="text-[#FB7E10]">mobile</span> advantage
             </h2>
             <p className="text-gray-400 font-bold uppercase tracking-[0.2em] text-xs">Why we outperform traditional workshops</p>
           </div>

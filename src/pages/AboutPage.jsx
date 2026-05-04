@@ -256,7 +256,7 @@ const AboutPage = () => {
 
           <div className="relative z-10 max-w-2xl space-y-6 md:space-y-8 text-center md:text-left w-full">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none tracking-tight">
-              STUCK ON THE<br className="hidden sm:block" /> ROAD? CALL NOW.
+              Stuck on the<br className="hidden sm:block" /> road? Call now.
             </h2>
             <p className="text-gray-400 font-medium text-base md:text-lg leading-relaxed">
               Whether you're at home, work, or stranded roadside — our expert team arrives quickly and gets you back on the road in just 30 minutes, guaranteed.

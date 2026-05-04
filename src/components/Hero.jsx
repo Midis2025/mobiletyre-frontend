@@ -40,7 +40,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 bg-[#33251a] border border-[#fb7e10]/30 px-3 md:px-4 py-1.5 rounded-full">
               <span className="text-orange-500">⚡</span>
               <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider text-orange-400">
-                UK'S FAST MOBILE TYRE SERVICE – 24/7
+                London Fast Mobile Tyre Service – 24/7
               </span>
             </div>
 

@@ -51,7 +51,7 @@ const Services = ({ filterCategory = 'All' }) => {
                 {/* Trust Signal: Rating */}
               
 
-                <h3 className="text-2xl md:text-5xl font-black text-black leading-none uppercase tracking-tighter mb-4 transition-colors group-hover:text-[#FB7E10]">
+                <h3 className="text-2xl md:text-5xl font-black text-black leading-none tracking-tighter mb-4 transition-colors group-hover:text-[#FB7E10]">
                   {service.title}
                 </h3>
 
