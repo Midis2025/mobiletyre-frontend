@@ -78,9 +78,9 @@ const HowItWorks = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-          <a href="tel:02080901010" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 px-10 py-5 rounded-2xl font-bold tracking-wide transition-all shadow-[0_10px_30px_rgba(255,255,255,0.15)] active:scale-95 group">
+          <a href="tel:02071013856" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 px-10 py-5 rounded-2xl font-bold tracking-wide transition-all shadow-[0_10px_30px_rgba(255,255,255,0.15)] active:scale-95 group">
             <Phone size={22} className="text-[#FB7E10] group-hover:animate-pulse" />
-            <span className="text-lg">02080901010</span>
+            <span className="text-lg">02071013856</span>
           </a>
           <a href="https://wa.me/442080901010" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-900 px-10 py-5 rounded-2xl font-bold tracking-wide transition-all shadow-[0_10px_30px_rgba(255,255,255,0.15)] active:scale-95">
             <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#25D366]" fill="currentColor">
