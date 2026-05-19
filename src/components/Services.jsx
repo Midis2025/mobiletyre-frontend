@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';;
 import { servicesData } from '../data/servicesData';
 import { Star, ArrowRight, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
 
@@ -71,14 +71,12 @@ const Services = ({ filterCategory = 'All' }) => {
 
                 {/* CTA Actions */}
                 <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <Link
-                    to="/contact"
+                  <Link to="/contact"
                     className="w-full sm:w-auto text-center px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest transition-all shadow-lg active:scale-95 bg-slate-900 text-white hover:bg-[#FB7E10]"
                   >
                     {service.cta}
                   </Link>
-                  <Link
-                    to={`/services/${service.id}`}
+                  <Link to={`/services/${service.id}`}
                     className="flex items-center gap-2 text-slate-400 font-bold text-sm hover:text-[#FB7E10] uppercase tracking-widest transition-colors"
                   >
                     {service.secondaryCta} <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

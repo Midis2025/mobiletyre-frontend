@@ -21,7 +21,7 @@
     title: "Puncture Repair",
     image: "/images/puncture.avif",
     category: "Standard",
-    description: "Most punctures are repairable — and fixing one costs far less than replacing the tyre. We assess the damage on the spot and give you an honest answer before touching anything.",
+    description: " Not every puncture needs a full tyre replacement. Where it's safe to do so, our technicians will professionally repair your puncture to get you moving again at a fraction of the cost.",
     cta: "Book a Service",
     secondaryCta: "Learn More",
     features: [
@@ -35,10 +35,10 @@
   },
   {
     id: 'trailer-tyre-fitting',
-    title: "Mobile Trailer Tyre Fitting",
+    title: "Mobile Tyre Fitting",
     image: "/images/sr6nfj1ypli5n81lf20b.avif",
     category: "Specialist",
-    description: "Trailers, caravans, light commercials — we come to your home or business premises and handle it all without you needing to tow a thing to a garage.",
+    description: "New tyres fitted at your home, workplace, or roadside. We fit, balance, and dispose of your old tyres all in a single visit.",
     cta: "Book a Service",
     secondaryCta: "Learn More",
     features: [
@@ -70,11 +70,11 @@
   },
   {
     id: 'precision-wheel-balancing',
-    title: "Precision Wheel Balancing",
+    title: "Wheel Balancing",
     image: "/images/Untitled-design-7-2.png",
     fit: "contain",
     category: "Standard",
-    description: "Unbalanced wheels wear your tyres unevenly and make your car vibrate. That's why we include a full wheel balance with every tyre fitting — no extra charge.",
+    description: "Feeling vibrations through the steering wheel? Unbalanced wheels cause uneven tyre wear and reduce fuel efficiency. We balance wheels on-site using precision equipment.",
     cta: "Book a Service",
     secondaryCta: "Learn More",
     features: [
@@ -92,7 +92,7 @@
     image: "/images/emergency.avif",
     priority: true,
     category: "Emergency",
-    description: "Blowout on the dual carriageway? Flat spotted before a long drive? Call us and a technician heads to you straight away — fully equipped and ready to fit.",
+    description: "Blown a tyre? Hit a pothole? We provide rapid emergency response across the UK, day or night.",
     cta: "Book a Service",
     secondaryCta: "Learn More",
     features: [
@@ -144,7 +144,7 @@
     title: "Van Tyres & Light Commercial",
     image: "/images/tmf2ku38t4uvma6ayydt.avif",
     category: "Specialist",
-    description: "On-site van tyre fitting and repair for light commercial vehicles. Our vans carry a wide stock of commercial tyre sizes and load-rated options to keep your business moving.",
+    description: "We carry a wide range of commercial vehicle tyres and can serve business fleets as well as individual van owners.",
     cta: "Book Van Service",
     secondaryCta: "Learn More",
     features: [

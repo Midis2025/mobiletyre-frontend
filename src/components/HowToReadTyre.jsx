@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, CircleDot, Ruler, Gauge, Circle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';;
 
 const HowToReadTyre = () => {
   return (
@@ -68,8 +68,7 @@ const HowToReadTyre = () => {
             </div>
 
             <div className="pt-3 xs:pt-4 sm:pt-5 md:pt-6">
-              <Link
-                to="/find-tyres"
+              <Link to="/find-tyres"
                 className="inline-flex items-center gap-2 xs:gap-2.5 sm:gap-3 bg-[#FB7E10] hover:bg-slate-900 text-white px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 py-3 xs:py-3.5 sm:py-4 md:py-4 lg:py-5 rounded-sm font-black text-xs sm:text-xs md:text-sm lg:text-base uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-orange-500/20 whitespace-nowrap"
               >
                 Read the Full Tyre Size Guide

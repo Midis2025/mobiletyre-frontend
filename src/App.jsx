@@ -9,6 +9,7 @@ import HowToReadTyre from './components/HowToReadTyre';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import HowItWorks from './components/HowItWorks';
+import FAQ from './components/FAQ';
 import AboutPage from './pages/AboutPage';
 import TyreFinderPage from './pages/TyreFinderPage';
 import ContactPage from './pages/ContactPage';
@@ -19,6 +20,9 @@ import WhatsAppButton from './components/WhatsAppButton';
 import FloatingCallButton from './components/FloatingCallButton';
 import LockingWheelNutRemoval from './pages/LockingWheelNutRemoval';
 import TrailerTyreFitting from './pages/TrailerTyreFitting';
+import EmergencyTyreFitting from './pages/EmergencyTyreFitting';
+import MobileTyreFitting from './pages/MobileTyreFitting';
+import PunctureRepair from './pages/PunctureRepair';
 import TyrePartners from './components/TyrePartners';
 import NotFoundPage from './pages/NotFoundPage';
 import BookingPage from './pages/BookingPage';
@@ -41,6 +45,7 @@ const HomePage = () => (
     <HowToReadTyre />
     <Services />
     <HowItWorks />
+    <FAQ />
     <CTA />
   </>
 );
@@ -58,6 +63,9 @@ function App() {
           <Route path="/find-tyres" element={<TyreFinderPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/emergency-tyre-fitting" element={<EmergencyTyreFitting />} />
+          <Route path="/services/mobile-tyre-fitting" element={<MobileTyreFitting />} />
+          <Route path="/services/puncture-repair" element={<PunctureRepair />} />
           <Route path="/services/locking-wheel-nut-removal" element={<LockingWheelNutRemoval />} />
           <Route path="/services/trailer-tyre-fitting" element={<TrailerTyreFitting />} />
           <Route path="/services/:id" element={<ServiceDetail />} />

@@ -10,16 +10,24 @@ const LockingWheelNutRemoval = () => {
 
     const faqs = [
         {
-            q: "Do I need the key for a mobile tyre replacement?",
-            a: "Yes. However, if your key is lost, simply notify us in advance so we can dispatch our technician with the specialist locking wheel nut removal equipment alongside your new tyres."
+            q: "How quickly can you reach me?",
+            a: "For emergency callouts, we aim to reach you within 60 minutes. In major urban areas, response times are often faster. In rural locations, we'll always give you an honest ETA."
         },
         {
-            q: "Will this process damage my alloy wheels?",
-            a: "Not when done correctly! Our trained technicians use professional, non-invasive tools designed specifically to extract the nut without harming the lacquer or powder coating of your alloys."
+            q: "Will you come to me on the motorway?",
+            a: "Yes. Our technicians are equipped to work safely at motorway locations. Always stay behind the crash barrier while waiting."
         },
         {
-            q: "Where should I look for my key before calling?",
-            a: "Common hiding places include the glove compartment, boot side compartments, under the boot floor, seat pockets, or under the seats. If you still can't find it, we're here to help."
+            q: "What if you don't have my tyre size in stock?",
+            a: "We carry a very wide range of common tyre sizes. In the rare event we don't have your exact tyre on the van, we'll source and deliver the correct tyre as quickly as possible and keep you updated throughout."
+        },
+        {
+            q: "Do I need to pay upfront?",
+            a: "We'll confirm the price before we dispatch. Payment is taken after the job is completed to your satisfaction."
+        },
+        {
+            q: "Can you help if I've lost my locking wheel nut key?",
+            a: "Yes. Our technicians carry specialist tools for this exact situation."
         }
     ];
 

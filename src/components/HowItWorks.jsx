@@ -6,8 +6,8 @@ const HowItWorks = () => {
     {
       id: "01",
       icon: <Phone size={24} className="text-slate-400 group-hover:text-white transition-colors" fill="currentColor" />,
-      title: "Call or Book Online",
-      desc: "Tell us your tyre size or vehicle registration and location."
+      title: "Get a Quote",
+      desc: "Call us or use our online booking form. Tell us your vehicle details and tyre size, and we'll give you an immediate, no-obligation quote.  "
     },
     {
       id: "02",
@@ -22,25 +22,15 @@ const HowItWorks = () => {
         </svg>
       ),
       title: "We Come to You",
-      desc: "Our nearest mobile fitter heads straight to you with the correct tyres and equipment."
+      desc: "Choose your location home, work, roadside, or anywhere your vehicle is parked. We'll confirm your arrival window upfront."
     },
     {
       id: "03",
       icon: <Truck size={24} className="text-slate-400 group-hover:text-white transition-colors" />,
-      title: "Professional Fitting On-Site",
-      desc: "We remove the old tyre, fit the new one, balance the wheel and check pressure and safety."
+      title: "Job Done",
+      desc: "Our technician arrives fully equipped, fits your new tyres, balances the wheels, and clears up. You're back on the road without ever leaving where you are."
     },
-    {
-      id: "04",
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-white group-hover:text-white transition-colors">
-          <path d="M4 22L12 2l8 20" />
-          <path d="M8 14h8" />
-        </svg>
-      ),
-      title: "You Drive Away Safely",
-      desc: "Fully fitted. No queues. No wasted time."
-    }
+   
   ];
 
   return (
@@ -59,7 +49,7 @@ const HowItWorks = () => {
           HOW IT WORKS
         </h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 lg:justify-center">
           {steps.map((step, idx) => (
             <div key={idx} className="group bg-white/10 backdrop-blur-xl rounded-[1.25rem] p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] relative flex flex-col justify-start min-h-[260px] overflow-hidden hover:-translate-y-1 hover:bg-white/15 hover:border-white/30 transition-all duration-300">
               <div className="mb-6 relative z-10">

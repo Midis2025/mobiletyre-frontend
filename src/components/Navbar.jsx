@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -76,8 +77,7 @@ const Navbar = () => {
         <div className="hidden lg:flex flex-[3] items-center justify-center gap-4 xl:gap-8 text-[12px] xl:text-[13px] font-bold text-white tracking-widest px-2">
           {links.map(({ label, to, isNew, dropdown }) => (
             <div key={label} className="relative group">
-              <Link
-                to={to}
+              <Link to={to}
                 onClick={(e) => { if (to === '#') e.preventDefault(); }}
                 className={`relative py-2 transition-all flex items-center gap-1.5 whitespace-nowrap ${isActive(to) ? 'text-[#0B1528]' : 'hover:text-[#0B1528]'
                   } group-hover:translate-y-[-1px]`}
@@ -145,8 +145,7 @@ const Navbar = () => {
           <div className="flex-grow overflow-y-auto p-4 space-y-2">
             {links.map(({ label, to, icon, isNew, dropdown }) => (
               <div key={label} className="w-full">
-                <Link
-                  to={to}
+                <Link to={to}
                   onClick={(e) => { if (to === '#') e.preventDefault(); }}
                   className={`flex items-center justify-between w-full p-4 rounded-2xl transition-all ${isActive(to)
                     ? 'text-[#FB7E10] bg-orange-50/50 shadow-inner'
@@ -170,8 +169,7 @@ const Navbar = () => {
                 {dropdown && (
                   <div className="grid grid-cols-1 gap-2 mt-2 px-2 pb-2">
                     {dropdown.map(subItem => (
-                      <Link
-                        key={subItem.to}
+                      <Link key={subItem.to}
                         to={subItem.to}
                         className={`flex items-center gap-3 py-3 px-4 rounded-xl text-xs font-bold transition-all ${isActive(subItem.to)
                           ? 'text-[#FB7E10] bg-orange-50'

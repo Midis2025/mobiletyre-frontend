@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Car, Ruler, ChevronDown, AlertCircle } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';;
 
 const TyreFinder = () => {
     const [activeTab, setActiveTab] = useState('size');
@@ -10,7 +10,7 @@ const TyreFinder = () => {
     const [error, setError] = useState('');
     const [sortBy, setSortBy] = useState('relevance');
     const tyreResultsRef = useRef(null);
-    const location = useLocation();
+    const pathname = useLocation();
 
     // Form States
     const [width, setWidth] = useState('');
